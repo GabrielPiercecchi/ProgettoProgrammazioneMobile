@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 
+// Classe per la schermata di login
 class Login : AppCompatActivity() {
 
     private lateinit var edtEmail: EditText
