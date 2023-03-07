@@ -54,7 +54,9 @@ class Login : AppCompatActivity() {
                 if (task.isSuccessful) {
                     // Codice per loggare
 
-                    val intent =Intent(this@Login, MainActivity::class.java)
+                    val intent =Intent(this@Login,
+                        MainActivity::class.java)
+                    finish()
                     startActivity(intent)
 
                 } else {
