@@ -5,8 +5,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -14,17 +16,33 @@ class MainActivity : AppCompatActivity() {
     private lateinit var userList: ArrayList<User>
     private lateinit var adapter: UserAdapter
     private lateinit var mAuth: FirebaseAuth
+    private lateinit var mDbRef: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         mAuth = FirebaseAuth.getInstance()
+        mDbRef = FirebaseDatabase.getInstance().getReference()
 
         userList = ArrayList()
         adapter = UserAdapter(this, userList)
 
         userRecyclerView = findViewById(R.id.userRecyclerView)
+
+        userRecyclerView.layoutManager = LinearLayoutManager(this)
+        userRecyclerView.adapter = adapter
+
+        mDbRef.child("user").addValueEventListener(object: ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                TODO("Not yet implemented")
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
