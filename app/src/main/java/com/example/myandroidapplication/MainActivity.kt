@@ -1,10 +1,10 @@
 package com.example.myandroidapplication
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
@@ -35,11 +35,24 @@ class MainActivity : AppCompatActivity() {
 
         mDbRef.child("user").addValueEventListener(object: ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
-                TODO("Not yet implemented")
+
+                userList.clear()
+                for (postSnapshot in snapshot.children){
+                    val currentUser =
+                        postSnapshot.getValue(User::class.java)
+
+                    /*Questo if mostra tutti gli utenti eccetto quello che
+                    ha effettuato il login
+                     */
+                    if (mAuth.currentUser?.uid != currentUser?.uid){
+                        userList.add(currentUser!!)
+                    }
+                }
+                adapter.notifyDataSetChanged()
             }
 
             override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
+
             }
 
         })
@@ -60,6 +73,6 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
             return true
         }
-        return false
+        return true
     }
 }
