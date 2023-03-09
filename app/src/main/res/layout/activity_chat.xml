@@ -12,6 +12,15 @@
         android:layout_alignParentTop="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:orientation="vertical"
+        android:paddingBottom="8dp"
+        android:paddingTop="8dp"
+        app:reverseLayout="true"
+        app:stackFromEnd="true"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/linearLayout"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         />
 
     <LinearLayout
