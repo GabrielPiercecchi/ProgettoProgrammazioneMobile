@@ -4,12 +4,15 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.SearchView
+import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import java.util.*
+import kotlin.collections.ArrayList
 
 class MainActivity : AppCompatActivity() {
 
@@ -31,9 +34,23 @@ class MainActivity : AppCompatActivity() {
         adapter = UserAdapter(this, userList)
 
         userRecyclerView = findViewById(R.id.userRecyclerView)
+        //Istanziato per SearchView
+        userSearchView = findViewById(R.id.userSearchView)
 
         userRecyclerView.layoutManager = LinearLayoutManager(this)
         userRecyclerView.adapter = adapter
+
+        userSearchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                filterList(newText)
+                return true
+            }
+
+        })
 
         mDbRef.child("user").addValueEventListener(object: ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -56,6 +73,25 @@ class MainActivity : AppCompatActivity() {
             override fun onCancelled(error: DatabaseError) {            }
 
         })
+    }
+
+    // Metodo aggiunto per SearchView
+    private fun filterList(query: String?){
+
+        if (query != null){
+            val filteredList = ArrayList<User>()
+            for (i in userList){
+                if (i.name!!.lowercase(Locale.ROOT).contains(query))
+                    filteredList.add(i)
+            }
+
+            if (filteredList.isEmpty()){
+                Toast.makeText(this, "Nessun utente trovato",
+                    Toast.LENGTH_SHORT).show()
+            } else {
+                adapter.setfiltereList(filteredList)
+            }
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

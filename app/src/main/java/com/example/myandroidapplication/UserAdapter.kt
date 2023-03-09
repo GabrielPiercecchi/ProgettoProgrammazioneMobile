@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 
-class UserAdapter(val context: Context, val userList: ArrayList<User>):
+class UserAdapter(val context: Context, /*Prima era val*/var userList: ArrayList<User>):
     RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
@@ -39,9 +39,14 @@ class UserAdapter(val context: Context, val userList: ArrayList<User>):
         }
 
     }
-
     class UserViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val textName = itemView.findViewById<TextView>(R.id.txt_name)
+    }
+
+    //Metodo aggiunto per SearchView
+    fun setfiltereList(userList: ArrayList<User>){
+        this.userList = userList
+        notifyDataSetChanged()
     }
 
 }
