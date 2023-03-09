@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:text="Questo e' un messaggio ricevuto"
             android:padding="10dp"
-            android:textSize="10dp"
+            android:textSize="15dp"
             />
 
 
