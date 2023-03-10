@@ -58,6 +58,9 @@ class ChatActivity : AppCompatActivity() {
                         val message = postSnapshot
                             .getValue(Message::class.java)
                         messageList.add(message!!)
+
+                        // Focus sull'ultimo messaggio
+                        chatRecyclerView.scrollToPosition(messageList.size -1)
                     }
                     messageAdapter.notifyDataSetChanged()
                 }
