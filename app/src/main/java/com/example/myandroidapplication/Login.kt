@@ -55,7 +55,7 @@ class Login : AppCompatActivity() {
                     // Codice per loggare
 
                     val intent =Intent(this@Login,
-                        MainActivity::class.java)
+                        ChatList::class.java)
                     finish()
                     startActivity(intent)
 

@@ -14,7 +14,7 @@ import com.google.firebase.database.*
 import java.util.*
 import kotlin.collections.ArrayList
 
-class MainActivity : AppCompatActivity() {
+class ChatList : AppCompatActivity() {
 
     private lateinit var userRecyclerView: RecyclerView
     private lateinit var userSearchView: SearchView
@@ -103,7 +103,7 @@ class MainActivity : AppCompatActivity() {
         if (item.itemId == R.id.logout){
             //Logica per il logout
             mAuth.signOut()
-            val intent = Intent(this@MainActivity,
+            val intent = Intent(this@ChatList,
                 Login::class.java)
             finish()
             startActivity(intent)

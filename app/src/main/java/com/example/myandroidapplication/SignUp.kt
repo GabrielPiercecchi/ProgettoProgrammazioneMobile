@@ -1,6 +1,5 @@
 package com.example.myandroidapplication
 
-import android.R.attr
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -56,7 +55,7 @@ class SignUp : AppCompatActivity() {
                     // Codice per tornare alla home
                     addUserToDatabase(name, email, mAuth.currentUser?.uid!!)
                     val intent =Intent(this@SignUp,
-                        MainActivity::class.java)
+                        ChatList::class.java)
                     finish()
                     startActivity(intent)
 
