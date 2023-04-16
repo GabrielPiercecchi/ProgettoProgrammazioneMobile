@@ -1,4 +1,4 @@
-package com.example.myandroidapplication
+package com.example.myandroidapplication.View
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,6 +9,9 @@ import androidx.appcompat.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.myandroidapplication.Model.User
+import com.example.myandroidapplication.R
+import com.example.myandroidapplication.ViewModel.UserAdapter
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import java.util.*

@@ -1,4 +1,4 @@
-package com.example.myandroidapplication
+package com.example.myandroidapplication.Model
 
 class Message {
     var message: String? = null

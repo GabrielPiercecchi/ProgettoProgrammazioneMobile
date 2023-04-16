@@ -1,4 +1,4 @@
-package com.example.myandroidapplication
+package com.example.myandroidapplication.View
 
 import android.os.Bundle
 import android.widget.EditText
@@ -6,6 +6,9 @@ import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.myandroidapplication.Model.Message
+import com.example.myandroidapplication.R
+import com.example.myandroidapplication.ViewModel.MessageAdapter
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 
