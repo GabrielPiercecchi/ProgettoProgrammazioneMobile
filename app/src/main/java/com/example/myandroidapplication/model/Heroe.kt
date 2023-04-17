@@ -1,6 +1,6 @@
-package com.example.myandroidapplication.Model
+package com.example.myandroidapplication.model
 
-data class Spell(
+data class Heroe(
     val level: Int,
     val maxLevel: Int,
     val name: String,

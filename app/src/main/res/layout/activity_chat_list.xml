@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     app:reverseLayout="true"
     app:stackFromEnd="true"
-    tools:context=".View.ChatList">
+    tools:context=".view.ChatList">
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/materialCardView"

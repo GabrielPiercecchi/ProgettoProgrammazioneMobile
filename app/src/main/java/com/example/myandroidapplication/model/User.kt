@@ -1,4 +1,4 @@
-package com.example.myandroidapplication.Model
+package com.example.myandroidapplication.model
 
 class User {
     var name: String? = null

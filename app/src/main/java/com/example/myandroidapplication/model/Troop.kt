@@ -1,6 +1,6 @@
-package com.example.myandroidapplication.Model
+package com.example.myandroidapplication.model
 
-data class Heroe(
+data class Troop(
     val level: Int,
     val maxLevel: Int,
     val name: String,

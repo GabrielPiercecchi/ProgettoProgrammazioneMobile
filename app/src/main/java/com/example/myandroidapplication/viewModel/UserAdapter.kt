@@ -1,4 +1,4 @@
-package com.example.myandroidapplication.ViewModel
+package com.example.myandroidapplication.viewModel
 
 import android.content.Context
 import android.content.Intent
@@ -7,8 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.myandroidapplication.View.ChatActivity
-import com.example.myandroidapplication.Model.User
+import com.example.myandroidapplication.view.ChatActivity
+import com.example.myandroidapplication.model.User
 import com.example.myandroidapplication.R
 
 class UserAdapter(val context: Context, /*Prima era val*/var userList: ArrayList<User>):

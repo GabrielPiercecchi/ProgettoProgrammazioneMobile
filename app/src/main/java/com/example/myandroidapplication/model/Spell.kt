@@ -1,6 +1,6 @@
-package com.example.myandroidapplication.Model
+package com.example.myandroidapplication.model
 
-data class Troop(
+data class Spell(
     val level: Int,
     val maxLevel: Int,
     val name: String,

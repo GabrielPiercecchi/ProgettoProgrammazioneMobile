@@ -1,4 +1,4 @@
-package com.example.myandroidapplication.Model
+package com.example.myandroidapplication.model
 
 data class IconUrlsX(
     val medium: String,
