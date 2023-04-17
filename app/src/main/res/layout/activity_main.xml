@@ -7,8 +7,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/drawer_layout"
     android:fitsSystemWindows="true"
-    android:openDrawer="start">
-    <!--tools:context=".MainActivity"-->
+    android:openDrawer="start"
+    tools:context=".view.MainActivity">
+
 
         <TextView
             android:layout_width="wrap_content"
