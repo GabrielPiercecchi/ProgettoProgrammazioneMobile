@@ -4,10 +4,10 @@
     <item
         android:id="@+id/bottom_playersandchats"
         android:icon="@drawable/baseline_playersandchats_24"
-        android:title="Home"/>
+        android:title="@string/Home"/>
     <item
         android:id="@+id/bottom_leaderboards"
         android:icon="@drawable/baseline_leaderboards_24"
-        android:title="Search"/>
+        android:title="@string/Search"/>
 
 </menu>

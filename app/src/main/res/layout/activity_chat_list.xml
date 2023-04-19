@@ -24,7 +24,7 @@
             android:id="@+id/userSearchView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:queryHint="Cerca qui..."
+            app:queryHint="@string/search_here"
             app:queryBackground="@android:color/transparent"
             app:iconifiedByDefault="false"
             />

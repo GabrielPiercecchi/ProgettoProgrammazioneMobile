@@ -1,5 +1,38 @@
 <resources>
     <string name="app_name">COC Messenger</string>
+
+    <!--Navigation Drawer-->
     <string name="open_nav">Open Navigation Drawer</string>
     <string name="close_nav">Close Navigation Drawer</string>
+
+    <!--bottom_menu.xml-->
+    <string name="Home">Home</string>
+    <string name="Search">Search</string>
+
+    <!--menu.xml-->
+    <string name="Log_out">Log Out</string>
+
+    <!--nav_menu-xml-->
+    <string name="Settings">Settings</string>
+    <string name="Rate">Rate</string>
+    <string name="About">About</string>
+    <string name="Tutorial">Tutorial</string>
+
+    <!--activity_chat.xml-->
+    <string name="send_message">Send a message</string>
+
+    <!--activity_chat_list.xml-->
+    <string name="search_here">Search here...</string>
+
+    <!--activity_f_password.xml-->
+    <string name="forgot_passw">Forgot Password</string>
+    <string name="enter_mail_addr">Enter your email address</string>
+    <string name="Email">Email</string>
+    <string name="Password">Password</string>
+    <string name="Reset">Reset</string>
+    <string name="Log_in">Log in</string>
+    <string name="Sign_up">Sign up</string>
+
+    <!--activity_sign_up.xml-->
+    <string name="Name">Name</string>
 </resources>
