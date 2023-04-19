@@ -6,28 +6,23 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_settings"
-            android:title="Settings"
-            />
+            android:title="Settings"/>
         <item
             android:id="@+id/nav_rate"
-            android:title="Rate"
-            />
+            android:title="Rate"/>
         <item
             android:id="@+id/nav_about"
-            android:title="About"
-            />
+            android:title="About"/>
         <item
             android:id="@+id/nav_tutorial"
-            android:title="Tutorial"
-            />
+            android:title="Tutorial"/>
     </group>
     <item
         android:title="">
         <menu>
             <item
             android:id="@+id/nav_logout"
-            android:title="Logout"
-             />
+            android:title="Logout"/>
         </menu>
     </item>
 </menu>
