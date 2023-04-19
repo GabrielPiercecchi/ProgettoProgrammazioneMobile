@@ -6,8 +6,10 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import com.example.myandroidapplication.R
 import com.google.firebase.auth.FirebaseAuth
+import okhttp3.internal.http2.StreamResetException
 
 // Classe per la schermata di login
 class Login : AppCompatActivity() {
@@ -16,6 +18,7 @@ class Login : AppCompatActivity() {
     private lateinit var edtPassword: EditText
     private lateinit var btnLogin: Button
     private lateinit var btnSignUp: Button
+    private lateinit var btnFPassword: Button
 
     // Variabile utilizzata per le autenticazioni Firebase
     private lateinit var mAuth: FirebaseAuth
@@ -32,6 +35,7 @@ class Login : AppCompatActivity() {
         edtPassword = findViewById(R.id.edit_password)
         btnLogin = findViewById(R.id.btnLogin)
         btnSignUp = findViewById(R.id.btnSignUp)
+        btnFPassword = findViewById(R.id.btnFPassword)
 
         btnSignUp.setOnClickListener {
             val intent = Intent(this, SignUp::class.java)
@@ -43,6 +47,11 @@ class Login : AppCompatActivity() {
             val password = edtPassword.text.toString()
 
             login(email, password)
+        }
+
+        btnFPassword.setOnClickListener {
+            val intent = Intent(this, ForgotPassword::class.java)
+            startActivity(intent)
         }
 
     }
