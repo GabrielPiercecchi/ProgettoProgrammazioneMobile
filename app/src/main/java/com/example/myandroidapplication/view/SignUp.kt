@@ -23,7 +23,7 @@ class SignUp : AppCompatActivity() {
 
     // Variabile utilizzata per le autenticazioni Firebase
     private lateinit var mAuth: FirebaseAuth
-
+    //Variabile utilizzata per utilizzare il database di Firebase
     private lateinit var mDbRef: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
