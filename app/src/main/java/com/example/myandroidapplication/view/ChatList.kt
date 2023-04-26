@@ -97,7 +97,7 @@ class ChatList : AppCompatActivity() {
         }
     }
 
-    //metodo per "iniettare" nel menu
+    //metodo per "iniettare" il menu
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu, menu)
         return super.onCreateOptionsMenu(menu)

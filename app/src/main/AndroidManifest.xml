@@ -26,7 +26,7 @@
             android:label="@string/title_activity_settings" />
         <activity
             android:name=".view.MainActivity"
-            android:exported="true"
+            android:exported="false"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".view.ForgotPassword"
@@ -36,7 +36,7 @@
             android:exported="false" />
         <activity
             android:name=".view.SignUp"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".view.Login"
             android:exported="true">
