@@ -5,11 +5,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.PreferenceFragmentCompat
 import com.example.myandroidapplication.R
 
-class ActivitySettings : AppCompatActivity() {
+class FragmentSettings : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_settings)
+        setContentView(R.layout.fragment_settings)
         if (savedInstanceState == null) {
             supportFragmentManager
                 .beginTransaction()

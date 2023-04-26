@@ -7,18 +7,15 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.drawerlayout.widget.DrawerLayout
 import com.example.myandroidapplication.R
 import com.google.firebase.auth.FirebaseAuth
 import okhttp3.internal.http2.StreamResetException
 
 // Classe per la schermata di login
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(){
 
-    private lateinit var edtEmail: EditText
-    private lateinit var edtPassword: EditText
-    private lateinit var btnChat: Button
-    private lateinit var btnSignUp: Button
-    private lateinit var btnFPassword: Button
+    //private var drawerlayout: DrawerLayout
 
     // Variabile utilizzata per le autenticazioni Firebase
     private lateinit var mAuth: FirebaseAuth

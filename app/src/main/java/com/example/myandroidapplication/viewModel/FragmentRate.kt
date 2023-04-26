@@ -5,10 +5,10 @@ import android.os.Bundle
 import com.example.myandroidapplication.R
 import hotchemi.android.rate.AppRate
 
-class ActivityRate : AppCompatActivity() {
+class FragmentRate : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_rate)
+        setContentView(R.layout.fragment_rate)
 
         AppRate.with(this)
             .setInstallDays(1)

@@ -15,13 +15,13 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".viewModel.ActivityTutorial"
+            android:name=".viewModel.FragmentTutorial"
             android:exported="false" />
         <activity
-            android:name=".viewModel.ActivityAbout"
+            android:name=".viewModel.FragmentAbout"
             android:exported="false" />
         <activity
-            android:name=".viewModel.ActivitySettings"
+            android:name=".viewModel.FragmentSettings"
             android:exported="false"
             android:label="@string/title_activity_settings" />
         <activity
