@@ -25,7 +25,7 @@
         android:orientation="horizontal"
         android:layout_marginBottom="5dp"
         android:weightSum="100">
-        
+
         <EditText
             android:id="@+id/messageBox"
             android:layout_width="wrap_content"

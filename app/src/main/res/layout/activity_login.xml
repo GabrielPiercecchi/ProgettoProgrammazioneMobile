@@ -14,7 +14,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="125dp"
         />
-    
+
     <EditText
         android:id="@+id/edit_email"
         android:layout_width="match_parent"
@@ -40,7 +40,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         />
-    
+
     <Button
         android:id="@+id/btnLogin"
         android:layout_width="150dp"

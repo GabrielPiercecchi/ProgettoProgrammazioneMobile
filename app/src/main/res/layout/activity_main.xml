@@ -11,14 +11,14 @@
     tools:context=".view.MainActivity">
 
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Hello World"
-            android:textSize="36sp"
-            android:textColor="@color/flamingoPink"
-            android:layout_centerInParent="true"
-            />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello World"
+        android:textSize="36sp"
+        android:textColor="@color/flamingoPink"
+        android:layout_centerInParent="true"
+        />
     <!--Bottom navigation bar-->
     <RelativeLayout
         android:layout_width="match_parent"
