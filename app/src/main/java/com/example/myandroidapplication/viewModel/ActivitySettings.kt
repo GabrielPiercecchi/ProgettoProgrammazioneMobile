@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.PreferenceFragmentCompat
 import com.example.myandroidapplication.R
 
-class activity_settings : AppCompatActivity() {
+class ActivitySettings : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
