@@ -11,6 +11,8 @@ import com.example.myandroidapplication.model.Message
 import com.example.myandroidapplication.R
 import com.google.firebase.auth.FirebaseAuth
 
+//Tutta questa classe serve per maneggiare i
+// messaggi inviati: come vederli, come inviarli, tec..
 class MessageAdapter(val context: Context, val messageList: ArrayList<Message>)
     : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 

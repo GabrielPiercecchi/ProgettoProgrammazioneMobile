@@ -1,4 +1,4 @@
-package com.example.myandroidapplication.ViewModel
+package com.example.myandroidapplication.viewModel
 
 import com.example.myandroidapplication.model.Player
 import retrofit2.Call

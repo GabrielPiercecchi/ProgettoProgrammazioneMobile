@@ -97,11 +97,13 @@ class ChatList : AppCompatActivity() {
         }
     }
 
+    //metodo per "iniettare" nel menu
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
+    //per effettuare il logout
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.logout){
             //Logica per il logout

@@ -11,6 +11,8 @@ import com.example.myandroidapplication.view.ChatActivity
 import com.example.myandroidapplication.model.User
 import com.example.myandroidapplication.R
 
+//Questa classe si occupa di gestire gli utenti nel database:
+//come mostrarli, come ricercarli, tec...
 class UserAdapter(val context: Context, /*Prima era val*/var userList: ArrayList<User>):
     RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
 

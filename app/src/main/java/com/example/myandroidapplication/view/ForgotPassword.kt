@@ -35,7 +35,6 @@ class ForgotPassword : AppCompatActivity() {
         editBox = findViewById(R.id.editBox)
         btnReset = findViewById(R.id.btnReset)
 
-
         btnReset.setOnClickListener {
             val emailRPassword = editBox.text.toString()
             checkEmail(emailRPassword)
@@ -49,6 +48,9 @@ class ForgotPassword : AppCompatActivity() {
 //                }
         }
     }
+
+    //Serve per verificare che l'email inserita sia presente nel database
+    //In caso esista procete all'invio del resetpassword
     private fun checkEmail(emailRPassword: String){
         mAuth.sendPasswordResetEmail(emailRPassword)
 

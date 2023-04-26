@@ -74,6 +74,7 @@ class SignUp : AppCompatActivity() {
             }
     }
 
+    //Per aggiungere alla fine i dati del nuovo utente nel database
     private fun addUserToDatabase(name: String, email: String, uid: String) {
         mDbRef = FirebaseDatabase.getInstance().getReference()
         mDbRef.child("user")

@@ -21,6 +21,7 @@ class ChatActivity : AppCompatActivity() {
     private lateinit var messageList: ArrayList<Message>
     private lateinit var mDbRef: DatabaseReference
 
+    //Variabili per la comunicazione tra due room
     var receiverRoom: String? = null
     var senderRoom: String? = null
 
