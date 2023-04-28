@@ -7,42 +7,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/drawer_layout"
     android:fitsSystemWindows="true"
-
     tools:context=".view.MainActivity"
     tools:openDrawer="start">
 
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World"
-        android:textSize="36sp"
-        android:textColor="@color/flamingoPink"
-        android:layout_centerInParent="true"
-        />
-    <!--Bottom navigation bar-->
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/bottomNavigationView"
-            android:layout_alignParentBottom="true"
-            android:background="@drawable/bottom_bg"
-            android:layout_marginEnd="20dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginBottom="30dp"
-            android:layout_marginTop="30dp"
-            android:elevation="2dp"
-            app:menu="@menu/bottom_menu"
-            app:itemIconSize="30dp"
-            app:itemIconTint="@drawable/item_selector"
-            app:itemRippleColor="@android:color/transparent"
-            app:labelVisibilityMode="unlabeled"/>
-
         <!--Navigation Drawer-->
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
@@ -58,18 +27,31 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/fragment_container"/>
-        </LinearLayout>
-
-        <com.google.android.material.navigation.NavigationView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/nav_view"
-            android:layout_gravity="start"
-            app:headerLayout="@layout/nav_header"
-            app:menu="@menu/nav_menu"
-            app:itemIconTint="@color/flamingoPink"
-            app:itemTextColor="@color/flamingoPink"/>
-            <!--android:background=""-->
-    </RelativeLayout>
-
+                    <!--Bottom navigation bar-->
+                    <com.google.android.material.bottomnavigation.BottomNavigationView
+                        android:id="@+id/bottomNavigationView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginBottom="30dp"
+                        android:background="@drawable/bottom_bg"
+                        android:elevation="2dp"
+                        app:itemIconSize="30dp"
+                        app:itemIconTint="@drawable/item_selector"
+                        app:itemRippleColor="@android:color/transparent"
+                        app:labelVisibilityMode="unlabeled"
+                        app:menu="@menu/bottom_menu" />
+        </RelativeLayout>
+    <com.google.android.material.navigation.NavigationView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/nav_view"
+        android:layout_gravity="start"
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/nav_menu"
+        app:itemIconTint="@color/flamingoPink"
+        app:itemTextColor="@color/flamingoPink"/>
 </androidx.drawerlayout.widget.DrawerLayout>

@@ -15,22 +15,12 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".viewModel.RateFragment"
+            android:name=".view.LeaderboardsActivity"
             android:exported="false" />
-        <activity
-            android:name=".viewModel.TutorialFragment"
-            android:exported="false" />
-        <activity
-            android:name=".viewModel.AboutFragment"
-            android:exported="false" />
-        <activity
-            android:name=".viewModel.SettingsFragment"
-            android:exported="false"
-            android:label="@string/title_activity_settings" />
         <activity
             android:name=".view.MainActivity"
-            android:exported="false"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:exported="true"
+            android:theme="@style/Theme.view.MainActivity" />
         <activity
             android:name=".view.ForgotPassword"
             android:exported="false" />
@@ -49,6 +39,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="android.app.lib_name"
+            android:value="" />
+
         <activity
             android:name=".view.ChatList"
             android:exported="true" />

@@ -7,6 +7,10 @@
     app:reverseLayout="true"
     app:stackFromEnd="true"
     tools:context=".view.ChatList">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/bottom_playersandchats"/>
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/materialCardView"
