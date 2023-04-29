@@ -74,22 +74,27 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.nav_settings -> {
                 startActivity(Intent(applicationContext, SettingsActivity::class.java))
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
-                finish()
+//                finish()
                 return true
             }
             R.id.nav_about -> {
                 startActivity(Intent(applicationContext, AboutActivity::class.java))
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
-                finish()
+//                finish()
                 return true
             }
             R.id.nav_tutorial -> {
                 startActivity(Intent(applicationContext, TutorialActivity::class.java))
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+//                finish()
+                return true
+            }
+            R.id.nav_logout -> {
+                //Logica per il logout
+                mAuth.signOut()
                 finish()
                 return true
             }
-            R.id.nav_logout -> Toast.makeText(this, "Logout", Toast.LENGTH_SHORT).show()
         }
         drawerLayout.closeDrawer(GravityCompat.START)
         return true
