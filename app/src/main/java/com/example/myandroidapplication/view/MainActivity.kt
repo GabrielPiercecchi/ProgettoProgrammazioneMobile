@@ -5,18 +5,16 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.myandroidapplication.R
-import com.example.myandroidapplication.viewModel.AboutFragment
+import com.example.myandroidapplication.viewModel.AboutActivity
 import com.example.myandroidapplication.viewModel.HomeFragment
-import com.example.myandroidapplication.viewModel.RateFragment
-import com.example.myandroidapplication.viewModel.SettingsFragment
-import com.example.myandroidapplication.viewModel.TutorialFragment
+import com.example.myandroidapplication.viewModel.SettingsActivity
+import com.example.myandroidapplication.viewModel.TutorialActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
@@ -41,7 +39,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setSupportActionBar(toolbar)
         navigationView = findViewById(R.id.nav_view)
         navigationView.setNavigationItemSelectedListener(this)
-//        val header: View = navigationView.getHeaderView(0)
         val toggle = ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open_nav, R.string.close_nav)
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
@@ -74,14 +71,24 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
-            R.id.nav_settings -> supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, SettingsFragment()).commit()
-            R.id.nav_rate -> supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, RateFragment()).commit()
-            R.id.nav_about -> supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, AboutFragment()).commit()
-            R.id.nav_tutorial -> supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, TutorialFragment()).commit()
+            R.id.nav_settings -> {
+                startActivity(Intent(applicationContext, SettingsActivity::class.java))
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+                finish()
+                return true
+            }
+            R.id.nav_about -> {
+                startActivity(Intent(applicationContext, AboutActivity::class.java))
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+                finish()
+                return true
+            }
+            R.id.nav_tutorial -> {
+                startActivity(Intent(applicationContext, TutorialActivity::class.java))
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+                finish()
+                return true
+            }
             R.id.nav_logout -> Toast.makeText(this, "Logout", Toast.LENGTH_SHORT).show()
         }
         drawerLayout.closeDrawer(GravityCompat.START)
@@ -94,18 +101,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             onBackPressedDispatcher.onBackPressed()
         }
     }
-    /*
-    override fun onContextItemSelected(item: MenuItem): Boolean {
-        when(item.itemId){
-            R.id.userRecyclerView -> {
-                val intent = Intent(this, ChatList::class.java)
-                startActivity(intent)
-            return true}
-            R.id.bottom_leaderboards ->  {
-                val intent = Intent(this, LeaderboardsActivity::class.java)
-                startActivity(intent)
-            return true}
-        }
-        return false
-    }*/
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.settings_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+
 }
+
