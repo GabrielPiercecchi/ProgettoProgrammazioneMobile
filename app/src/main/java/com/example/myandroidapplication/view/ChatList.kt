@@ -11,6 +11,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myandroidapplication.model.User
 import com.example.myandroidapplication.R
+import com.example.myandroidapplication.viewModel.AboutActivity
+import com.example.myandroidapplication.viewModel.SettingsActivity
+import com.example.myandroidapplication.viewModel.TutorialActivity
 import com.example.myandroidapplication.viewModel.UserAdapter
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
@@ -100,20 +103,41 @@ class ChatList : AppCompatActivity() {
     //metodo per "iniettare" il menu
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu, menu)
+//        menuInflater.inflate(R.menu.nav_menu, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
     //per effettuare il logout
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.logout){
-            //Logica per il logout
-            mAuth.signOut()
-            val intent = Intent(this@ChatList,
-                Login::class.java)
-            finish()
-            startActivity(intent)
-            return true
+        when(item.itemId){
+            R.id.home -> {
+                startActivity(Intent(applicationContext, MainActivity::class.java))
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+//                finish()
+                return true
+            }
+            R.id.settings -> {
+                startActivity(Intent(applicationContext, SettingsActivity::class.java))
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+//                finish()
+                return true
+            }
+            R.id.logout -> {
+                //Logica per il logout
+                mAuth.signOut()
+                finish()
+                return true
+            }
         }
+//        if (item.itemId == R.id.logout){
+//            //Logica per il logout
+//            mAuth.signOut()
+//            val intent = Intent(this@ChatList,
+//                Login::class.java)
+//            finish()
+//            startActivity(intent)
+//            return true
+//        }
         return true
     }
 }

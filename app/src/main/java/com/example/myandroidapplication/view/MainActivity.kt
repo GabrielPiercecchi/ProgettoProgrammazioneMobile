@@ -107,10 +107,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.settings_menu, menu)
-        return super.onCreateOptionsMenu(menu)
-    }
+    //Questa nella home può anche essere evitata a sto punto
+//    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+//        menuInflater.inflate(R.menu.settings_menu, menu)
+//        return super.onCreateOptionsMenu(menu)
+//    }
 
 
 }
