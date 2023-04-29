@@ -15,11 +15,4 @@ class AboutActivity : AppCompatActivity() {
         setContentView(R.layout.activity_about)
 
     }
-    /*override fun onBackPressed() {
-        if(drawerLayout.isDrawerOpen(GravityCompat.START)){
-            drawerLayout.closeDrawer(GravityCompat.START)
-        } else {
-            onBackPressedDispatcher.onBackPressed()
-        }
-    }*/
 }
