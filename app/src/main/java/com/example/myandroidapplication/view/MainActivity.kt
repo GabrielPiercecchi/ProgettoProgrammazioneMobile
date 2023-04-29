@@ -55,13 +55,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 R.id.bottom_playersandchats -> {
                     startActivity(Intent(applicationContext, ChatList::class.java))
                     overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
-//                    finish()
                     true
                 }
                 R.id.bottom_leaderboards -> {
                     startActivity(Intent(applicationContext, LeaderboardsActivity::class.java))
                     overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
-//                    finish()
                     true
                 }
                 else -> false
