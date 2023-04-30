@@ -9,4 +9,7 @@ interface ApiInterface {
     @GET("player")
     fun getPlayer(): Call<List<Player>>
 
+    @GET("locations")
+    fun getLeaderboard(): Call<List<Player>>
+
 }

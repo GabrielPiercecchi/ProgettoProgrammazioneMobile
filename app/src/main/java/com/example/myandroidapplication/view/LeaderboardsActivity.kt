@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
 import com.example.myandroidapplication.R
-import com.example.myandroidapplication.Util.Constants.Companion.BASE_URL
+import com.example.myandroidapplication.Util.Constants.Companion.LOCATIONS_URL
 import com.example.myandroidapplication.model.Player
 import com.example.myandroidapplication.viewModel.ApiInterface
 import retrofit2.Call
@@ -19,17 +19,17 @@ class LeaderboardsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_leaderboards)
 
-        getPlayerData()
+        getLeaderboardData()
     }
 
-    private fun getPlayerData(){
+    private fun getLeaderboardData(){
         val retrofitBuilder = Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
-            .baseUrl(BASE_URL)
+            .baseUrl(LOCATIONS_URL)
             .build()
             .create(ApiInterface::class.java)
 
-        val retrofitData = retrofitBuilder.getPlayer()
+        val retrofitData = retrofitBuilder.getLeaderboard()
 
         retrofitData.enqueue(object : Callback<List<Player>?> {
             override fun onResponse(call: Call<List<Player>?>, response: Response<List<Player>?>) {
