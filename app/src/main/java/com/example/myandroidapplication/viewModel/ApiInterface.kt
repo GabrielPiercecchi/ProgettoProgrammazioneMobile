@@ -7,6 +7,6 @@ import retrofit2.http.GET
 interface ApiInterface {
 
     @GET("player")
-    fun getData(): Call<List<Player>>
+    fun getPlayer(): Call<List<Player>>
 
 }
