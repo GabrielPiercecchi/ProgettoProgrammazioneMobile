@@ -19,10 +19,10 @@ class LeaderboardsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_leaderboards)
 
-        getLeaderboardData()
+        getLeaderboard()
     }
 
-    private fun getLeaderboardData(){
+    private fun getLeaderboard(){
         val retrofitBuilder = Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
             .baseUrl(LOCATIONS_URL)
