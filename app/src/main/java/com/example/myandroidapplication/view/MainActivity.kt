@@ -90,7 +90,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.nav_logout -> {
                 //Logica per il logout
                 mAuth.signOut()
-                finish()
+                //finish()
                 return true
             }
         }

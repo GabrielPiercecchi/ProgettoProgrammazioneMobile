@@ -72,6 +72,9 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.7.2' // per i Gson
 
+    // Glide: un servizio per fare image loading
+    implementation "com.github.bumptech.glide:glide:4.15.1"
+
 }
 
 apply plugin: 'com.android.application'
