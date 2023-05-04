@@ -13,6 +13,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import com.example.myandroidapplication.R
 import com.example.myandroidapplication.viewModel.AboutActivity
 import com.example.myandroidapplication.viewModel.HomeFragment
+import com.example.myandroidapplication.viewModel.RatingActivity
 import com.example.myandroidapplication.viewModel.SettingsActivity
 import com.example.myandroidapplication.viewModel.TutorialActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -71,6 +72,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         when(item.itemId){
             R.id.nav_settings -> {
                 startActivity(Intent(applicationContext, SettingsActivity::class.java))
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+//                finish()
+                return true
+            }
+            R.id.nav_rate -> {
+                startActivity(Intent(applicationContext, RatingActivity::class.java))
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
 //                finish()
                 return true

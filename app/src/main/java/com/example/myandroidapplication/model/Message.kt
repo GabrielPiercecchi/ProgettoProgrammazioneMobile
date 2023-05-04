@@ -1,7 +1,7 @@
 package com.example.myandroidapplication.model
 
 class Message {
-    var message: String? = null
+    var message: String? = null //per consentire valori nulli
     var senderId: String? = null
 
     constructor(){}
