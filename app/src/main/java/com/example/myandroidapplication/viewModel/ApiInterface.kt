@@ -13,8 +13,7 @@ import retrofit2.http.Query
 interface ApiInterface {
 
     @GET("players/{PlayerTAG}")
-    fun getPlayer(@Path("PlayerTAG")PlayerTAG: String,
-                  @Header("authorization") authHeader: String): Call<List<Player>>
+    fun getPlayer(@Header("Authorization") authHeader: String, @Path("PlayerTAG")PlayerTAG: String, ): Call<List<Player>>
     @GET("locations")
     fun getLeaderboard(): Call<List<Player>>
 

@@ -3,7 +3,7 @@ package com.example.myandroidapplication.util
 class Constants {
     companion object{
         const val PLAYERS_URL = "https://api.clashofclans.com/v1/"
-        //const val LOCATIONS_URL = "https://api.clashofclans.com/v1/"
+        const val LOCATIONS_URL = "https://api.clashofclans.com/v1/"
         const val API_KEY = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZ" +
                 "CI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhN" +
                 "SJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6" +
