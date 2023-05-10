@@ -63,6 +63,8 @@ class LeaderboardsActivity : AppCompatActivity() {
     }*/
 
     private fun getPlayer(){
+        Log.e("JS: ", CallJavaScript.callFunction(this).toString())
+
         val client = OkHttpClient()
         val url = PLAYERS_URL
         val request = Request.Builder()
