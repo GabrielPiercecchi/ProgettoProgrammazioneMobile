@@ -76,6 +76,10 @@ dependencies {
     // Glide: un servizio per fare image loading
     implementation "com.github.bumptech.glide:glide:4.15.1"
 
+    // Rhino: per i codici JS
+    implementation 'org.mozilla:rhino:1.7R4'
+
+
 }
 
 apply plugin: 'com.android.application'
