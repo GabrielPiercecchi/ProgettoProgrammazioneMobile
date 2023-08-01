@@ -40,11 +40,20 @@ class SignUp : AppCompatActivity() {
         btnSignUp = findViewById(R.id.btnSignUp)
 
         btnSignUp.setOnClickListener{
-            val name = edtName.text.toString()
-            val email = edtEmail.text.toString()
-            val password = edtPassword.text.toString()
+            try {
+                val name = edtName.text.toString()
+                val email = edtEmail.text.toString()
+                val password = edtPassword.text.toString()
 
-            signUp(name, email, password)
+                signUp(name, email, password)
+            } catch (e: Exception){
+                Toast.makeText(
+                    this@SignUp,
+                    "Error " + "${e.message}",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+
         }
     }
 
