@@ -36,8 +36,17 @@ class ForgotPassword : AppCompatActivity() {
         btnReset = findViewById(R.id.btnReset)
 
         btnReset.setOnClickListener {
-            val emailRPassword = editBox.text.toString()
-            checkEmail(emailRPassword)
+            try {
+                val emailRPassword = editBox.text.toString()
+                checkEmail(emailRPassword)
+            } catch (e: Exception){
+                Toast.makeText(
+                    this@ForgotPassword,
+                    "Error " + "${e.message}",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+
 
 //            mAuth.sendPasswordResetEmail(emailRPassword)
 //                .addOnSuccessListener {

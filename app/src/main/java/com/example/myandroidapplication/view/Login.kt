@@ -11,6 +11,7 @@ import com.example.myandroidapplication.R
 import com.example.myandroidapplication.viewModel.HomeFragment
 import com.google.firebase.auth.FirebaseAuth
 import okhttp3.internal.http2.StreamResetException
+import com.google.firebase.auth.FirebaseAuthUserCollisionException
 
 // Classe per la schermata di login
 class Login : AppCompatActivity() {
@@ -44,10 +45,19 @@ class Login : AppCompatActivity() {
         }
 
         btnLogin.setOnClickListener{
-            val email = edtEmail.text.toString()
-            val password = edtPassword.text.toString()
+            try {
+                val email = edtEmail.text.toString()
+                val password = edtPassword.text.toString()
 
-            login(email, password)
+                login(email, password)
+            }catch (e: Exception){
+                Toast.makeText(
+                    this@Login,
+                    "Error " + "${e.message}",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+
         }
 
         btnFPassword.setOnClickListener {
