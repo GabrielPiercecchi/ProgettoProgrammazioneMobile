@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.example.myandroidapplication.R
 import com.example.myandroidapplication.viewModel.HomeFragment
+import com.example.myandroidapplication.viewModel.ManualApiKeyActivity
 import com.google.firebase.auth.FirebaseAuth
 import okhttp3.internal.http2.StreamResetException
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
@@ -76,8 +77,8 @@ class Login : AppCompatActivity() {
                     // Codice per loggare
 
                     val intent =Intent(this@Login,
-                        MainActivity::class.java)
-                    finish()
+                        ManualApiKeyActivity::class.java)
+                    //finish()
                     startActivity(intent)
 
                 } else {

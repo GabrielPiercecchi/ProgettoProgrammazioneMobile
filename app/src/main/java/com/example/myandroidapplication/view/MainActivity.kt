@@ -13,6 +13,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import com.example.myandroidapplication.R
 import com.example.myandroidapplication.viewModel.AboutActivity
 import com.example.myandroidapplication.viewModel.HomeFragment
+import com.example.myandroidapplication.viewModel.ManualApiKeyActivity
 import com.example.myandroidapplication.viewModel.RatingActivity
 import com.example.myandroidapplication.viewModel.SettingsActivity
 import com.example.myandroidapplication.viewModel.TutorialActivity
@@ -35,7 +36,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setContentView(R.layout.activity_main)
         mAuth = FirebaseAuth.getInstance()
 
-        //navigation drawer
+        //carica il navigation drawer
         drawerLayout = findViewById(R.id.drawer_layout)
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
@@ -50,8 +51,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             navigationView.setCheckedItem(R.id.nav_home)
         }
 
-        //bottom navigation bar
+        //carica la bottom navigation bar
         bottomNavigationView = findViewById(R.id.bottomNavigationView)
+        // "when" case per le differenti opzioni della bottom navigation bar
         bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.bottom_playersandchats -> {
@@ -68,43 +70,45 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
         }
     }
-
+    // Selezione per il menu ad hamburger
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        // "when" case per selezionare le differenti opzioni del menu
         when(item.itemId){
             R.id.nav_settings -> {
                 startActivity(Intent(applicationContext, SettingsActivity::class.java))
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
-//                finish()
                 return true
             }
             R.id.nav_rate -> {
                 startActivity(Intent(applicationContext, RatingActivity::class.java))
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
-//                finish()
                 return true
             }
             R.id.nav_about -> {
                 startActivity(Intent(applicationContext, AboutActivity::class.java))
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
-//                finish()
                 return true
             }
             R.id.nav_tutorial -> {
                 startActivity(Intent(applicationContext, TutorialActivity::class.java))
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
-//                finish()
+                return true
+            }
+            R.id.nav_apikey -> {
+                startActivity(Intent(applicationContext, ManualApiKeyActivity::class.java))
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
                 return true
             }
             R.id.nav_logout -> {
                 //Logica per il logout
                 mAuth.signOut()
-                //finish()
                 return true
             }
         }
         drawerLayout.closeDrawer(GravityCompat.START)
         return true
     }
+    //funzione per nascondere il menu quando viene premuto il tasto back
     override fun onBackPressed() {
         if(drawerLayout.isDrawerOpen(GravityCompat.START)){
             drawerLayout.closeDrawer(GravityCompat.START)
@@ -112,13 +116,5 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             onBackPressedDispatcher.onBackPressed()
         }
     }
-
-    //Questa nella home può anche essere evitata a sto punto
-//    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-//        menuInflater.inflate(R.menu.settings_menu, menu)
-//        return super.onCreateOptionsMenu(menu)
-//    }
-
-
 }
 

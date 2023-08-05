@@ -17,6 +17,7 @@
     <string name="Rate">Rate</string>
     <string name="About">About</string>
     <string name="Tutorial">Tutorial</string>
+    <string name="ApiKey">Api Key</string>
 
     <!--activity_chat.xml-->
     <string name="send_message">Send a message</string>
@@ -37,13 +38,18 @@
     <string name="Name">Name</string>
     <string name="title_activity_settings">activity_settings</string>
 
-    <!-- Preference Titles -->
-    <string name="messages_header">Messages</string>
-    <string name="sync_header">Sync</string>
+    <!--activity_apikey.xml-->
+    <string name="apiDescription">Insert in the field below the api key! Remember to use the IP address of your smartphone (to know the IP address just go on whatsmyip)</string>
 
-    <!-- Messages Preferences -->
-    <string name="signature_title">Your signature</string>
-    <string name="reply_title">Default reply action</string>
+    <!-- Preference Titles -->
+    <string name="theme">Theme</string>
+    <string name="notifications">Notifications</string>
+
+    <!-- Theme Preferences -->
+    <string name="theme_title">Default theme</string>
+
+    <!-- Notifications Preferences -->
+    <string name="notifications_title">Receive notifications</string>
 
     <!-- Sync Preferences -->
     <string name="sync_title">Sync email periodically</string>

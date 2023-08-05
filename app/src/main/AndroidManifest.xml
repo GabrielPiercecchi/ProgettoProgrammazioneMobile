@@ -24,6 +24,9 @@
             android:name=".viewModel.AboutActivity"
             android:exported="false" />
         <activity
+            android:name=".viewModel.ManualApiKeyActivity"
+            android:exported="false" />
+        <activity
             android:name=".viewModel.SettingsActivity"
             android:exported="false"
             android:label="@string/title_activity_settings"

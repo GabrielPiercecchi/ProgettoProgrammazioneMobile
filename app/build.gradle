@@ -76,11 +76,12 @@ dependencies {
     // Glide: un servizio per fare image loading
     implementation "com.github.bumptech.glide:glide:4.15.1"
 
-    // Rhino: per i codici JS
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-js:1.8.0"
-    implementation "org.webjars:jquery:3.6.0"
+    // Add this for versions
+    def nav_version = "2.3.0"
 
-
+    // Navigation Components
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 }
 
 apply plugin: 'com.android.application'
