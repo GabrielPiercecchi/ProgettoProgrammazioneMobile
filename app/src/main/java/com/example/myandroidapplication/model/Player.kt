@@ -17,7 +17,7 @@ data class Player(
     //val league: League,
     val name: String,
     //val playerHouse: PlayerHouse,
-    //role: String,
+    //val role: String,
     //val spells: List<Spell>,
     //val tag: String,
     //val townHallLevel: Int,

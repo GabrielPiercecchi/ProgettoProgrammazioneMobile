@@ -1,18 +1,20 @@
 package com.example.myandroidapplication.view
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
+import android.util.Log
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.myandroidapplication.R
+import com.example.myandroidapplication.model.Player
+import com.example.myandroidapplication.util.Constants
 import com.example.myandroidapplication.viewModel.AboutActivity
-import com.example.myandroidapplication.viewModel.HomeFragment
 import com.example.myandroidapplication.viewModel.ManualApiKeyActivity
 import com.example.myandroidapplication.viewModel.RatingActivity
 import com.example.myandroidapplication.viewModel.SettingsActivity
@@ -20,6 +22,10 @@ import com.example.myandroidapplication.viewModel.TutorialActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
+import com.google.gson.GsonBuilder
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import java.io.IOException
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener{
 
@@ -33,6 +39,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_main)
         mAuth = FirebaseAuth.getInstance()
 
@@ -46,10 +53,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
         if(savedInstanceState == null){
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, HomeFragment()).commit()
-            navigationView.setCheckedItem(R.id.nav_home)
+            setContentView(R.layout.activity_main)
         }
+
+        //SEZIONE PER LA RECYCLER VIEW
+        val recyclerView_main = findViewById<RecyclerView>(R.id.recyclerView_main)
+        recyclerView_main.layoutManager = LinearLayoutManager(this)
+        //recyclerView_main.adapter = MainAdapter()
+        getPlayer()
+        // FINE SEZIONE RECYCLER VIEW
 
         //carica la bottom navigation bar
         bottomNavigationView = findViewById(R.id.bottomNavigationView)
@@ -115,6 +127,35 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         } else {
             onBackPressedDispatcher.onBackPressed()
         }
+    }
+
+    // Funzione per prendere i dati del giocatore registrato
+    private fun getPlayer(){
+
+        val client = OkHttpClient()
+        val request = Request.Builder()
+            .url(Constants.PLAYERS_URL)
+            .addHeader("authorization","Bearer ${Constants.API_KEY}")
+            .build()
+        client.newCall(request).enqueue(object : okhttp3.Callback{
+            override fun onResponse(call: okhttp3.Call, response: okhttp3.Response) {
+                    runOnUiThread {
+                        val responseBody = response.body?.string()
+
+                        val gson = GsonBuilder().create()
+                        val giocatore = gson.fromJson(responseBody, Player::class.java)
+
+                        val recyclerView_main = findViewById<RecyclerView>(R.id.recyclerView_main)
+                        recyclerView_main.adapter = MainAdapter(giocatore)
+
+                        // Costruzione della string di risposta e applicazione della risposta alla vista
+                    }
+            }
+
+            override fun onFailure(call: okhttp3.Call, e: IOException) {
+                Log.d("MainActivity", "onFailure: "+e.message)
+            }
+        })
     }
 }
 
