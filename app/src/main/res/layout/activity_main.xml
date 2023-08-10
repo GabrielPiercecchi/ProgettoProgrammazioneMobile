@@ -10,10 +10,13 @@
     tools:openDrawer="start">
 
     <!-- Navigation Drawer start -->
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
+        <!--Bottom navigation bar-->
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
@@ -23,8 +26,6 @@
             android:elevation="4dp"
             android:popupTheme="@style/Theme.AppCompat.Light"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
-
-        <!--Bottom navigation bar-->
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottomNavigationView"
@@ -41,35 +42,37 @@
             app:itemIconTint="@drawable/item_selector"
             app:itemRippleColor="@android:color/transparent"
             app:labelVisibilityMode="unlabeled"
-            app:menu="@menu/bottom_menu" />
+            app:menu="@menu/bottom_menu" >
 
-        <!-- Recycler view start -->
+        </com.google.android.material.bottomnavigation.BottomNavigationView>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView_main"
             android:layout_width="match_parent"
             android:layout_height="675dp"
-            android:layout_below="@+id/toolbar"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             android:layout_marginStart="2dp"
-            android:layout_marginTop="2dp"
             android:layout_marginEnd="-1dp"
-            android:layout_marginBottom="-1dp" />
+            android:layout_marginBottom="-2dp" />
+
+        <!-- Recycler view start -->
         <!-- Recycler view end -->
 
     </RelativeLayout>
-    <!-- Navigation Drawer end -->
 
-    <!-- Bottom navigation menu start -->
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
+        android:visibility="gone"
         app:headerLayout="@layout/nav_header"
         app:itemIconTint="@color/flamingoPink"
         app:itemTextColor="@color/flamingoPink"
-        app:menu="@menu/nav_menu" />
+        app:menu="@menu/nav_menu"
+        tools:visibility="gone" />
+    <!-- Navigation Drawer end -->
+
+    <!-- Bottom navigation menu start -->
     <!-- Bottom navigation menu end -->
 </androidx.drawerlayout.widget.DrawerLayout>

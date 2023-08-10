@@ -143,12 +143,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                         val responseBody = response.body?.string()
 
                         val gson = GsonBuilder().create()
+                        //val gson = Gson()
                         val giocatore = gson.fromJson(responseBody, Player::class.java)
 
                         val recyclerView_main = findViewById<RecyclerView>(R.id.recyclerView_main)
                         recyclerView_main.adapter = MainAdapter(giocatore)
-
-                        // Costruzione della string di risposta e applicazione della risposta alla vista
                     }
             }
 
