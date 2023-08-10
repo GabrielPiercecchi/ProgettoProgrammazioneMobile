@@ -67,8 +67,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             getPlayer()
         } catch (e: Exception) {
             // Eccezione generica per qualsiasi altra eccezione
-            Toast.makeText(this, "Api-Key o Tag errato",
-                Toast.LENGTH_SHORT).show()
+            val errorMessage = "Si è verificato un errore: ${e.message}"
+            Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show()
         }
 
         // FINE SEZIONE RECYCLER VIEW
