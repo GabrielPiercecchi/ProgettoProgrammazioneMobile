@@ -74,7 +74,9 @@
         android:layout_below="@id/btnSignUp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
+        android:padding="10dp"
         android:text="@string/forgot_passw"
+        android:background="@drawable/btn_background"
         android:textColor="@color/darkWhite"
         android:textSize="16dp"/>
 
