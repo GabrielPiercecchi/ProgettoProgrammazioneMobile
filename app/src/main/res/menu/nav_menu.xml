@@ -11,9 +11,6 @@
             android:id="@+id/nav_settings"
             android:title="@string/Settings"/>
         <item
-            android:id="@+id/nav_rate"
-            android:title="@string/Rate"/>
-        <item
             android:id="@+id/nav_about"
             android:title="@string/About"/>
         <item

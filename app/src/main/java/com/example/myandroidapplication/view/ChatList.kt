@@ -125,7 +125,10 @@ class ChatList : AppCompatActivity() {
             R.id.logout -> {
                 //Logica per il logout
                 mAuth.signOut()
+                val intent = Intent(this@ChatList,
+                    Login::class.java)
                 finish()
+                startActivity(intent)
                 return true
             }
         }

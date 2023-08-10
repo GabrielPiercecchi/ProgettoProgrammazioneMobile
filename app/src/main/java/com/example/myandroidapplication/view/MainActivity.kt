@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
@@ -43,8 +44,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         setContentView(R.layout.activity_main)
 
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
-
         mAuth = FirebaseAuth.getInstance()
 
         //carica il navigation drawer
@@ -56,14 +55,22 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val toggle = ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open_nav, R.string.close_nav)
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
-        if(savedInstanceState == null){
-            setContentView(R.layout.activity_main)
-        }
+//        if(savedInstanceState == null){
+//            setContentView(R.layout.activity_main)
+//        }
 
         //SEZIONE PER LA RECYCLER VIEW
         val recyclerView_main = findViewById<RecyclerView>(R.id.recyclerView_main)
         recyclerView_main.layoutManager = LinearLayoutManager(this)
-        getPlayer()
+
+        try {
+            getPlayer()
+        } catch (e: Exception) {
+            // Eccezione generica per qualsiasi altra eccezione
+            Toast.makeText(this, "Api-Key o Tag errato",
+                Toast.LENGTH_SHORT).show()
+        }
+
         // FINE SEZIONE RECYCLER VIEW
 
         //carica la bottom navigation bar
@@ -94,11 +101,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
                 return true
             }
-            R.id.nav_rate -> {
-                startActivity(Intent(applicationContext, RatingActivity::class.java))
-                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
-                return true
-            }
             R.id.nav_about -> {
                 startActivity(Intent(applicationContext, AboutActivity::class.java))
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
@@ -117,6 +119,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.nav_logout -> {
                 //Logica per il logout
                 mAuth.signOut()
+                val intent = Intent(this@MainActivity,
+                    Login::class.java)
+                finish()
+                startActivity(intent)
                 return true
             }
         }
@@ -143,15 +149,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         client.newCall(request).enqueue(object : okhttp3.Callback{
             // funzione che si attiva in caso di una risposta
             override fun onResponse(call: okhttp3.Call, response: okhttp3.Response) {
-                    runOnUiThread {
-                        val responseBody = response.body?.string()
+                runOnUiThread {
+                    val responseBody = response.body?.string()
 
-                        val gson = GsonBuilder().create()
-                        val giocatore = gson.fromJson(responseBody, Player::class.java)
+                    val gson = GsonBuilder().create()
+                    val giocatore = gson.fromJson(responseBody, Player::class.java)
 
-                        val recyclerView_main = findViewById<RecyclerView>(R.id.recyclerView_main)
-                        recyclerView_main.adapter = MainAdapter(giocatore)
-                    }
+                    val recyclerView_main = findViewById<RecyclerView>(R.id.recyclerView_main)
+                    recyclerView_main.adapter = MainAdapter(giocatore)
+                }
             }
             // funzione che si attiva in caso di fallimento
             override fun onFailure(call: okhttp3.Call, e: IOException) {
