@@ -59,7 +59,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         //SEZIONE PER LA RECYCLER VIEW
         val recyclerView_main = findViewById<RecyclerView>(R.id.recyclerView_main)
         recyclerView_main.layoutManager = LinearLayoutManager(this)
-        //recyclerView_main.adapter = MainAdapter()
         getPlayer()
         // FINE SEZIONE RECYCLER VIEW
 
@@ -120,7 +119,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         drawerLayout.closeDrawer(GravityCompat.START)
         return true
     }
-    //funzione per nascondere il menu quando viene premuto il tasto back
+    //funzione per nascondere il menù laterale quando viene premuto il tasto back
     override fun onBackPressed() {
         if(drawerLayout.isDrawerOpen(GravityCompat.START)){
             drawerLayout.closeDrawer(GravityCompat.START)
@@ -131,26 +130,26 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     // Funzione per prendere i dati del giocatore registrato
     private fun getPlayer(){
-
+        // costruzione dell'url e della richiesta HTTP
         val client = OkHttpClient()
         val request = Request.Builder()
             .url(Constants.PLAYERS_URL)
             .addHeader("authorization","Bearer ${Constants.API_KEY}")
             .build()
         client.newCall(request).enqueue(object : okhttp3.Callback{
+            // funzione che si attiva in caso di una risposta
             override fun onResponse(call: okhttp3.Call, response: okhttp3.Response) {
                     runOnUiThread {
                         val responseBody = response.body?.string()
 
                         val gson = GsonBuilder().create()
-                        //val gson = Gson()
                         val giocatore = gson.fromJson(responseBody, Player::class.java)
 
                         val recyclerView_main = findViewById<RecyclerView>(R.id.recyclerView_main)
                         recyclerView_main.adapter = MainAdapter(giocatore)
                     }
             }
-
+            // funzione che si attiva in caso di fallimento
             override fun onFailure(call: okhttp3.Call, e: IOException) {
                 Log.d("MainActivity", "onFailure: "+e.message)
             }

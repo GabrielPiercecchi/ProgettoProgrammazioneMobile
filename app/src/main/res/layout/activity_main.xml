@@ -25,7 +25,13 @@
             android:background="@color/flamingoPink"
             android:elevation="4dp"
             android:popupTheme="@style/Theme.AppCompat.Light"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/fragment_container"/>
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottomNavigationView"
@@ -48,12 +54,12 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView_main"
-            android:layout_width="match_parent"
-            android:layout_height="675dp"
-            android:layout_alignParentBottom="true"
+            android:layout_width="409dp"
+            android:layout_height="674dp"
+            android:layout_below="@+id/toolbar"
             android:layout_marginStart="2dp"
-            android:layout_marginEnd="-1dp"
-            android:layout_marginBottom="-2dp" />
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="-1dp" />
 
         <!-- Recycler view start -->
         <!-- Recycler view end -->
