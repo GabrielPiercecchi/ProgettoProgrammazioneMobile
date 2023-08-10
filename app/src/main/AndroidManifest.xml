@@ -49,7 +49,8 @@
             android:exported="false" />
         <activity
             android:name=".view.Login"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.view.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

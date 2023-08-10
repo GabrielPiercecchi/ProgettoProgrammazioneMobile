@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatDelegate
 import com.example.myandroidapplication.R
 import com.example.myandroidapplication.viewModel.HomeFragment
 import com.example.myandroidapplication.viewModel.ManualApiKeyActivity
@@ -31,6 +32,8 @@ class Login : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         supportActionBar?.hide()
+
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
 
         mAuth = FirebaseAuth.getInstance()
 
