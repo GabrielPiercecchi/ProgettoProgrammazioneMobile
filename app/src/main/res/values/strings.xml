@@ -62,4 +62,7 @@
 
     <!-- activity_about -->
     <string name="description">Progetto di Programmazione mobile di Gabriel Piercecchi, Tosca Pierro e Lorenzo Zulli</string>
+
+    <!-- activity_leaderboards.xml -->
+    <string name="select">Select Item</string>
 </resources>

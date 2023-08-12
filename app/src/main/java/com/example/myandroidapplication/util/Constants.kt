@@ -12,6 +12,7 @@ class Constants {
 
         // URL per i vari ranking
         var LOCATION_ID = "" // 32000000 - Europe (per accedere alle altre cambia le ultime cifre!)
+        val GET_LOCATIONS = "https://api.clashofclans.com/v1/locations"
         val RANKING_CLANS_NORMAL = "https://api.clashofclans.com/v1/locations/$LOCATION_ID/rankings/clans"
         val RANKING_CLANS_BUILDER = "https://api.clashofclans.com/v1/locations/$LOCATION_ID/rankings/clans-versus"
         val RANKING_CLANS_CAPITAL = "https://api.clashofclans.com/v1/locations/$LOCATION_ID/rankings/capitals"
