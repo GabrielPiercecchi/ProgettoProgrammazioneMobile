@@ -137,7 +137,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     // Funzione per prendere i dati del giocatore registrato
-    private fun getPlayer(){
+    private fun getPlayer(/*aggiungere il tag del giocatore che si logga*/){
         // costruzione dell'url e della richiesta HTTP
         val client = OkHttpClient()
         val request = Request.Builder()

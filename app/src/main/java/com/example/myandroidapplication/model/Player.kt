@@ -30,3 +30,5 @@ data class Player(
     //val warPreference: String,
     val warStars: Int
 )
+
+class Players(val players: List<Player>)
