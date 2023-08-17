@@ -53,9 +53,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val toggle = ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open_nav, R.string.close_nav)
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
-//        if(savedInstanceState == null){
-//            setContentView(R.layout.activity_main)
-//        }
 
         //SEZIONE PER LA RECYCLER VIEW
         val recyclerView_main = findViewById<RecyclerView>(R.id.recyclerView_main)

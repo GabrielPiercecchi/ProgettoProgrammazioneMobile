@@ -6,11 +6,8 @@ import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.myandroidapplication.R
 import com.example.myandroidapplication.model.Location
-import com.example.myandroidapplication.model.Locations
 import com.example.myandroidapplication.model.Players
 import com.example.myandroidapplication.util.Constants
 import com.google.gson.GsonBuilder
@@ -24,19 +21,18 @@ class LeaderboardsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_leaderboards)
 
-        getAllLocations()
-
         //SEZIONE PER LA RECYCLER VIEW
-        val recyclerView_leaderboards = findViewById<RecyclerView>(R.id.recyclerView_leaderboards)
-        recyclerView_leaderboards.layoutManager = LinearLayoutManager(this)
+        //val recyclerView_leaderboards = findViewById<RecyclerView>(R.id.recyclerView_leaderboards)
+        //recyclerView_leaderboards.layoutManager = LinearLayoutManager(this)
+
+        getAllLocations()
 
     }
 
-    private lateinit var autoCompleteTextView: AutoCompleteTextView
-    private lateinit var adapterItems: ArrayAdapter<Location>
+    private lateinit var adapterItems: ArrayAdapter<String>
 
     // Funzione che ti permette di prendere tutte le locations e metterle nella select list.
-    fun getAllLocations(){
+    private fun getAllLocations(){
         // costruzione dell'url e della richiesta HTTP
         val client = OkHttpClient()
         val request = Request.Builder()
@@ -50,16 +46,20 @@ class LeaderboardsActivity : AppCompatActivity() {
                     val responseBody = response.body?.string()
 
                     val gson = GsonBuilder().create()
-                    val locations = gson.fromJson(responseBody, Locations::class.java)
+                    val location = gson.fromJson(responseBody, Location::class.java)
 
-                    /**
-                     * TODO: vedere come cristo sistemare questo ArrayAdapter
-                     * */
+                    val dataList = mutableListOf<String>()
 
-                    adapterItems =  ArrayAdapter(this@LeaderboardsActivity, R.layout.list_item, locations)
+                    for(i in 0..10){
+                        dataList.add(location.name)
+                    }
+
+                    adapterItems =  ArrayAdapter<String>(this@LeaderboardsActivity, R.layout.list_item, dataList)
+
+                    val autoCompleteTextView: AutoCompleteTextView = findViewById(R.id.auto_complete_textview)
 
                     autoCompleteTextView.setAdapter(adapterItems)
-                    autoCompleteTextView.setOnItemClickListener { adapterView, view, position, l ->
+                    autoCompleteTextView.setOnItemClickListener { adapterView, _, position, _ ->
                         val item = adapterView.getItemAtPosition(position).toString()
                         Toast.makeText(this@LeaderboardsActivity, item, Toast.LENGTH_SHORT).show()
                     }
@@ -93,8 +93,8 @@ class LeaderboardsActivity : AppCompatActivity() {
                     val gson = GsonBuilder().create()
                     val playersForLocation = gson.fromJson(responseBody, Players::class.java)
 
-                    val recyclerViewLeaderboards = findViewById<RecyclerView>(R.id.recyclerView_leaderboards)
-                    recyclerViewLeaderboards.adapter = LeaderboardsAdapter(playersForLocation)
+                    //val recyclerViewLeaderboards = findViewById<RecyclerView>(R.id.recyclerView_leaderboards)
+                    //recyclerViewLeaderboards.adapter = LeaderboardsAdapter(playersForLocation)
                 }
             }
 
@@ -121,8 +121,8 @@ class LeaderboardsActivity : AppCompatActivity() {
                     val gson = GsonBuilder().create()
                     val playersForLocation = gson.fromJson(responseBody, Players::class.java)
 
-                    val recyclerViewLeaderboards = findViewById<RecyclerView>(R.id.recyclerView_leaderboards)
-                    recyclerViewLeaderboards.adapter = LeaderboardsAdapter(playersForLocation)
+                    //val recyclerViewLeaderboards = findViewById<RecyclerView>(R.id.recyclerView_leaderboards)
+                    //recyclerViewLeaderboards.adapter = LeaderboardsAdapter(playersForLocation)
                 }
             }
 
@@ -149,8 +149,8 @@ class LeaderboardsActivity : AppCompatActivity() {
                     val gson = GsonBuilder().create()
                     val playersForLocation = gson.fromJson(responseBody, Players::class.java)
 
-                    val recyclerViewLeaderboards = findViewById<RecyclerView>(R.id.recyclerView_leaderboards)
-                    recyclerViewLeaderboards.adapter = LeaderboardsAdapter(playersForLocation)
+                    //val recyclerViewLeaderboards = findViewById<RecyclerView>(R.id.recyclerView_leaderboards)
+                    //recyclerViewLeaderboards.adapter = LeaderboardsAdapter(playersForLocation)
                 }
             }
 
@@ -177,8 +177,8 @@ class LeaderboardsActivity : AppCompatActivity() {
                     val gson = GsonBuilder().create()
                     val playersForLocation = gson.fromJson(responseBody, Players::class.java)
 
-                    val recyclerViewLeaderboards = findViewById<RecyclerView>(R.id.recyclerView_leaderboards)
-                    recyclerViewLeaderboards.adapter = LeaderboardsAdapter(playersForLocation)
+                    //val recyclerViewLeaderboards = findViewById<RecyclerView>(R.id.recyclerView_leaderboards)
+                    //recyclerViewLeaderboards.adapter = LeaderboardsAdapter(playersForLocation)
                 }
             }
 
@@ -205,8 +205,8 @@ class LeaderboardsActivity : AppCompatActivity() {
                     val gson = GsonBuilder().create()
                     val playersForLocation = gson.fromJson(responseBody, Players::class.java)
 
-                    val recyclerViewLeaderboards = findViewById<RecyclerView>(R.id.recyclerView_leaderboards)
-                    recyclerViewLeaderboards.adapter = LeaderboardsAdapter(playersForLocation)
+                    //val recyclerViewLeaderboards = findViewById<RecyclerView>(R.id.recyclerView_leaderboards)
+                    //recyclerViewLeaderboards.adapter = LeaderboardsAdapter(playersForLocation)
                 }
             }
 
