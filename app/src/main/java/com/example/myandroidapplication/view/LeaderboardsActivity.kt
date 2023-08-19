@@ -3,11 +3,11 @@ package com.example.myandroidapplication.view
 import android.os.Bundle
 import android.util.Log
 import android.widget.ArrayAdapter
-import android.widget.AutoCompleteTextView
+import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myandroidapplication.R
-import com.example.myandroidapplication.model.Location
+import com.example.myandroidapplication.model.Locations
 import com.example.myandroidapplication.model.Players
 import com.example.myandroidapplication.util.Constants
 import com.google.gson.GsonBuilder
@@ -46,22 +46,22 @@ class LeaderboardsActivity : AppCompatActivity() {
                     val responseBody = response.body?.string()
 
                     val gson = GsonBuilder().create()
-                    val location = gson.fromJson(responseBody, Location::class.java)
+                    val location = gson.fromJson(responseBody, Locations::class.java)
 
-                    val dataList = mutableListOf<String>()
+                    val itemList: List<String> = location.items.take(location.items.size).map { it.name }
 
-                    for(i in 0..10){
-                        dataList.add(location.name)
-                    }
+                    val spinner: Spinner = findViewById(R.id.spinner)
 
-                    adapterItems =  ArrayAdapter<String>(this@LeaderboardsActivity, R.layout.list_item, dataList)
+                    try {
+                        adapterItems =  ArrayAdapter(this@LeaderboardsActivity, android.R.layout.simple_spinner_dropdown_item, itemList)
+                        spinner.adapter = adapterItems
 
-                    val autoCompleteTextView: AutoCompleteTextView = findViewById(R.id.auto_complete_textview)
-
-                    autoCompleteTextView.setAdapter(adapterItems)
-                    autoCompleteTextView.setOnItemClickListener { adapterView, _, position, _ ->
-                        val item = adapterView.getItemAtPosition(position).toString()
-                        Toast.makeText(this@LeaderboardsActivity, item, Toast.LENGTH_SHORT).show()
+                        spinner.setOnItemClickListener { adapterView, _, position, _ ->
+                            val item = adapterView.getItemAtPosition(position).toString()
+                            Toast.makeText(this@LeaderboardsActivity, item, Toast.LENGTH_SHORT).show()
+                        }
+                    } catch (e: Exception){
+                        Log.d("ciao", "ciao di nuovo")
                     }
                 }
             }
