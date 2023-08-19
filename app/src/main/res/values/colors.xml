@@ -12,4 +12,6 @@
     <color name="darkWhite">#EFE1C4</color>
     <color name="flamingoPink">#FF6A84</color>
     <color name="grey">#909090</color>
+    <color name="linkBlue">#0000EE</color>
+    <color name="lightBlue">#17accd</color>
 </resources>
