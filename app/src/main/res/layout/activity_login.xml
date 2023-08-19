@@ -80,4 +80,20 @@
         android:textColor="@color/darkWhite"
         android:textSize="16dp"/>
 
+    <TextView
+        android:id="@+id/txtTutorial"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TUTORIAL"
+        android:textStyle="bold"
+        android:layout_below="@id/btnFPassword"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:padding="10dp"
+        android:textColor="@color/darkWhite"
+        android:background="@android:color/holo_red_light"
+        android:gravity="center"
+        android:textSize="14dp"
+        />
+
 </RelativeLayout>

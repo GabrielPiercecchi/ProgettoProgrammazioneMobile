@@ -5,12 +5,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatDelegate
 import com.example.myandroidapplication.R
 import com.example.myandroidapplication.viewModel.HomeFragment
 import com.example.myandroidapplication.viewModel.ManualApiKeyActivity
+import com.example.myandroidapplication.viewModel.TutorialActivity
 import com.google.firebase.auth.FirebaseAuth
 import okhttp3.internal.http2.StreamResetException
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
@@ -23,6 +25,7 @@ class Login : AppCompatActivity() {
     private lateinit var btnLogin: Button
     private lateinit var btnSignUp: Button
     private lateinit var btnFPassword: Button
+    private lateinit var txtTutorial: TextView
 
     // Variabile utilizzata per le autenticazioni Firebase
     private lateinit var mAuth: FirebaseAuth
@@ -42,6 +45,7 @@ class Login : AppCompatActivity() {
         btnLogin = findViewById(R.id.btnLogin)
         btnSignUp = findViewById(R.id.btnSignUp)
         btnFPassword = findViewById(R.id.btnFPassword)
+        txtTutorial = findViewById(R.id.txtTutorial)
 
         btnSignUp.setOnClickListener {
             val intent = Intent(this, SignUp::class.java)
@@ -66,6 +70,11 @@ class Login : AppCompatActivity() {
 
         btnFPassword.setOnClickListener {
             val intent = Intent(this, ForgotPassword::class.java)
+            startActivity(intent)
+        }
+
+        txtTutorial.setOnClickListener {
+            val intent = Intent(this, TutorialActivity::class.java)
             startActivity(intent)
         }
 

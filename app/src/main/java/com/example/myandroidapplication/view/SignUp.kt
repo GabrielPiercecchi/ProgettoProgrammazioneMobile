@@ -4,10 +4,12 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myandroidapplication.model.User
 import com.example.myandroidapplication.R
+import com.example.myandroidapplication.viewModel.TutorialActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -20,6 +22,7 @@ class SignUp : AppCompatActivity() {
     private lateinit var edtEmail: EditText
     private lateinit var edtPassword: EditText
     private lateinit var btnSignUp: Button
+    private lateinit var txtTutorial: TextView
 
     // Variabile utilizzata per le autenticazioni Firebase
     private lateinit var mAuth: FirebaseAuth
@@ -38,6 +41,7 @@ class SignUp : AppCompatActivity() {
         edtEmail = findViewById(R.id.edit_email)
         edtPassword = findViewById(R.id.edit_password)
         btnSignUp = findViewById(R.id.btnSignUp)
+        txtTutorial = findViewById(R.id.txtTutorial)
 
         btnSignUp.setOnClickListener{
             try {
@@ -53,7 +57,11 @@ class SignUp : AppCompatActivity() {
                     Toast.LENGTH_LONG
                 ).show()
             }
+        }
 
+        txtTutorial.setOnClickListener {
+            val intent = Intent(this, TutorialActivity::class.java)
+            startActivity(intent)
         }
     }
 
