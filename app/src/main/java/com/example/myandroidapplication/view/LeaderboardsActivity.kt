@@ -3,7 +3,7 @@ package com.example.myandroidapplication.view
 import android.os.Bundle
 import android.util.Log
 import android.widget.ArrayAdapter
-import android.widget.AutoCompleteTextView
+import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myandroidapplication.R
@@ -48,16 +48,20 @@ class LeaderboardsActivity : AppCompatActivity() {
                     val gson = GsonBuilder().create()
                     val location = gson.fromJson(responseBody, Locations::class.java)
 
-                    val itemList: List<String> = location.items.take(10).map { it.name }
+                    val itemList: List<String> = location.items.take(location.items.size).map { it.name }
 
-                    adapterItems =  ArrayAdapter<String>(this@LeaderboardsActivity, R.layout.list_item, itemList)
+                    val spinner: Spinner = findViewById(R.id.spinner)
 
-                    val autoCompleteTextView: AutoCompleteTextView = findViewById(R.id.auto_complete_textview)
+                    try {
+                        adapterItems =  ArrayAdapter(this@LeaderboardsActivity, android.R.layout.simple_spinner_dropdown_item, itemList)
+                        spinner.adapter = adapterItems
 
-                    autoCompleteTextView.setAdapter(adapterItems)
-                    autoCompleteTextView.setOnItemClickListener { adapterView, _, position, _ ->
-                        val item = adapterView.getItemAtPosition(position).toString()
-                        Toast.makeText(this@LeaderboardsActivity, item, Toast.LENGTH_SHORT).show()
+                        spinner.setOnItemClickListener { adapterView, _, position, _ ->
+                            val item = adapterView.getItemAtPosition(position).toString()
+                            Toast.makeText(this@LeaderboardsActivity, item, Toast.LENGTH_SHORT).show()
+                        }
+                    } catch (e: Exception){
+                        Log.d("ciao", "ciao di nuovo")
                     }
                 }
             }
