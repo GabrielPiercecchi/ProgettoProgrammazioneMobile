@@ -6,12 +6,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.myandroidapplication.databinding.LeaderboardRowBinding
 import com.example.myandroidapplication.model.Players
 
-class LeaderboardsAdapter (val playersLeaderboards: Players) : RecyclerView.Adapter<LeaderboardsAdapter.CustomViewHolder>() {
+class LeaderboardsAdapter (val players: Players) : RecyclerView.Adapter<LeaderboardsAdapter.CustomViewHolder>() {
 
     inner class CustomViewHolder(val v: LeaderboardRowBinding): RecyclerView.ViewHolder (v.root)
 
     override fun getItemCount(): Int {
-        return playersLeaderboards.players.count()
+        return players.players.count()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomViewHolder {
@@ -20,7 +20,7 @@ class LeaderboardsAdapter (val playersLeaderboards: Players) : RecyclerView.Adap
     }
 
     override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
-        val p = playersLeaderboards.players[position]
+        val p = players.players[position]
         holder.v.tvPlayerName.text = p.name
     }
 }

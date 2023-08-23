@@ -88,6 +88,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
         }
     }
+
     // Selezione per il menu ad hamburger
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         // "when" case per selezionare le differenti opzioni del menu

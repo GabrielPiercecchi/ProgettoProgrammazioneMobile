@@ -8,10 +8,44 @@
     android:layout_height="match_parent"
     tools:context=".view.LeaderboardsActivity">
 
+        <RadioGroup
+            android:id="@+id/rg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+                <RadioButton
+                    android:id="@+id/rb_player"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/players"/>
+                <RadioButton
+                    android:id="@+id/rb_builder"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/builders"/>
+                <RadioButton
+                    android:id="@+id/rb_clan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/clans"/>
+        </RadioGroup>
+
         <Spinner
             android:id="@+id/spinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp" />
+
+        <Button
+            android:id="@+id/b_update"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/common_google_play_services_update_button"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_leaderboards"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/black"/>
 
 </LinearLayout>

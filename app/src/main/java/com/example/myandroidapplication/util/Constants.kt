@@ -7,7 +7,7 @@ class Constants {
 
         /* Per ora lascio il player tag in questo modo per motivi di test, successivamente va messo
            il tag del giocatore registrato */
-        private const val PLAYER_TAG = "%232RYPJYY"
+        private const val PLAYER_TAG = "%23PGJVQUJJL"
         const val PLAYERS_URL = "https://api.clashofclans.com/v1/players/$PLAYER_TAG"
 
         // URL per i vari ranking

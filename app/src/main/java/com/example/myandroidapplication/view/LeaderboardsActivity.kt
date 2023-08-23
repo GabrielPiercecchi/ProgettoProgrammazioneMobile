@@ -3,9 +3,13 @@ package com.example.myandroidapplication.view
 import android.os.Bundle
 import android.util.Log
 import android.widget.ArrayAdapter
+import android.widget.Button
+import android.widget.RadioGroup
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.myandroidapplication.R
 import com.example.myandroidapplication.model.Locations
 import com.example.myandroidapplication.model.Players
@@ -16,18 +20,36 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import java.io.IOException
 
+
 class LeaderboardsActivity : AppCompatActivity() {
+
+    var itemFromSpinner: String = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_leaderboards)
 
         //SEZIONE PER LA RECYCLER VIEW
-        //val recyclerView_leaderboards = findViewById<RecyclerView>(R.id.recyclerView_leaderboards)
-        //recyclerView_leaderboards.layoutManager = LinearLayoutManager(this)
+        val rv_leaderboards = findViewById<RecyclerView>(R.id.rv_leaderboards)
+        rv_leaderboards.layoutManager = LinearLayoutManager(this)
 
         getAllLocations()
 
+        val rg: RadioGroup = findViewById(R.id.rg)
+
+        val bUpdate: Button = findViewById(R.id.b_update)
+        /**
+         * TODO: capire come mai itemFromSpinner risulta sempre stringa vuota
+         */
+        bUpdate.setOnClickListener{
+
+            when(rg.checkedRadioButtonId) {
+                R.id.rb_player -> getPlayersNormalLeaderboardForLocation(itemFromSpinner)
+                R.id.rb_builder -> getPlayersBuilderLeaderboardForLocation(itemFromSpinner)
+                R.id.rb_clan -> getClansNormalLeaderboardForLocation(itemFromSpinner)
+            }
+        }
     }
+
 
     private lateinit var adapterItems: ArrayAdapter<String>
 
@@ -48,17 +70,17 @@ class LeaderboardsActivity : AppCompatActivity() {
                     val gson = GsonBuilder().create()
                     val location = gson.fromJson(responseBody, Locations::class.java)
 
-                    val itemList: List<String> = location.items.take(location.items.size).map { it.name }
+                    val dataMap: List<String> = location.items.take(location.items.size).map { it.id.toString() }
 
                     val spinner: Spinner = findViewById(R.id.spinner)
 
                     try {
-                        adapterItems =  ArrayAdapter(this@LeaderboardsActivity, android.R.layout.simple_spinner_dropdown_item, itemList)
+                        adapterItems = ArrayAdapter(this@LeaderboardsActivity, android.R.layout.simple_spinner_dropdown_item, dataMap)
                         spinner.adapter = adapterItems
 
                         spinner.setOnItemClickListener { adapterView, _, position, _ ->
-                            val item = adapterView.getItemAtPosition(position).toString()
-                            Toast.makeText(this@LeaderboardsActivity, item, Toast.LENGTH_SHORT).show()
+                            itemFromSpinner = adapterView.getItemAtPosition(position).toString()
+                            Toast.makeText(this@LeaderboardsActivity, itemFromSpinner, Toast.LENGTH_SHORT).show()
                         }
                     } catch (e: Exception){
                         Log.d("ciao", "ciao di nuovo")
@@ -77,11 +99,13 @@ class LeaderboardsActivity : AppCompatActivity() {
      * */
 
     // Tira fuori la leaderboard dei giocatori della location selezionata
-    fun getPlayersNormalLeaderboardForLocation(/*aggiungere il location id corrispondente*/) {
+    fun getPlayersNormalLeaderboardForLocation(locationid: String) {
         // costruzione dell'url e della richiesta HTTP
+        Constants.LOCATION_ID = locationid
         val client = OkHttpClient()
         val request = Request.Builder()
-            .url(Constants.RANKING_PLAYERS_NORMAL)
+            //.url(Constants.RANKING_PLAYERS_NORMAL)
+            .url("https://api.clashofclans.com/v1/locations/$locationid/rankings/players")
             .addHeader("authorization", "Bearer ${Constants.API_KEY}")
             .build()
         client.newCall(request).enqueue(object : okhttp3.Callback {
@@ -93,8 +117,11 @@ class LeaderboardsActivity : AppCompatActivity() {
                     val gson = GsonBuilder().create()
                     val playersForLocation = gson.fromJson(responseBody, Players::class.java)
 
-                    //val recyclerViewLeaderboards = findViewById<RecyclerView>(R.id.recyclerView_leaderboards)
-                    //recyclerViewLeaderboards.adapter = LeaderboardsAdapter(playersForLocation)
+                    /**
+                     * TODO: capire come mai qui passa una lista di null e non la lista con i players
+                     */
+                    val recyclerViewLeaderboards = findViewById<RecyclerView>(R.id.rv_leaderboards)
+                    recyclerViewLeaderboards.adapter = LeaderboardsAdapter(playersForLocation)
                 }
             }
 
@@ -105,8 +132,9 @@ class LeaderboardsActivity : AppCompatActivity() {
         })
     }
 
-    fun getPlayersBuilderLeaderboardForLocation(/*aggiungere il location id corrispondente*/) {
+    fun getPlayersBuilderLeaderboardForLocation(locationid: String) {
         // costruzione dell'url e della richiesta HTTP
+        Constants.LOCATION_ID = locationid
         val client = OkHttpClient()
         val request = Request.Builder()
             .url(Constants.RANKING_PLAYERS_BUILDER)
@@ -121,8 +149,8 @@ class LeaderboardsActivity : AppCompatActivity() {
                     val gson = GsonBuilder().create()
                     val playersForLocation = gson.fromJson(responseBody, Players::class.java)
 
-                    //val recyclerViewLeaderboards = findViewById<RecyclerView>(R.id.recyclerView_leaderboards)
-                    //recyclerViewLeaderboards.adapter = LeaderboardsAdapter(playersForLocation)
+                    val recyclerViewLeaderboards = findViewById<RecyclerView>(R.id.rv_leaderboards)
+                    recyclerViewLeaderboards.adapter = LeaderboardsAdapter(playersForLocation)
                 }
             }
 
@@ -133,8 +161,9 @@ class LeaderboardsActivity : AppCompatActivity() {
         })
     }
 
-    fun getClansNormalLeaderboardForLocation(/*aggiungere il location id corrispondente*/) {
+    fun getClansNormalLeaderboardForLocation(locationid: String) {
         // costruzione dell'url e della richiesta HTTP
+        Constants.LOCATION_ID = locationid
         val client = OkHttpClient()
         val request = Request.Builder()
             .url(Constants.RANKING_CLANS_NORMAL)
@@ -149,8 +178,8 @@ class LeaderboardsActivity : AppCompatActivity() {
                     val gson = GsonBuilder().create()
                     val playersForLocation = gson.fromJson(responseBody, Players::class.java)
 
-                    //val recyclerViewLeaderboards = findViewById<RecyclerView>(R.id.recyclerView_leaderboards)
-                    //recyclerViewLeaderboards.adapter = LeaderboardsAdapter(playersForLocation)
+                    val recyclerViewLeaderboards = findViewById<RecyclerView>(R.id.rv_leaderboards)
+                    recyclerViewLeaderboards.adapter = LeaderboardsAdapter(playersForLocation)
                 }
             }
 
@@ -161,8 +190,9 @@ class LeaderboardsActivity : AppCompatActivity() {
         })
     }
 
-    fun getClansBuilderLeaderboardForLocation(/*aggiungere il location id corrispondente*/) {
+    fun getClansBuilderLeaderboardForLocation(locationid: String) {
         // costruzione dell'url e della richiesta HTTP
+        Constants.LOCATION_ID = locationid
         val client = OkHttpClient()
         val request = Request.Builder()
             .url(Constants.RANKING_CLANS_BUILDER)
@@ -177,8 +207,8 @@ class LeaderboardsActivity : AppCompatActivity() {
                     val gson = GsonBuilder().create()
                     val playersForLocation = gson.fromJson(responseBody, Players::class.java)
 
-                    //val recyclerViewLeaderboards = findViewById<RecyclerView>(R.id.recyclerView_leaderboards)
-                    //recyclerViewLeaderboards.adapter = LeaderboardsAdapter(playersForLocation)
+                    val recyclerViewLeaderboards = findViewById<RecyclerView>(R.id.rv_leaderboards)
+                    recyclerViewLeaderboards.adapter = LeaderboardsAdapter(playersForLocation)
                 }
             }
 
@@ -189,8 +219,9 @@ class LeaderboardsActivity : AppCompatActivity() {
         })
     }
 
-    fun getClansCapitalLeaderboardForLocation(/*aggiungere il location id corrispondente*/) {
+    fun getClansCapitalLeaderboardForLocation(locationid: String) {
         // costruzione dell'url e della richiesta HTTP
+        Constants.LOCATION_ID = locationid
         val client = OkHttpClient()
         val request = Request.Builder()
             .url(Constants.RANKING_CLANS_CAPITAL)
@@ -205,8 +236,8 @@ class LeaderboardsActivity : AppCompatActivity() {
                     val gson = GsonBuilder().create()
                     val playersForLocation = gson.fromJson(responseBody, Players::class.java)
 
-                    //val recyclerViewLeaderboards = findViewById<RecyclerView>(R.id.recyclerView_leaderboards)
-                    //recyclerViewLeaderboards.adapter = LeaderboardsAdapter(playersForLocation)
+                    val recyclerViewLeaderboards = findViewById<RecyclerView>(R.id.rv_leaderboards)
+                    recyclerViewLeaderboards.adapter = LeaderboardsAdapter(playersForLocation)
                 }
             }
 

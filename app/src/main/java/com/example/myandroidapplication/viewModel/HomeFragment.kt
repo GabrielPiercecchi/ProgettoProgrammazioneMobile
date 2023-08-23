@@ -1,21 +1,17 @@
 package com.example.myandroidapplication.viewModel
 
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import android.widget.FrameLayout
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.fragment.app.Fragment
+import androidx.preference.PreferenceManager
 import com.example.myandroidapplication.R
-import com.example.myandroidapplication.model.Player
-import com.example.myandroidapplication.util.Constants
-import com.google.gson.GsonBuilder
-import okhttp3.OkHttpClient
-import okhttp3.Request
-import java.io.IOException
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
 class HomeFragment : Fragment() {
@@ -28,42 +24,65 @@ class HomeFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
-        getPlayer()
+        loadSettings()
     }
+    private fun loadSettings(){
+        val sp = PreferenceManager.getDefaultSharedPreferences(requireContext())
+        /**
+         * TODO: aggiungere la parte delle notifiche
+         */
+        //val receiveNotifications = sp.getBoolean("receive_notifications", false)
 
-
-    private fun getPlayer(){
-
-        val client = OkHttpClient()
-        val request = Request.Builder()
-            .url(Constants.PLAYERS_URL)
-            .addHeader("authorization","Bearer ${Constants.API_KEY}")
-            .build()
-        client.newCall(request).enqueue(object : okhttp3.Callback{
-            override fun onResponse(call: okhttp3.Call, response: okhttp3.Response) {
-                if(response.isSuccessful) {
-                    activity!!.runOnUiThread {
-                        val responseBody = response.body?.string()
-
-                        val gson = GsonBuilder().create()
-                        val giocatore = gson.fromJson(responseBody, Player::class.java)
-
-                        // Costruzione della string di risposta e applicazione della risposta alla vista
-                        val txtId: TextView = view!!.findViewById(R.id.nav_home)
-                        txtId.text = giocatore.toString()
-                    }
-                } else {
-                    activity!!.runOnUiThread {
-                        val txtId: TextView = view!!.findViewById(R.id.nav_home)
-                        txtId.text = "Insert correctly the API KEY!"
-                    }
+        sp.registerOnSharedPreferenceChangeListener{ _, key ->
+            when(key){
+                "theme" -> {
+                    val theme = sp.getString("theme", "")
+                    if (theme != null) changeTheme(theme)
+                    restartApp()
+                }
+                "bnv" -> {
+                    val bnv = sp.getString("bnv", "")
+                    if (bnv != null) bnvPosition(bnv)
+                    restartApp()
                 }
             }
-
-            override fun onFailure(call: okhttp3.Call, e: IOException) {
-                Log.d("MainActivity", "onFailure: "+e.message)
-            }
-        })
+        }
     }
+
+    private fun bnvPosition(position: String){
+        val bottomNavigationView = requireView().findViewById<BottomNavigationView>(R.id.bottomNavigationView)
+
+        when (position) {
+            "center" -> {
+                val params = bottomNavigationView.layoutParams as FrameLayout.LayoutParams
+                params.gravity = Gravity.CENTER_HORIZONTAL // Centro orizzontale
+                bottomNavigationView.layoutParams = params
+            }
+            "left" -> {
+                val params = bottomNavigationView.layoutParams as FrameLayout.LayoutParams
+                params.gravity = Gravity.START // Sinistra
+                bottomNavigationView.layoutParams = params
+            }
+            "right" -> {
+                val params = bottomNavigationView.layoutParams as FrameLayout.LayoutParams
+                params.gravity = Gravity.END // Destra
+                bottomNavigationView.layoutParams = params
+            }
+        }
+    }
+    private fun changeTheme(themePreference: String){
+            when (themePreference) {
+                "light" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                "dark" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                else -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+            }
+        true
+    }
+
+    private fun restartApp() {
+        val intent = context?.packageManager?.getLaunchIntentForPackage(requireContext().packageName)
+        intent?.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+        startActivity(intent)
+    }
+
 }
