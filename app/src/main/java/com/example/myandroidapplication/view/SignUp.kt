@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myandroidapplication.model.User
 import com.example.myandroidapplication.R
+import com.example.myandroidapplication.viewModel.ManualApiKeyActivity
 import com.example.myandroidapplication.viewModel.TutorialActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
@@ -18,6 +19,7 @@ import com.google.firebase.database.FirebaseDatabase
 // Classe per la schermata di Sign Up
 class SignUp : AppCompatActivity() {
 
+    private lateinit var edtTag: EditText
     private lateinit var edtName: EditText
     private lateinit var edtEmail: EditText
     private lateinit var edtPassword: EditText
@@ -37,6 +39,7 @@ class SignUp : AppCompatActivity() {
 
         mAuth = FirebaseAuth.getInstance()
 
+        edtTag = findViewById(R.id.edit_tag)
         edtName = findViewById(R.id.edit_name)
         edtEmail = findViewById(R.id.edit_email)
         edtPassword = findViewById(R.id.edit_password)
@@ -45,11 +48,12 @@ class SignUp : AppCompatActivity() {
 
         btnSignUp.setOnClickListener{
             try {
+                val tag = edtTag.text.toString()
                 val name = edtName.text.toString()
                 val email = edtEmail.text.toString()
                 val password = edtPassword.text.toString()
 
-                signUp(name, email, password)
+                signUp(tag, name, email, password)
             } catch (e: Exception){
                 Toast.makeText(
                     this@SignUp,
@@ -65,16 +69,16 @@ class SignUp : AppCompatActivity() {
         }
     }
 
-    private fun signUp(name:String, email: String, password: String){
+    private fun signUp(tag: String, name:String, email: String, password: String){
         // Logica per la creazione di utenti
 
         mAuth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     // Codice per tornare alla home
-                    addUserToDatabase(name, email, mAuth.currentUser?.uid!!)
+                    addUserToDatabase(tag, name, email, mAuth.currentUser?.uid!!)
                     val intent =Intent(this@SignUp,
-                        ChatList::class.java)
+                        ManualApiKeyActivity::class.java)
                     finish()
                     startActivity(intent)
 
@@ -92,9 +96,9 @@ class SignUp : AppCompatActivity() {
     }
 
     //Per aggiungere alla fine i dati del nuovo utente nel database
-    private fun addUserToDatabase(name: String, email: String, uid: String) {
+    private fun addUserToDatabase(tag: String, name: String, email: String, uid: String) {
         mDbRef = FirebaseDatabase.getInstance().getReference()
         mDbRef.child("user")
-            .child(uid).setValue(User(name, email, uid))
+            .child(uid).setValue(User(tag, name, email, uid))
     }
 }

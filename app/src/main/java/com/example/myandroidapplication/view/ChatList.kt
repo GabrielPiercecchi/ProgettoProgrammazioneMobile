@@ -87,7 +87,8 @@ class ChatList : AppCompatActivity() {
         if (query != null){
             val filteredList = ArrayList<User>()
             for (i in userList){
-                if (i.name!!.lowercase(Locale.ROOT).contains(query))
+                if ((i.name!!.lowercase(Locale.ROOT).contains(query))||
+                    (i.tag!!.lowercase(Locale.ROOT).contains(query)))
                     filteredList.add(i)
             }
 

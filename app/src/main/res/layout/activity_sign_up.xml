@@ -16,10 +16,23 @@
         />
 
     <EditText
-        android:id="@+id/edit_name"
+        android:id="@+id/edit_tag"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_below="@id/app_logo"
+        android:layout_marginTop="10dp"
+        android:hint="Tag"
+        android:paddingLeft="13dp"
+        android:background="@drawable/edit_background"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        />
+
+    <EditText
+        android:id="@+id/edit_name"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/edit_tag"
         android:layout_marginTop="10dp"
         android:hint="@string/Name"
         android:paddingLeft="13dp"

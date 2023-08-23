@@ -16,6 +16,7 @@ import com.example.myandroidapplication.R
 import com.example.myandroidapplication.model.Player
 import com.example.myandroidapplication.util.Constants
 import com.example.myandroidapplication.viewModel.AboutActivity
+import com.example.myandroidapplication.viewModel.ChangeTag
 import com.example.myandroidapplication.viewModel.ManualApiKeyActivity
 import com.example.myandroidapplication.viewModel.SettingsActivity
 import com.example.myandroidapplication.viewModel.TutorialActivity
@@ -108,6 +109,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
             R.id.nav_apikey -> {
                 startActivity(Intent(applicationContext, ManualApiKeyActivity::class.java))
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+                return true
+            }
+            R.id.nav_tag -> {
+                startActivity(Intent(applicationContext, ChangeTag::class.java))
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
                 return true
             }

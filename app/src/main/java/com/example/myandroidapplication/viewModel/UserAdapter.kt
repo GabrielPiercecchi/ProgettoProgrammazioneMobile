@@ -32,6 +32,8 @@ class UserAdapter(val context: Context, /*Prima era val*/var userList: ArrayList
         val currentUser = userList[position]
 
         holder.textName.text = currentUser.name
+        holder.textTag.text = currentUser.tag
+
 
         holder.itemView.setOnClickListener{
             val intent = Intent(context, ChatActivity::class.java)
@@ -45,6 +47,7 @@ class UserAdapter(val context: Context, /*Prima era val*/var userList: ArrayList
     }
     class UserViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val textName = itemView.findViewById<TextView>(R.id.txt_name)
+        val textTag = itemView.findViewById<TextView>(R.id.txt_tag)
     }
 
     //Metodo aggiunto per SearchView

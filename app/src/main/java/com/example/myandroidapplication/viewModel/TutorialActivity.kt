@@ -38,7 +38,7 @@ class TutorialActivity : AppCompatActivity() {
                     "\n--> Il proprio nome" +
                     "\n--> Un'email valida" +
                     "\n--> Una Password" +
-                    "\nA seguito della creazione del profilo b ed eseguito l'accesso bisogna inserire" +
+                    "\nA seguito della creazione del profilo ed eseguito l'accesso bisogna inserire" +
                     "una chiave necessaria ad usare le API di <<Clash of Clans>>." +
                     "\nPer far questo bisgna conoscere il proprio indirizzo IP " +
                     "(consultabile al primo link evidenziato)." +
@@ -48,7 +48,8 @@ class TutorialActivity : AppCompatActivity() {
                     "fornendo le seguenti credenziali:" +
                     "\nEmail: ciao@gmail.com" +
                     "\nPassword: voleviEhh" +
-                    "\nEntrati nel sito bisogna generare una chiave fornendo il proprio indirizzo IP (come mostrato nel video guida)." +
+                    "\nEntrati nel sito bisogna generare una chiave fornendo il proprio indirizzo IP " +
+                    "(come mostrato nel video guida)." +
                     "\nGenerata la chiave bisogna copia/incollarla all'interno della schermata " +
                     "apposita, chiamata <<Api Key>>, e presente nell'hamburger menu " +
                     "all'interno dell'applicazione " +
