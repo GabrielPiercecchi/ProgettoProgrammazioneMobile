@@ -23,6 +23,7 @@ class SignUp : AppCompatActivity() {
     private lateinit var edtName: EditText
     private lateinit var edtEmail: EditText
     private lateinit var edtPassword: EditText
+    private lateinit var confirmPassword: EditText
     private lateinit var btnSignUp: Button
     private lateinit var txtTutorial: TextView
 
@@ -43,6 +44,7 @@ class SignUp : AppCompatActivity() {
         edtName = findViewById(R.id.edit_name)
         edtEmail = findViewById(R.id.edit_email)
         edtPassword = findViewById(R.id.edit_password)
+        confirmPassword = findViewById(R.id.confirm_password)
         btnSignUp = findViewById(R.id.btnSignUp)
         txtTutorial = findViewById(R.id.txtTutorial)
 
@@ -52,8 +54,18 @@ class SignUp : AppCompatActivity() {
                 val name = edtName.text.toString()
                 val email = edtEmail.text.toString()
                 val password = edtPassword.text.toString()
+                val confirmPassword = confirmPassword.text.toString()
 
-                signUp(tag, name, email, password)
+                if (password!=confirmPassword){
+                    Toast.makeText(
+                        this@SignUp,
+                        "Error: " + "Password non uguali",
+                        Toast.LENGTH_LONG
+                    ).show()
+                } else {
+                    signUp(tag, name, email, password)
+
+                }
             } catch (e: Exception){
                 Toast.makeText(
                     this@SignUp,
