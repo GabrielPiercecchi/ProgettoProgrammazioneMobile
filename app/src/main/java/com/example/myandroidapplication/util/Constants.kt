@@ -1,14 +1,15 @@
 package com.example.myandroidapplication.util
 
+import com.example.myandroidapplication.view.MainActivity
+
 class Constants {
     companion object{
         // Setta la API KEY per effettuare tutte le richieste
         var API_KEY = ""
-
         /* Per ora lascio il player tag in questo modo per motivi di test, successivamente va messo
            il tag del giocatore registrato */
         private const val PLAYER_TAG = "%23PGJVQUJJL"
-        const val PLAYERS_URL = "https://api.clashofclans.com/v1/players/$PLAYER_TAG"
+        val PLAYERS_URL = "https://api.clashofclans.com/v1/players/"
 
         // URL per i vari ranking
         var LOCATION_ID = "" // 32000000 - Europe (per accedere alle altre cambia le ultime cifre!)

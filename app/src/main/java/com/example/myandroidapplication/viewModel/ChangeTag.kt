@@ -43,6 +43,11 @@ class ChangeTag : AppCompatActivity() {
             mDbRef.child("user").child(uid).get().addOnSuccessListener { snapshot ->
                 if (snapshot.exists()) {
                     val name = snapshot.child("name").getValue(String::class.java) ?: ""
+                    val tag = snapshot.child("tag").getValue(String::class.java) ?: ""
+
+                    // Imposta il tag dell'utente come testo predefinito nell'EditText
+                    edtTag.hint = "Vecchio Tag: $tag"
+
                     val testo = "Se ti sei accorto di aver inserito il tuo TAG in maniera errata puoi " +
                             "modificarlo inserendo quello corretto qua sotto e premendo il " +
                             "bottone di conferma!!"
@@ -59,12 +64,16 @@ class ChangeTag : AppCompatActivity() {
 
         changeTagBtn.setOnClickListener {
             val newTag = edtTag.text.toString()
-            val currentUser = mAuth.currentUser
-            currentUser?.let {
-                val uid = it.uid
-                updateUserTag(uid, newTag)
+            if (newTag.isNotEmpty()) {
+                val currentUser = mAuth.currentUser
+                currentUser?.let {
+                    val uid = it.uid
+                    updateUserTag(uid, newTag)
+                }
+                startActivity(Intent(applicationContext, MainActivity::class.java))
+            } else {
+                Toast.makeText(this, "Il nuovo tag non può essere vuoto", Toast.LENGTH_SHORT).show()
             }
-            startActivity(Intent(applicationContext, MainActivity::class.java))
         }
     }
 

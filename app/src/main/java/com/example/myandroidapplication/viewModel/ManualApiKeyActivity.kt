@@ -23,7 +23,17 @@ class ManualApiKeyActivity : AppCompatActivity() {
 
         btnInsert.setOnClickListener{
             try {
-                API_KEY = edtApiKey.text.toString()
+                // Rimuovi eventuali spazi vuoti all'inizio e alla fine
+                val newApiKey = edtApiKey.text.toString().trim()
+                if (newApiKey.isNotEmpty()){
+                    API_KEY = newApiKey
+                    startActivity(Intent(applicationContext, MainActivity::class.java))
+                } else {
+                    API_KEY = ""
+                    Toast.makeText(this@ManualApiKeyActivity,
+                        "L'API key non può essere vuota",
+                        Toast.LENGTH_SHORT).show()
+                }
             } catch (e: Exception){
                 Toast.makeText(
                     this@ManualApiKeyActivity,
@@ -31,7 +41,6 @@ class ManualApiKeyActivity : AppCompatActivity() {
                     Toast.LENGTH_LONG
                 ).show()
             }
-            startActivity(Intent(applicationContext, MainActivity::class.java))
         }
 
 
