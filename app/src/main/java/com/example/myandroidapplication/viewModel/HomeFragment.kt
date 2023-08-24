@@ -62,6 +62,7 @@ class HomeFragment : Fragment() {
                 val params = bottomNavigationView.layoutParams as FrameLayout.LayoutParams
                 params.gravity = Gravity.START // Sinistra
                 bottomNavigationView.layoutParams = params
+
             }
             "right" -> {
                 val params = bottomNavigationView.layoutParams as FrameLayout.LayoutParams

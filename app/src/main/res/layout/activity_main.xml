@@ -9,14 +9,10 @@
     tools:context=".view.MainActivity"
     tools:openDrawer="start">
 
-    <!-- Navigation Drawer start -->
-
     <RelativeLayout
         android:id="@+id/relativeLayout2"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-        <!--Bottom navigation bar-->
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
@@ -37,24 +33,24 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"/>
 
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottomNavigationView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginBottom="30dp"
-            android:background="@drawable/bottom_bg"
-            android:elevation="2dp"
-            android:gravity="center_horizontal"
-            app:itemIconSize="30dp"
-            app:itemIconTint="@drawable/item_selector"
-            app:itemRippleColor="@android:color/transparent"
-            app:labelVisibilityMode="unlabeled"
-            app:menu="@menu/bottom_menu" />
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/bottomNavigationView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/bottom_bg"
+                android:elevation="2dp"
+                android:gravity="center_horizontal"
+                app:itemIconSize="30dp"
+                app:itemIconTint="@drawable/item_selector"
+                app:itemRippleColor="@android:color/transparent"
+                app:labelVisibilityMode="unlabeled"
+                app:menu="@menu/bottom_menu" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView_main"
@@ -65,9 +61,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/toolbar" />
-
-        <!-- Recycler view start -->
-        <!-- Recycler view end -->
 
     </RelativeLayout>
 
@@ -80,8 +73,4 @@
         app:itemIconTint="@color/flamingoPink"
         app:itemTextColor="@color/flamingoPink"
         app:menu="@menu/nav_menu" />
-    <!-- Navigation Drawer end -->
-
-    <!-- Bottom navigation menu start -->
-    <!-- Bottom navigation menu end -->
 </androidx.drawerlayout.widget.DrawerLayout>
