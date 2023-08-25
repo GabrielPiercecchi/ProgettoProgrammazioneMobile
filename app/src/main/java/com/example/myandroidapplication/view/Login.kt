@@ -1,21 +1,19 @@
 package com.example.myandroidapplication.view
 
+import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import com.example.myandroidapplication.R
-import com.example.myandroidapplication.viewModel.HomeFragment
 import com.example.myandroidapplication.viewModel.ManualApiKeyActivity
 import com.example.myandroidapplication.viewModel.TutorialActivity
 import com.google.firebase.auth.FirebaseAuth
-import okhttp3.internal.http2.StreamResetException
-import com.google.firebase.auth.FirebaseAuthUserCollisionException
 
 // Classe per la schermata di login
 class Login : AppCompatActivity() {
@@ -36,7 +34,22 @@ class Login : AppCompatActivity() {
 
         supportActionBar?.hide()
 
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+        //AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+
+        val sharedPreferences = getSharedPreferences("MODE", Context.MODE_PRIVATE)
+        val nightMODE= sharedPreferences.getBoolean("dark", false)
+        val editor: SharedPreferences.Editor
+
+        if (nightMODE) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            editor = sharedPreferences.edit()
+            editor.putBoolean("dark", false)
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            editor = sharedPreferences.edit()
+            editor.putBoolean("dark", true)
+        }
+        editor.apply()
 
         mAuth = FirebaseAuth.getInstance()
 

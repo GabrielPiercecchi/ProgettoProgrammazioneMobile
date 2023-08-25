@@ -13,6 +13,7 @@
         android:src="@drawable/coclogo"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="125dp"
+        android:contentDescription="@string/app_name"
         />
 
     <EditText
@@ -26,6 +27,7 @@
         android:background="@drawable/edit_background"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
+        android:autofillHints="emailAddress"
         />
 
     <EditText
@@ -39,7 +41,7 @@
         android:background="@drawable/edit_background"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        />
+        android:inputType="textPassword" />
 
     <Button
         android:id="@+id/btnLogin"
@@ -49,7 +51,7 @@
         android:text="@string/Log_in"
         android:background="@drawable/btn_background"
         android:textColor="@color/darkWhite"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         />
@@ -62,7 +64,7 @@
         android:text="@string/Sign_up"
         android:background="@drawable/btn_background"
         android:textColor="@color/darkWhite"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         />
@@ -78,22 +80,22 @@
         android:text="@string/forgot_passw"
         android:background="@drawable/btn_background"
         android:textColor="@color/darkWhite"
-        android:textSize="16dp"/>
+        android:textSize="16sp"/>
 
     <TextView
         android:id="@+id/txtTutorial"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TUTORIAL"
-        android:textStyle="bold"
-        android:layout_below="@id/btnFPassword"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:padding="10dp"
-        android:textColor="@color/darkWhite"
+        android:layout_alignBottom="@+id/btnLogin"
+        android:layout_marginEnd="13dp"
+        android:layout_marginBottom="5dp"
+        android:layout_toStartOf="@+id/btnLogin"
         android:background="@android:color/holo_red_light"
         android:gravity="center"
-        android:textSize="14dp"
-        />
+        android:padding="10dp"
+        android:text="@string/Tutorial"
+        android:textColor="@color/darkWhite"
+        android:textSize="14sp"
+        android:textStyle="bold" />
 
 </RelativeLayout>
