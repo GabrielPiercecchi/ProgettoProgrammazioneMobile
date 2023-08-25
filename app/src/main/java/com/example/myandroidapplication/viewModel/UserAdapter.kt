@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.myandroidapplication.view.ChatActivity
 import com.example.myandroidapplication.model.User
 import com.example.myandroidapplication.R
 

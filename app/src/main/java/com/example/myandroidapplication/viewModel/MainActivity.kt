@@ -1,4 +1,4 @@
-package com.example.myandroidapplication.view
+package com.example.myandroidapplication.viewModel
 
 import android.content.Intent
 import android.os.Bundle
@@ -15,11 +15,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.myandroidapplication.R
 import com.example.myandroidapplication.model.Player
 import com.example.myandroidapplication.util.Constants
-import com.example.myandroidapplication.viewModel.AboutActivity
-import com.example.myandroidapplication.viewModel.ChangeTag
-import com.example.myandroidapplication.viewModel.ManualApiKeyActivity
-import com.example.myandroidapplication.viewModel.SettingsActivity
-import com.example.myandroidapplication.viewModel.TutorialActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth

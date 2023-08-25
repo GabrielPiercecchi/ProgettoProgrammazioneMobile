@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     app:reverseLayout="true"
     app:stackFromEnd="true"
-    tools:context=".view.ChatList">
+    tools:context=".viewModel.ChatList">
 
 
     <androidx.recyclerview.widget.RecyclerView

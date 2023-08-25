@@ -35,25 +35,25 @@
             android:name=".viewModel.SettingsActivity"
             android:exported="false"
             android:label="@string/title_activity_settings"
-            android:parentActivityName=".view.MainActivity" />
+            android:parentActivityName=".viewModel.MainActivity" />
         <activity
-            android:name=".view.LeaderboardsActivity"
+            android:name=".viewModel.LeaderboardsActivity"
             android:exported="false" />
         <activity
-            android:name=".view.MainActivity"
+            android:name=".viewModel.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.view.MainActivity" />
         <activity
-            android:name=".view.ForgotPassword"
+            android:name=".viewModel.ForgotPassword"
             android:exported="false" />
         <activity
-            android:name=".view.ChatActivity"
+            android:name=".viewModel.ChatActivity"
             android:exported="false" />
         <activity
-            android:name=".view.SignUp"
+            android:name=".viewModel.SignUp"
             android:exported="false" />
         <activity
-            android:name=".view.Login"
+            android:name=".viewModel.Login"
             android:exported="true"
             android:theme="@style/Theme.view.MainActivity">
             <intent-filter>
@@ -68,7 +68,7 @@
             android:value="" />
 
         <activity
-            android:name=".view.ChatList"
+            android:name=".viewModel.ChatList"
             android:exported="true" />
 
         <!--        <service-->

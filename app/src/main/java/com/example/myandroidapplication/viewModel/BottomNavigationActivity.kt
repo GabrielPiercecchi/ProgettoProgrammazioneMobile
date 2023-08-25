@@ -1,17 +1,10 @@
-package com.example.myandroidapplication.view
+package com.example.myandroidapplication.viewModel
 
-import android.content.ClipData.Item
 import android.content.Intent
 import android.os.Bundle
-import android.os.PersistableBundle
-import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.GravityCompat
 import com.example.myandroidapplication.R
-import com.example.myandroidapplication.view.LeaderboardsActivity
-import com.example.myandroidapplication.view.ChatList
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class BottomNavigationActivity: AppCompatActivity() {

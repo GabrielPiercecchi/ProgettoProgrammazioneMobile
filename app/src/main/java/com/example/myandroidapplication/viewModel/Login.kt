@@ -1,4 +1,4 @@
-package com.example.myandroidapplication.view
+package com.example.myandroidapplication.viewModel
 
 import android.content.Context
 import android.content.Intent
@@ -11,8 +11,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import com.example.myandroidapplication.R
-import com.example.myandroidapplication.viewModel.ManualApiKeyActivity
-import com.example.myandroidapplication.viewModel.TutorialActivity
 import com.google.firebase.auth.FirebaseAuth
 
 // Classe per la schermata di login

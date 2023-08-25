@@ -1,7 +1,5 @@
 package com.example.myandroidapplication.util
 
-import com.example.myandroidapplication.view.MainActivity
-
 class Constants {
     companion object{
         // Setta la API KEY per effettuare tutte le richieste

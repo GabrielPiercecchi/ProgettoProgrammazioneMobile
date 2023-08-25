@@ -11,8 +11,6 @@ import com.example.myandroidapplication.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import com.example.myandroidapplication.model.User
-import com.example.myandroidapplication.view.MainActivity
 
 
 class ChangeTag : AppCompatActivity() {

@@ -8,7 +8,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myandroidapplication.R
 import com.example.myandroidapplication.util.Constants.Companion.API_KEY
-import com.example.myandroidapplication.view.MainActivity
 
 class ManualApiKeyActivity : AppCompatActivity() {
     private lateinit var edtApiKey: EditText
