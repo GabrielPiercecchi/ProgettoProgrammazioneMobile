@@ -19,6 +19,7 @@
             android:exported="false" />
         <activity
             android:name=".viewModel.RatingActivity"
+            android:label="@string/title_activity_rating"
             android:exported="false" />
         <activity
             android:name=".viewModel.TutorialActivity"
@@ -58,7 +59,6 @@
             android:theme="@style/Theme.view.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

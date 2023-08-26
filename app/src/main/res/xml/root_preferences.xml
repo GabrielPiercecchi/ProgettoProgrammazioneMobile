@@ -1,14 +1,13 @@
-<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <PreferenceCategory app:title="@string/theme">
 
-        <ListPreference
-            app:defaultValue="system"
-            app:entries="@array/theme_entries"
-            app:entryValues="@array/theme_values"
+        <SwitchPreferenceCompat
+            android:id="@+id/theme"
             app:key="theme"
-            app:title="@string/theme_title"
-            app:useSimpleSummaryProvider="true" />
+            app:title="Dark Theme"
+            app:defaultValue="true"/>
 
     </PreferenceCategory>
 

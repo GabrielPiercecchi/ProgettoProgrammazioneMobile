@@ -39,6 +39,7 @@
     <string name="title_activity_settings">App Settings</string>
     <string name="title_activity_about">About Us</string>
     <string name="title_activity_tutorial">Tutorial</string>
+    <string name="title_activity_rating">Rating</string>
 
     <!--activity_apikey.xml-->
     <string name="apiDescription">Insert in the field below the api key! Remember to use the IP address of your smartphone (to know the IP address just go on whatsmyip)</string>
