@@ -1,112 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".viewModel.SignUp">
 
-    <ImageView
-        android:id="@+id/app_logo"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:src="@drawable/coclogo"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="125dp"
-        />
 
-    <EditText
-        android:id="@+id/edit_tag"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_below="@id/app_logo"
-        android:layout_marginTop="10dp"
-        android:hint="Tag"
-        android:paddingLeft="13dp"
-        android:background="@drawable/edit_background"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        />
+        android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@+id/edit_name"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_below="@id/edit_tag"
-        android:layout_marginTop="10dp"
-        android:hint="@string/Name"
-        android:paddingLeft="13dp"
-        android:background="@drawable/edit_background"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        />
+        <ImageView
+            android:id="@+id/app_logo"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:src="@drawable/coclogo"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="125dp"
+            />
 
-    <EditText
-        android:id="@+id/edit_email"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_below="@id/edit_name"
-        android:layout_marginTop="10dp"
-        android:hint="@string/Email"
-        android:paddingLeft="13dp"
-        android:background="@drawable/edit_background"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        />
+        <EditText
+            android:id="@+id/edit_tag"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@id/app_logo"
+            android:layout_marginTop="10dp"
+            android:hint="Tag"
+            android:paddingLeft="13dp"
+            android:background="@drawable/edit_background"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            />
 
-    <EditText
-        android:id="@+id/edit_password"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_below="@id/edit_email"
-        android:layout_marginTop="10dp"
-        android:hint="@string/Password"
-        android:paddingLeft="13dp"
-        android:background="@drawable/edit_background"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        />
+        <EditText
+            android:id="@+id/edit_name"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@id/edit_tag"
+            android:layout_marginTop="10dp"
+            android:hint="@string/Name"
+            android:paddingLeft="13dp"
+            android:background="@drawable/edit_background"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            />
 
-    <EditText
-        android:id="@+id/confirm_password"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_below="@id/edit_password"
-        android:layout_marginTop="10dp"
-        android:hint="@string/Password"
-        android:paddingLeft="13dp"
-        android:background="@drawable/edit_background"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        />
+        <EditText
+            android:id="@+id/edit_email"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@id/edit_name"
+            android:layout_marginTop="10dp"
+            android:hint="@string/Email"
+            android:paddingLeft="13dp"
+            android:background="@drawable/edit_background"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            />
 
-    <Button
-        android:id="@+id/btnSignUp"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/confirm_password"
-        android:text="@string/Sign_up"
-        android:background="@drawable/btn_background"
-        android:textColor="@color/darkWhite"
-        android:textSize="20dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        />
+        <EditText
+            android:id="@+id/edit_password"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@id/edit_email"
+            android:layout_marginTop="10dp"
+            android:hint="@string/Password"
+            android:paddingLeft="13dp"
+            android:background="@drawable/edit_background"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            />
 
-    <TextView
-        android:id="@+id/txtTutorial"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TUTORIAL"
-        android:textStyle="bold"
-        android:layout_below="@id/btnSignUp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:padding="10dp"
-        android:textColor="@color/darkWhite"
-        android:background="@android:color/holo_red_light"
-        android:gravity="center"
-        android:textSize="14dp"
-        />
+        <EditText
+            android:id="@+id/confirm_password"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@id/edit_password"
+            android:layout_marginTop="10dp"
+            android:hint="@string/Password"
+            android:paddingLeft="13dp"
+            android:background="@drawable/edit_background"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            />
 
-</RelativeLayout>
+        <Button
+            android:id="@+id/btnSignUp"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/confirm_password"
+            android:text="@string/Sign_up"
+            android:background="@drawable/btn_background"
+            android:textColor="@color/darkWhite"
+            android:textSize="20dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            />
+
+        <TextView
+            android:id="@+id/txtTutorial"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TUTORIAL"
+            android:textStyle="bold"
+            android:layout_below="@id/btnSignUp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:padding="10dp"
+            android:textColor="@color/darkWhite"
+            android:background="@android:color/holo_red_light"
+            android:gravity="center"
+            android:textSize="14dp"
+            />
+    </RelativeLayout>
+
+
+</ScrollView>

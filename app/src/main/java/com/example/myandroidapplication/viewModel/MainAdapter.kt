@@ -68,7 +68,10 @@ class MainAdapter(val players: Player?): RecyclerView.Adapter<MainAdapter.Custom
             } else {
                 // Gestisci la situazione in cui 'players' è nullo
                 // Ad esempio, puoi impostare dei valori di default o mostrare un messaggio di errore
-                holder.v.tvBestTrophies.text = "No player data available"
+                holder.v.tvBestTrophies.text = "No player data available!!\n" +
+                        "Go to <<Api Key>> and submit a valid key.\n" +
+                        "If you don't know how to do it check te <<Tutorial>>.\n" +
+                        "If this error persist check your TAG."
             }
         } catch (e: Error) {
             println(e)

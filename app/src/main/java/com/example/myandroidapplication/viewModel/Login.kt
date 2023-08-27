@@ -83,7 +83,7 @@ class Login : AppCompatActivity() {
 
                     val intent = Intent(
                         this@Login,
-                        ManualApiKeyActivity::class.java
+                        MainActivity::class.java
                     )
                     //finish()
                     startActivity(intent)
