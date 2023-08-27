@@ -2,13 +2,21 @@ package com.example.myandroidapplication.viewModel
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.myandroidapplication.databinding.SingleRowBinding
 import com.example.myandroidapplication.model.Label
 import com.example.myandroidapplication.model.Player
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 
 class MainAdapter(val players: Player?): RecyclerView.Adapter<MainAdapter.CustomViewHolder>() {
+
+    // Variabile utilizzata per le autenticazioni Firebase
+    private lateinit var mAuth: FirebaseAuth
+    private lateinit var mDbRef: DatabaseReference
 
     inner class CustomViewHolder(val v: SingleRowBinding): RecyclerView.ViewHolder (v.root)
 
@@ -23,10 +31,27 @@ class MainAdapter(val players: Player?): RecyclerView.Adapter<MainAdapter.Custom
 
     override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
 
+        mAuth = FirebaseAuth.getInstance()
+        mDbRef = FirebaseDatabase.getInstance().reference
+
+        val currentUser = mAuth.currentUser
+
         try {
             val players = this.players
             if (isPlayerDataValid(players)) {
                 with(holder.v) {
+
+                    // Aggiunta di un ValueEventListener per ottenere il nome dell'utente dal database
+                    currentUser?.let {
+                        val uid = it.uid
+                        mDbRef.child("user").child(uid).get().addOnSuccessListener { snapshot ->
+                            if (snapshot.exists()) {
+                                val name = snapshot.child("name").getValue(String::class.java) ?: ""
+                                textTitleName.text = "Statistiche di " + name
+                            }
+                        }
+                    }
+
                     tvBestTrophies.text = "Best Trophies: " + players?.bestTrophies.toString()
                     tvBestVersusTrophies.text = "Best Versus Trophies: " + players?.bestVersusTrophies.toString()
                     tvBuilderHallLevel.text = "Builder Hall Level: " + players?.builderHallLevel.toString()

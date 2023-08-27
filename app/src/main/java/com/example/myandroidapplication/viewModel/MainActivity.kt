@@ -36,7 +36,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private lateinit var bottomNavigationView: BottomNavigationView
 
     // Variabile utilizzata per le autenticazioni Firebase
-    //OK OK
     private lateinit var mAuth: FirebaseAuth
     private lateinit var mDbRef: DatabaseReference
 
