@@ -1,6 +1,9 @@
 package com.example.myandroidapplication.viewModel
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.EditText
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
@@ -20,6 +23,9 @@ class ChatActivity : AppCompatActivity() {
     private lateinit var messageList: ArrayList<Message>
     private lateinit var mDbRef: DatabaseReference
 
+    private lateinit var name: String
+    private lateinit var receiverUid: String
+
     //Variabili per la comunicazione tra due room
     var receiverRoom: String? = null
     var senderRoom: String? = null
@@ -28,8 +34,8 @@ class ChatActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat)
 
-        val name = intent.getStringExtra("name")
-        val receiverUid = intent.getStringExtra("uid")
+        name = intent.getStringExtra("name")?: ""
+        receiverUid = intent.getStringExtra("uid")?: ""
 
         val senderUid = FirebaseAuth.getInstance().currentUser?.uid
         mDbRef = FirebaseDatabase.getInstance().getReference()
@@ -89,5 +95,33 @@ class ChatActivity : AppCompatActivity() {
                 }
             messageBox.setText("")
         }
+    }
+
+    // Selezione per il menu
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        // "when" case per selezionare le differenti opzioni del menu
+        when(item.itemId){
+            R.id.stats_player -> {
+                mDbRef.child("user").child(receiverUid).get().addOnSuccessListener { snapshot ->
+                    if (snapshot.exists()) {
+                        val tag = snapshot.child("tag").getValue(String::class.java) ?: ""
+                        val intent = Intent(this, StatsReceiver::class.java)
+                        intent.putExtra("tag", tag)
+                        intent.putExtra("name", name)
+                        startActivity(intent)
+                    }
+                }
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+                return true
+            }
+        }
+        return true
+    }
+
+    //metodo per "iniettare" il menu
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_stats_receiver, menu)
+//        menuInflater.inflate(R.menu.nav_menu, menu)
+        return super.onCreateOptionsMenu(menu)
     }
 }

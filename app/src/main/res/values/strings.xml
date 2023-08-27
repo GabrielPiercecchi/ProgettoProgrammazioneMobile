@@ -87,4 +87,5 @@
     <string name="players">Players</string>
     <string name="builders">Builders</string>
     <string name="clans">Clans</string>
+    <string name="stats_player">Stats Player</string>
 </resources>
