@@ -33,6 +33,11 @@ class MainAdapter(val players: Player?): RecyclerView.Adapter<MainAdapter.Custom
 
                     val clanName = players?.clan?.name ?: ""
                     tvClan.text = "Clan name: " + clanName
+                    // Carica l'immagine del clan dalla URL "small"
+                    val clanSmallIconUrl = players?.clan?.badgeUrls?.small
+                    if (!clanSmallIconUrl.isNullOrEmpty()) {
+                        Glide.with(ivClan.context).load(clanSmallIconUrl).into(ivClan)
+                    }
 
                     tvDonations.text = "Donations: " + players?.donations.toString()
                     tvDonationsReceived.text = "Donations Received: " + players?.donationsReceived.toString()
@@ -43,11 +48,13 @@ class MainAdapter(val players: Player?): RecyclerView.Adapter<MainAdapter.Custom
                     tvLabel.text = "Labels: " + labelsText
                     val labelSmallUrls = labelsArray?.let { extractSmallUrls(it) }
                     if (players?.labels != null) {
-                        for (i in 0..2) {
-                            if (labelSmallUrls != null) {
-                                if (i < labelSmallUrls.size) {
-                                    val labelIconUrl = labelSmallUrls[i]
-                                    Glide.with(ivLabel.context).load(labelIconUrl).into(ivLabel)
+                        for (i in 0 until players.labels.size) {
+                            if (labelSmallUrls != null && i < labelSmallUrls.size) {
+                                val labelIconUrl = labelSmallUrls[i]
+                                when (i) {
+                                    0 -> Glide.with(ivLabel1.context).load(labelIconUrl).into(ivLabel1)
+                                    1 -> Glide.with(ivLabel2.context).load(labelIconUrl).into(ivLabel2)
+                                    2 -> Glide.with(ivLabel3.context).load(labelIconUrl).into(ivLabel3)
                                 }
                             }
                         }

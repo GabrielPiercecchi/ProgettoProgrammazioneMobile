@@ -152,18 +152,19 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         // costruzione dell'url e della richiesta HTTP
         val currentUser = mAuth.currentUser
         try {
-            // Aggiunta di un ValueEventListener per ottenere il tag dell'utente dal database
+            // Aggiunta di un ValueEventListener per ottenere il tag e l'apiKey dell'utente dal database
             currentUser?.let {
                 val uid = it.uid
                 mDbRef.child("user").child(uid).get().addOnSuccessListener { snapshot ->
                     if (snapshot.exists()) {
                         val rawTag = snapshot.child("tag").getValue(String::class.java) ?: ""
+                        val apiKey = snapshot.child("apiKey").getValue(String::class.java) ?: ""
                         val tag = rawTag.replace("#", "%23")
                         val correctUrl = Constants.PLAYERS_URL + tag
                         val client = OkHttpClient()
                         val request = Request.Builder()
                             .url(correctUrl)
-                            .addHeader("authorization","Bearer ${Constants.API_KEY}")
+                            .addHeader("authorization","Bearer $apiKey")
                             .build()
                         client.newCall(request).enqueue(object : okhttp3.Callback{
                             // funzione che si attiva in caso di una risposta
