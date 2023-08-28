@@ -94,11 +94,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         // "when" case per selezionare le differenti opzioni del menu
         when(item.itemId){
-            R.id.nav_settings -> {
-                startActivity(Intent(applicationContext, SettingsActivity::class.java))
-                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
-                return true
-            }
             R.id.nav_about -> {
                 startActivity(Intent(applicationContext, AboutActivity::class.java))
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
