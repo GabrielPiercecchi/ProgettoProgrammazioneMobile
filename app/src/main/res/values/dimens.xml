@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Bottom navigation view -->
+    <dimen name="bottom_navigation_elevation">8dp</dimen>
+    <dimen name="bottom_navigation_radius">16dp</dimen>
+    <dimen name="bottom_navigation_size">256dp</dimen>
+    <dimen name="bottom_navigation_margin">24dp</dimen>
+
+</resources>

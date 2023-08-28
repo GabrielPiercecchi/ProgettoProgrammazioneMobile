@@ -23,7 +23,8 @@ import java.io.IOException
 
 class LeaderboardsActivity : AppCompatActivity() {
 
-    var itemFromSpinner: String = ""
+    var itemFromSpinner: Pair<String, String> = Pair(" ", " ")
+    lateinit var selectedItem: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_leaderboards)
@@ -37,21 +38,19 @@ class LeaderboardsActivity : AppCompatActivity() {
         val rg: RadioGroup = findViewById(R.id.rg)
 
         val bUpdate: Button = findViewById(R.id.b_update)
-        /**
-         * TODO: capire come mai itemFromSpinner risulta sempre stringa vuota
-         */
+
         bUpdate.setOnClickListener{
 
             when(rg.checkedRadioButtonId) {
-                R.id.rb_player -> getPlayersNormalLeaderboardForLocation(itemFromSpinner)
-                R.id.rb_builder -> getPlayersBuilderLeaderboardForLocation(itemFromSpinner)
-                R.id.rb_clan -> getClansNormalLeaderboardForLocation(itemFromSpinner)
+                R.id.rb_player -> getPlayersNormalLeaderboardForLocation("32000009")
+                R.id.rb_builder -> getPlayersBuilderLeaderboardForLocation(selectedItem)
+                R.id.rb_clan -> getClansNormalLeaderboardForLocation(selectedItem)
             }
         }
     }
 
 
-    private lateinit var adapterItems: ArrayAdapter<String>
+    private lateinit var adapterItems: ArrayAdapter<Pair<String, String>>
 
     // Funzione che ti permette di prendere tutte le locations e metterle nella select list.
     private fun getAllLocations(){
@@ -70,17 +69,18 @@ class LeaderboardsActivity : AppCompatActivity() {
                     val gson = GsonBuilder().create()
                     val location = gson.fromJson(responseBody, Locations::class.java)
 
-                    val dataMap: List<String> = location.items.take(location.items.size).map { it.id.toString() }
+                    val dataMap: List<Pair<String, String>> = location.items.drop(7).map { it.name to it.id.toString() }
 
                     val spinner: Spinner = findViewById(R.id.spinner)
 
                     try {
-                        adapterItems = ArrayAdapter(this@LeaderboardsActivity, android.R.layout.simple_spinner_dropdown_item, dataMap)
+                        adapterItems = ArrayAdapter<Pair<String, String>>(this@LeaderboardsActivity, android.R.layout.simple_spinner_dropdown_item, dataMap)
                         spinner.adapter = adapterItems
 
                         spinner.setOnItemClickListener { adapterView, _, position, _ ->
-                            itemFromSpinner = adapterView.getItemAtPosition(position).toString()
-                            Toast.makeText(this@LeaderboardsActivity, itemFromSpinner, Toast.LENGTH_SHORT).show()
+                            itemFromSpinner = adapterView.getItemAtPosition(position) as Pair<String, String>
+                            Toast.makeText(this@LeaderboardsActivity, itemFromSpinner.second, Toast.LENGTH_SHORT).show()
+                            selectedItem = itemFromSpinner.second
                         }
                     } catch (e: Exception){
                         Log.d("ciao", "ciao di nuovo")

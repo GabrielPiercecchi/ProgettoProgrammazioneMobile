@@ -7,19 +7,7 @@
             android:id="@+id/theme"
             app:key="theme"
             app:title="Dark Theme"
-            app:defaultValue="true"/>
-
-    </PreferenceCategory>
-
-    <PreferenceCategory app:title="@string/bnv_position">
-
-        <ListPreference
-            app:defaultValue="center"
-            app:entries="@array/bnv_entries"
-            app:entryValues="@array/bnv_values"
-            app:key="bnv"
-            app:title="@string/bnv_position"
-            app:useSimpleSummaryProvider="true" />
+            app:defaultValue="false"/>
 
     </PreferenceCategory>
 

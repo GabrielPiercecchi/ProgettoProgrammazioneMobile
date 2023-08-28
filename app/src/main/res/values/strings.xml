@@ -47,7 +47,7 @@
     <!-- Preference Titles -->
     <string name="theme">Theme</string>
     <string name="notifications">Notifications</string>
-    <string name="bnv_position">Bottom navigation bar position</string>
+    <string name="bnv_position">Bottom navigation bar on Left</string>
 
     <!-- Theme Preferences -->
     <string name="theme_title">Default theme</string>

@@ -1,13 +1,9 @@
 package com.example.myandroidapplication.viewModel
 
-import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
-import android.view.Gravity
 import android.view.MenuItem
-import android.widget.FrameLayout
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
@@ -48,7 +44,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         mAuth = FirebaseAuth.getInstance()
         mDbRef = FirebaseDatabase.getInstance().getReference()
 
-        loadBottomNavBarPosition()
 
         //carica il navigation drawer
         drawerLayout = findViewById(R.id.drawer_layout)
@@ -198,47 +193,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 "Error " + "${e.message}",
                 Toast.LENGTH_LONG
             ).show()
-        }
-    }
-
-    private fun loadBottomNavBarPosition() {
-        val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottomNavigationView)
-        val sharedPreferences = getSharedPreferences("MODE", Context.MODE_PRIVATE)
-        val currentMODE = sharedPreferences.getString("MODE", " ")
-        val editor: SharedPreferences.Editor
-
-        // Si cambia il parametro di gravità in base al valore dello switch
-        when (currentMODE) {
-            "center" -> {
-                val params = bottomNavigationView.layoutParams as FrameLayout.LayoutParams
-                params.gravity = Gravity.CENTER_HORIZONTAL // Centro orizzontale
-                bottomNavigationView.layoutParams = params
-                editor = sharedPreferences.edit()
-                editor.putBoolean("center", true)
-                editor.putBoolean("left", false)
-                editor.putBoolean("right", false)
-                editor.apply()
-            }
-            "left" -> {
-                val params = bottomNavigationView.layoutParams as FrameLayout.LayoutParams
-                params.gravity = Gravity.START // Sinistra
-                bottomNavigationView.layoutParams = params
-                editor = sharedPreferences.edit()
-                editor.putBoolean("left", true)
-                editor.putBoolean("center", false)
-                editor.putBoolean("right", false)
-                editor.apply()
-            }
-            "right" -> {
-                val params = bottomNavigationView.layoutParams as FrameLayout.LayoutParams
-                params.gravity = Gravity.END // Destra
-                bottomNavigationView.layoutParams = params
-                editor = sharedPreferences.edit()
-                editor.putBoolean("right", true)
-                editor.putBoolean("center", false)
-                editor.putBoolean("left", false)
-                editor.apply()
-            }
         }
     }
 }
