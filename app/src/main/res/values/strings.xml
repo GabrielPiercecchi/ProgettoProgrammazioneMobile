@@ -88,4 +88,5 @@
     <string name="builders">Builders</string>
     <string name="clans">Clans</string>
     <string name="stats_player">Stats Player</string>
+    <string name="no_image_available">No image available</string>
 </resources>

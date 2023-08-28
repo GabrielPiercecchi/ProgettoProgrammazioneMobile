@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.myandroidapplication.R
 import com.example.myandroidapplication.databinding.SingleRowBinding
 import com.example.myandroidapplication.model.Label
 import com.example.myandroidapplication.model.Player
@@ -36,27 +37,28 @@ class StatsReceiverAdapter(val players: Player?): RecyclerView.Adapter<StatsRece
 
         try {
             val players = this.players
-            if (isPlayerDataValid(players)) {
+            if (players?.tag != null) {
                 with(holder.v) {
 
                     // Aggiunta di un ValueEventListener per ottenere il nome dell'utente dal database
-                    if (players != null) {
-                        mDbRef.child("user").orderByChild("tag").equalTo(players?.tag).get().addOnSuccessListener { snapshot ->
-                            if (snapshot.exists()) {
-                                // Otteniamo il primo figlio trovato che corrisponde al tag
-                                val userSnapshot = snapshot.children.first()
-                                val name = userSnapshot.child("name").getValue(String::class.java) ?: ""
-                                holder.v.textTitleName.text = "Statistiche di $name"
-                            }
+                    mDbRef.child("user").orderByChild("tag").equalTo(players?.tag).get().addOnSuccessListener { snapshot ->
+                        if (snapshot.exists()) {
+                            // Otteniamo il primo figlio trovato che corrisponde al tag
+                            val userSnapshot = snapshot.children.first()
+                            val name = userSnapshot.child("name").getValue(String::class.java) ?: ""
+                            holder.v.textTitleName.text = "Statistiche di $name"
+                        } else {
+                            holder.v.textTitleName.text = "Il TAG non è corretto"
                         }
                     }
 
 
-                    tvBestTrophies.text = "Best Trophies: " + players?.bestTrophies.toString()
-                    tvBestVersusTrophies.text = "Best Versus Trophies: " + players?.bestVersusTrophies.toString()
-                    tvBuilderHallLevel.text = "Builder Hall Level: " + players?.builderHallLevel.toString()
+                    // Show "N/D" for null values
+                    tvBestTrophies.text = "Best Trophies: " + (players?.bestTrophies ?: "N/D")
+                    tvBestVersusTrophies.text = "Best Versus Trophies: " + (players?.bestVersusTrophies ?: "N/D")
+                    tvBuilderHallLevel.text = "Builder Hall Level: " + (players?.builderHallLevel ?: "N/D")
 
-                    val clanName = players?.clan?.name ?: ""
+                    val clanName = players?.clan?.name ?: "N/D"
                     tvClan.text = "Clan name: " + clanName
                     // Carica l'immagine del clan dalla URL "small"
                     val clanSmallIconUrl = players?.clan?.badgeUrls?.small
@@ -64,38 +66,39 @@ class StatsReceiverAdapter(val players: Player?): RecyclerView.Adapter<StatsRece
                         Glide.with(ivClan.context).load(clanSmallIconUrl).into(ivClan)
                     }
 
-                    tvDonations.text = "Donations: " + players?.donations.toString()
-                    tvDonationsReceived.text = "Donations Received: " + players?.donationsReceived.toString()
-                    tvExpLevel.text = "Exp Level: " + players?.expLevel.toString()
+                    tvDonations.text = "Donations: " + (players?.donations ?: "N/D")
+                    tvDonationsReceived.text = "Donations Received: " + (players?.donationsReceived ?: "N/D")
+                    tvExpLevel.text = "Exp Level: " + (players?.expLevel?: "N/D")
 
                     val labelsArray = players?.labels
                     val labelsText = labelsArray?.let { parseLabels(it) }
-                    tvLabel.text = "Labels: " + labelsText
-                    val labelSmallUrls = labelsArray?.let { extractSmallUrls(it) }
-                    if (players?.labels != null) {
-                        for (i in 0 until players.labels.size) {
-                            if (labelSmallUrls != null && i < labelSmallUrls.size) {
-                                val labelIconUrl = labelSmallUrls[i]
-                                when (i) {
-                                    0 -> Glide.with(ivLabel1.context).load(labelIconUrl).into(ivLabel1)
-                                    1 -> Glide.with(ivLabel2.context).load(labelIconUrl).into(ivLabel2)
-                                    2 -> Glide.with(ivLabel3.context).load(labelIconUrl).into(ivLabel3)
-                                }
+                    tvLabel.text = "Labels: " + (labelsText?: "N/D")
+                    val labelSmallUrls = extractSmallUrls(players?.labels ?: emptyList())
+                    val labelImageViews = listOf(ivLabel1, ivLabel2, ivLabel3)
+                    for (i in labelImageViews.indices) {
+                        if (i < labelSmallUrls.size) {
+                            val labelIconUrl = labelSmallUrls[i]
+                            if (!labelIconUrl.isNullOrEmpty()) {
+                                Glide.with(labelImageViews[i].context).load(labelIconUrl).into(labelImageViews[i])
                             }
                         }
                     }
 
-                    val leagueName = players?.league?.name ?: ""
-                    tvLeague.text = "League Name: " + leagueName
-                    Glide.with(ivLeague.context).load(players?.league?.iconUrls?.small).into(ivLeague)
+                    val league = players?.league
+                    val leagueName = league?.name ?: "N/D"
+                    tvLeague.text = "League Name: $leagueName"
 
-                    val playerName = players?.name ?: ""
+                    val leagueIconUrl = league?.iconUrls?.small
+                    if (!leagueIconUrl.isNullOrEmpty()) {
+                        Glide.with(ivLeague.context).load(leagueIconUrl).into(ivLeague)
+                    }
+                    val playerName = players?.name ?: "N/D"
                     tvName.text = "Player name: " + playerName
-                    tvRole.text = "Role: " + players?.role ?: ""
-                    tvTag.text = "Tag: " + players?.tag ?: ""
-                    tvTownHallLevel.text = "Town Hall Level: " + players?.townHallLevel.toString()
-                    tvTrophies.text = "Trophies: " + players?.trophies.toString()
-                    tvWarStars.text = "War Stars: " + players?.warStars.toString()
+                    tvRole.text = "Role: " + (players?.role ?: "N/D")
+                    tvTag.text = "Tag: " + (players?.tag ?: "N/D")
+                    tvTownHallLevel.text = "Town Hall Level: " + (players?.townHallLevel?: "N/D")
+                    tvTrophies.text = "Trophies: " + (players?.trophies?: "N/D")
+                    tvWarStars.text = "War Stars: " + (players?.warStars?: "N/D")
                 }
             } else {
                 // Gestisci la situazione in cui 'players' è nullo
@@ -110,23 +113,23 @@ class StatsReceiverAdapter(val players: Player?): RecyclerView.Adapter<StatsRece
         }
     }
 
-    private fun isPlayerDataValid(players: Player?): Boolean {
-        return players != null &&
-                players.bestTrophies != null &&
-                players.bestVersusTrophies != null &&
-                players.builderHallLevel != null &&
-                players.donations != null &&
-                players.donationsReceived != null &&
-                players.expLevel != null &&
-                players.clan != null &&
-                players.labels != null && players.labels.size >= 3 &&
-                players.league != null &&
-                players.name != null &&
-                players.role != null &&
-                players.tag != null &&
-                players.townHallLevel != null &&
-                players.trophies != null
-    }
+//    private fun isPlayerDataValid(players: Player?): Boolean {
+//        return players != null &&
+//                players.bestTrophies != null &&
+//                players.bestVersusTrophies != null &&
+//                players.builderHallLevel != null &&
+//                players.donations != null &&
+//                players.donationsReceived != null &&
+//                players.expLevel != null &&
+//                players.clan != null &&
+//                players.labels != null && players.labels.size >= 3 &&
+//                players.league != null &&
+//                players.name != null &&
+//                players.role != null &&
+//                players.tag != null &&
+//                players.townHallLevel != null &&
+//                players.trophies != null
+//    }
 
     private fun parseLabels(labelsArray: List<Label>): String {
         val parsedLabels = mutableListOf<String>()
