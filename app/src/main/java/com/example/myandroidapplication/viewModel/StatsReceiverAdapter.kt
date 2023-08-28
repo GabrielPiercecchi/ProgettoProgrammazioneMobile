@@ -48,7 +48,7 @@ class StatsReceiverAdapter(val players: Player?): RecyclerView.Adapter<StatsRece
                             val name = userSnapshot.child("name").getValue(String::class.java) ?: ""
                             holder.v.textTitleName.text = "Statistiche di $name"
                         } else {
-                            holder.v.textTitleName.text = "Il TAG non è corretto"
+                            holder.v.textTitleName.text = "Statistiche"
                         }
                     }
 

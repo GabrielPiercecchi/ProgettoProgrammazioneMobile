@@ -1,5 +1,7 @@
 package com.example.myandroidapplication.model
 
+import java.io.Serializable
+
 data class Player(
     //val achievements: List<Achievement>,
     //val attackWins: Int,
@@ -29,6 +31,6 @@ data class Player(
     val versusTrophies: Int,
     //val warPreference: String,
     val warStars: Int
-)
+) : Serializable
 
-class Players(val players: List<Player>)
+class Players(val items: List<Player>)

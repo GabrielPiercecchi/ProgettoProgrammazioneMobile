@@ -6,3 +6,5 @@ data class Clan(
     val name: String,
     val tag: String
 )
+
+class Clans(val items: List<Clan>)

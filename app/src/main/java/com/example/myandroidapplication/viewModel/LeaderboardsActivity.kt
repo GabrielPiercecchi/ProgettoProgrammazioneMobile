@@ -2,6 +2,8 @@ package com.example.myandroidapplication.viewModel
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.RadioGroup
@@ -11,9 +13,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myandroidapplication.R
+import com.example.myandroidapplication.model.Clans
 import com.example.myandroidapplication.model.Locations
+import com.example.myandroidapplication.model.Player
 import com.example.myandroidapplication.model.Players
 import com.example.myandroidapplication.util.Constants
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.google.gson.GsonBuilder
 import okhttp3.Call
 import okhttp3.OkHttpClient
@@ -24,28 +31,73 @@ import java.io.IOException
 class LeaderboardsActivity : AppCompatActivity() {
 
     var itemFromSpinner: Pair<String, String> = Pair(" ", " ")
-    lateinit var selectedItem: String
+    var selectedItem: String = ""
+
+    // Variabile utilizzata per le autenticazioni Firebase
+    private lateinit var mAuth: FirebaseAuth
+    private lateinit var mDbRef: DatabaseReference
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_leaderboards)
+
+        mAuth = FirebaseAuth.getInstance()
+        mDbRef = FirebaseDatabase.getInstance().getReference()
 
         //SEZIONE PER LA RECYCLER VIEW
         val rv_leaderboards = findViewById<RecyclerView>(R.id.rv_leaderboards)
         rv_leaderboards.layoutManager = LinearLayoutManager(this)
 
-        getAllLocations()
+        val currentUser = mAuth.currentUser
 
-        val rg: RadioGroup = findViewById(R.id.rg)
+        try {
+            // Aggiunta di un ValueEventListener per ottenere il tag e l'apiKey dell'utente dal database
+            currentUser?.let {
+                val uid = it.uid
+                mDbRef.child("user").child(uid).get().addOnSuccessListener { snapshot ->
+                    if (snapshot.exists()) {
+                        val rawTag = snapshot.child("tag").getValue(String::class.java) ?: ""
+                        val apiKey = snapshot.child("apiKey").getValue(String::class.java) ?: ""
+                        val tag = rawTag.replace("#", "%23")
+                        //
+                        val correctUrl = Constants.PLAYERS_URL + tag
 
-        val bUpdate: Button = findViewById(R.id.b_update)
+                        getAllLocations()
 
-        bUpdate.setOnClickListener{
+                        val rg: RadioGroup = findViewById(R.id.rg)
 
-            when(rg.checkedRadioButtonId) {
-                R.id.rb_player -> getPlayersNormalLeaderboardForLocation("32000009")
-                R.id.rb_builder -> getPlayersBuilderLeaderboardForLocation(selectedItem)
-                R.id.rb_clan -> getClansNormalLeaderboardForLocation(selectedItem)
+                        val bUpdate: Button = findViewById(R.id.b_update_laed_69)
+
+                        bUpdate.setOnClickListener {
+                            when (rg.checkedRadioButtonId) {
+                                R.id.rb_player, R.id.rb_builder, R.id.rb_clan -> {
+                                    if (selectedItem.isNotBlank() && selectedItem != "Select Country") {
+                                        when (rg.checkedRadioButtonId) {
+                                            R.id.rb_player -> getPlayersNormalLeaderboardForLocation(selectedItem, apiKey)
+                                            R.id.rb_builder -> getPlayersBuilderLeaderboardForLocation(selectedItem, apiKey)
+                                            R.id.rb_clan -> getClansNormalLeaderboardForLocation(selectedItem, apiKey)
+                                        }
+                                    } else {
+                                        Toast.makeText(this@LeaderboardsActivity, "Please select a valid location", Toast.LENGTH_SHORT).show()
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }.addOnFailureListener { e ->
+                    Toast.makeText(
+                        this@LeaderboardsActivity,
+                        "Error " + "${e.message}",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
             }
+        } catch (e: Exception) {
+            Toast.makeText(
+                this@LeaderboardsActivity,
+                "Error " + "${e.message}",
+                Toast.LENGTH_LONG
+            ).show()
         }
     }
 
@@ -54,59 +106,92 @@ class LeaderboardsActivity : AppCompatActivity() {
 
     // Funzione che ti permette di prendere tutte le locations e metterle nella select list.
     private fun getAllLocations(){
-        // costruzione dell'url e della richiesta HTTP
-        val client = OkHttpClient()
-        val request = Request.Builder()
-            .url(Constants.GET_LOCATIONS)
-            .addHeader("authorization","Bearer ${Constants.API_KEY}")
-            .build()
-        client.newCall(request).enqueue(object : okhttp3.Callback{
-            // funzione che si attiva in caso di una risposta
-            override fun onResponse(call: Call, response: okhttp3.Response) {
-                runOnUiThread {
-                    val responseBody = response.body?.string()
+        val currentUser = mAuth.currentUser
 
-                    val gson = GsonBuilder().create()
-                    val location = gson.fromJson(responseBody, Locations::class.java)
+        try {
+            // Aggiunta di un ValueEventListener per ottenere il tag e l'apiKey dell'utente dal database
+            currentUser?.let {
+                val uid = it.uid
+                mDbRef.child("user").child(uid).get().addOnSuccessListener { snapshot ->
+                    if (snapshot.exists()) {
+                        val rawTag = snapshot.child("tag").getValue(String::class.java) ?: ""
+                        val apiKey = snapshot.child("apiKey").getValue(String::class.java) ?: ""
+                        val tag = rawTag.replace("#", "%23")
+                        //
+                        val correctUrl = Constants.PLAYERS_URL + tag
 
-                    val dataMap: List<Pair<String, String>> = location.items.drop(7).map { it.name to it.id.toString() }
+                        // costruzione dell'url e della richiesta HTTP
+                        val client = OkHttpClient()
+                        val request = Request.Builder()
+                            .url(Constants.GET_LOCATIONS)
+                            .addHeader("authorization","Bearer $apiKey")
+                            .build()
+                        client.newCall(request).enqueue(object : okhttp3.Callback{
+                            // funzione che si attiva in caso di una risposta
+                            override fun onResponse(call: Call, response: okhttp3.Response) {
+                                runOnUiThread {
+                                    val responseBody = response.body?.string()
 
-                    val spinner: Spinner = findViewById(R.id.spinner)
+                                    val gson = GsonBuilder().create()
+                                    val location = gson.fromJson(responseBody, Locations::class.java)
 
-                    try {
-                        adapterItems = ArrayAdapter<Pair<String, String>>(this@LeaderboardsActivity, android.R.layout.simple_spinner_dropdown_item, dataMap)
-                        spinner.adapter = adapterItems
+                                    val dataMap: MutableList<Pair<String, String>> = mutableListOf(Pair("Select Country", ""))
+                                    dataMap.addAll(location.items?.drop(7)?.dropLast(5)?.map { it.name to it.id.toString() } ?: emptyList())
 
-                        spinner.setOnItemClickListener { adapterView, _, position, _ ->
-                            itemFromSpinner = adapterView.getItemAtPosition(position) as Pair<String, String>
-                            Toast.makeText(this@LeaderboardsActivity, itemFromSpinner.second, Toast.LENGTH_SHORT).show()
-                            selectedItem = itemFromSpinner.second
-                        }
-                    } catch (e: Exception){
-                        Log.d("ciao", "ciao di nuovo")
+                                    val spinner: Spinner = findViewById(R.id.spinner)
+
+                                    try {
+                                        adapterItems = ArrayAdapter<Pair<String, String>>(this@LeaderboardsActivity, android.R.layout.simple_spinner_dropdown_item, dataMap)
+                                        spinner.adapter = adapterItems
+
+                                        spinner.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
+                                            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                                                itemFromSpinner = parent?.getItemAtPosition(position) as Pair<String, String>
+                                                selectedItem = itemFromSpinner.second
+                                            }
+
+                                            override fun onNothingSelected(parent: AdapterView<*>?) {
+                                                selectedItem = "" // Resetto la selezione se non c'è nulla selezionato
+                                            }
+                                        })
+                                    } catch (e: Exception){
+                                        Log.d("Error: ", "$e")
+                                    }
+                                }
+                            }
+                            // funzione che si attiva in caso di fallimento
+                            override fun onFailure(call: Call, e: IOException) {
+                                Log.d("MainActivity", "onFailure: "+e.message)
+                            }
+                        })
                     }
+                }.addOnFailureListener { e ->
+                    Toast.makeText(
+                        this@LeaderboardsActivity,
+                        "Error " + "${e.message}",
+                        Toast.LENGTH_LONG
+                    ).show()
                 }
             }
-            // funzione che si attiva in caso di fallimento
-            override fun onFailure(call: Call, e: IOException) {
-                Log.d("MainActivity", "onFailure: "+e.message)
-            }
-        })
+        } catch (e: Exception) {
+            Toast.makeText(
+                this@LeaderboardsActivity,
+                "Error " + "${e.message}",
+                Toast.LENGTH_LONG
+            ).show()
+        }
     }
 
-    /**
-     * TODO: implementare correttamente queste funzioni
-     * */
 
     // Tira fuori la leaderboard dei giocatori della location selezionata
-    fun getPlayersNormalLeaderboardForLocation(locationid: String) {
+    //OK
+    fun getPlayersNormalLeaderboardForLocation(locationid: String, apiKey:String) {
         // costruzione dell'url e della richiesta HTTP
-        Constants.LOCATION_ID = locationid
         val client = OkHttpClient()
         val request = Request.Builder()
             //.url(Constants.RANKING_PLAYERS_NORMAL)
             .url("https://api.clashofclans.com/v1/locations/$locationid/rankings/players")
-            .addHeader("authorization", "Bearer ${Constants.API_KEY}")
+            .addHeader("authorization", "Bearer $apiKey")
             .build()
         client.newCall(request).enqueue(object : okhttp3.Callback {
             // funzione che si attiva in caso di una risposta
@@ -117,37 +202,7 @@ class LeaderboardsActivity : AppCompatActivity() {
                     val gson = GsonBuilder().create()
                     val playersForLocation = gson.fromJson(responseBody, Players::class.java)
 
-                    /**
-                     * TODO: capire come mai qui passa una lista di null e non la lista con i players
-                     */
-                    val recyclerViewLeaderboards = findViewById<RecyclerView>(R.id.rv_leaderboards)
-                    recyclerViewLeaderboards.adapter = LeaderboardsAdapter(playersForLocation)
-                }
-            }
-
-            // Funzione che si attiva in caso di fallimento
-            override fun onFailure(call: Call, e: IOException) {
-                Log.d("MainActivity", "onFailure: "+e.message)
-            }
-        })
-    }
-
-    fun getPlayersBuilderLeaderboardForLocation(locationid: String) {
-        // costruzione dell'url e della richiesta HTTP
-        Constants.LOCATION_ID = locationid
-        val client = OkHttpClient()
-        val request = Request.Builder()
-            .url(Constants.RANKING_PLAYERS_BUILDER)
-            .addHeader("authorization", "Bearer ${Constants.API_KEY}")
-            .build()
-        client.newCall(request).enqueue(object : okhttp3.Callback {
-            // funzione che si attiva in caso di una risposta
-            override fun onResponse(call: Call, response: okhttp3.Response) {
-                runOnUiThread {
-                    val responseBody = response.body?.string()
-
-                    val gson = GsonBuilder().create()
-                    val playersForLocation = gson.fromJson(responseBody, Players::class.java)
+//                    val dataMap = playersForLocation.players.take(playersForLocation.players.size).map{it.name}
 
                     val recyclerViewLeaderboards = findViewById<RecyclerView>(R.id.rv_leaderboards)
                     recyclerViewLeaderboards.adapter = LeaderboardsAdapter(playersForLocation)
@@ -156,18 +211,18 @@ class LeaderboardsActivity : AppCompatActivity() {
 
             // Funzione che si attiva in caso di fallimento
             override fun onFailure(call: Call, e: IOException) {
-                Log.d("MainActivity", "onFailure: "+e.message)
+                Log.d("LeaderboardsActivity", "onFailure: "+e.message)
             }
         })
     }
 
-    fun getClansNormalLeaderboardForLocation(locationid: String) {
+    //SU TEORIA OK
+    fun getPlayersBuilderLeaderboardForLocation(locationid: String, apiKey: String) {
         // costruzione dell'url e della richiesta HTTP
-        Constants.LOCATION_ID = locationid
         val client = OkHttpClient()
         val request = Request.Builder()
-            .url(Constants.RANKING_CLANS_NORMAL)
-            .addHeader("authorization", "Bearer ${Constants.API_KEY}")
+            .url("https://api.clashofclans.com/v1/locations/$locationid/rankings/players-builder-base")
+            .addHeader("authorization", "Bearer $apiKey")
             .build()
         client.newCall(request).enqueue(object : okhttp3.Callback {
             // funzione che si attiva in caso di una risposta
@@ -190,13 +245,12 @@ class LeaderboardsActivity : AppCompatActivity() {
         })
     }
 
-    fun getClansBuilderLeaderboardForLocation(locationid: String) {
+    fun getClansNormalLeaderboardForLocation(locationid: String, apiKey: String) {
         // costruzione dell'url e della richiesta HTTP
-        Constants.LOCATION_ID = locationid
         val client = OkHttpClient()
         val request = Request.Builder()
-            .url(Constants.RANKING_CLANS_BUILDER)
-            .addHeader("authorization", "Bearer ${Constants.API_KEY}")
+            .url("https://api.clashofclans.com/v1/locations/$locationid/rankings/clans")
+            .addHeader("authorization", "Bearer $apiKey")
             .build()
         client.newCall(request).enqueue(object : okhttp3.Callback {
             // funzione che si attiva in caso di una risposta
@@ -205,39 +259,10 @@ class LeaderboardsActivity : AppCompatActivity() {
                     val responseBody = response.body?.string()
 
                     val gson = GsonBuilder().create()
-                    val playersForLocation = gson.fromJson(responseBody, Players::class.java)
+                    val clansForLocation = gson.fromJson(responseBody, Clans::class.java)
 
                     val recyclerViewLeaderboards = findViewById<RecyclerView>(R.id.rv_leaderboards)
-                    recyclerViewLeaderboards.adapter = LeaderboardsAdapter(playersForLocation)
-                }
-            }
-
-            // Funzione che si attiva in caso di fallimento
-            override fun onFailure(call: Call, e: IOException) {
-                Log.d("MainActivity", "onFailure: "+e.message)
-            }
-        })
-    }
-
-    fun getClansCapitalLeaderboardForLocation(locationid: String) {
-        // costruzione dell'url e della richiesta HTTP
-        Constants.LOCATION_ID = locationid
-        val client = OkHttpClient()
-        val request = Request.Builder()
-            .url(Constants.RANKING_CLANS_CAPITAL)
-            .addHeader("authorization", "Bearer ${Constants.API_KEY}")
-            .build()
-        client.newCall(request).enqueue(object : okhttp3.Callback {
-            // funzione che si attiva in caso di una risposta
-            override fun onResponse(call: Call, response: okhttp3.Response) {
-                runOnUiThread {
-                    val responseBody = response.body?.string()
-
-                    val gson = GsonBuilder().create()
-                    val playersForLocation = gson.fromJson(responseBody, Players::class.java)
-
-                    val recyclerViewLeaderboards = findViewById<RecyclerView>(R.id.rv_leaderboards)
-                    recyclerViewLeaderboards.adapter = LeaderboardsAdapter(playersForLocation)
+                    recyclerViewLeaderboards.adapter = ClansAdapter(clansForLocation)
                 }
             }
 
