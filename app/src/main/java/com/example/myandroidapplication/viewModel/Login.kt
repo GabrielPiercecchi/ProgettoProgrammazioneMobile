@@ -73,7 +73,7 @@ class Login : AppCompatActivity() {
 
     }
 
-    private fun login(email: String, password: String) {
+    fun login(email: String, password: String) {
         // Logica per l'accesso degli utenti già iscritti
 
         mAuth.signInWithEmailAndPassword(email, password)
