@@ -9,6 +9,39 @@
     android:layout_height="match_parent"
     tools:context=".viewModel.LeaderboardsActivity">
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Top 200"
+            android:gravity="center"
+            android:textSize="36dp"
+            android:padding="1dp"
+            android:textColor="@color/flamingoPink">
+        </TextView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/materialCardView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="12dp"
+            app:cardUseCompatPadding="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.appcompat.widget.SearchView
+                    android:id="@+id/statsSearchView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:queryHint="@string/search_here"
+                    app:queryBackground="@android:color/transparent"
+                    app:iconifiedByDefault="false"
+                    />
+
+        </com.google.android.material.card.MaterialCardView>
+
         <RadioGroup
             android:id="@+id/rg"
             android:layout_width="match_parent"

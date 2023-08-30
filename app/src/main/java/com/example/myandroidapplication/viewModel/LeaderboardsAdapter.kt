@@ -5,7 +5,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myandroidapplication.databinding.LeaderboardRowBinding
+import com.example.myandroidapplication.model.Clan
 import com.example.myandroidapplication.model.Clans
+import com.example.myandroidapplication.model.Player
 import com.example.myandroidapplication.model.Players
 
 class LeaderboardsAdapter (val players: Players) : RecyclerView.Adapter<LeaderboardsAdapter.CustomViewHolder>() {
@@ -63,7 +65,7 @@ class ClansAdapter (val clans: Clans) : RecyclerView.Adapter<ClansAdapter.Custom
             holder.v.tvPlayerName.text = ("Name: " + it.name) ?: "N/A"
 
             holder.v.clickableItem.setOnClickListener{
-                val intent = Intent(it.context, StatsReceiver::class.java)
+                val intent = Intent(it.context, ClanStatsReceiver::class.java)
                 if (currentClan != null) {
                     intent.putExtra("tag", currentClan.tag)
                 }

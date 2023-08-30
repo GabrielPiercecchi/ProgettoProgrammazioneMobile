@@ -18,6 +18,9 @@
             android:name=".viewModel.StatsReceiver"
             android:exported="false" />
         <activity
+            android:name=".viewModel.ClanStatsReceiver"
+            android:exported="false" />
+        <activity
             android:name=".viewModel.ChangeTag"
             android:exported="false" />
         <activity
