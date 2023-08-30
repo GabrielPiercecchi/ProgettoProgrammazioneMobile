@@ -19,9 +19,10 @@ class Login : AppCompatActivity() {
     private lateinit var btnSignUp: Button
     private lateinit var btnFPassword: Button
     private lateinit var txtTutorial: TextView
-
     // Variabile utilizzata per le autenticazioni Firebase
     private lateinit var mAuth: FirebaseAuth
+
+    var isLoggedIn = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -86,6 +87,7 @@ class Login : AppCompatActivity() {
                         MainActivity::class.java
                     )
                     //finish()
+                    isLoggedIn = true
                     startActivity(intent)
 
                 } else {
