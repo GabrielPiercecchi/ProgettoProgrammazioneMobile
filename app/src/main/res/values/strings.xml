@@ -43,10 +43,10 @@
 
     <!--activity_apikey.xml-->
     <string name="apiDescription">
-        <p>1) Go to <a href="developer.clashofclans.com">developer.clashofclans.com</a><br />
-        2) Check your ip address on websites like <a href="whatsmyip.org">whatsmyip.org</a><br />
-        3) Generate the API key with the ip address of your smartphone<br />
-        4) Insert in the field below the generated key<br /></p>
+        1) Go to <a href="developer.clashofclans.com">developer.clashofclans.com</a>\n
+        2) Check your ip address on websites like <a href="whatsmyip.org">whatsmyip.org</a>\n
+        3) Generate the API key with the ip address of your smartphone\n
+        4) Insert in the field below the generated key\n
     </string>
 
     <!-- Preference Titles -->
