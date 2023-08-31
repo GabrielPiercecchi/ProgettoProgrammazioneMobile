@@ -91,7 +91,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/confirm_password"
             android:text="@string/Sign_up"
-            android:background="@drawable/btn_background"
+            android:background="@color/flamingoPink"
             android:textColor="@color/darkWhite"
             android:textSize="20dp"
             android:layout_centerHorizontal="true"
