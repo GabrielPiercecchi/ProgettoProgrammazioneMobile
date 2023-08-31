@@ -28,31 +28,27 @@ class TutorialActivity : AppCompatActivity() {
 
         val tutorial = TutorialContent(
             title = "Tutorial App",
-            description = "Questa è la descrizione sintetica dell'App." +
-                    "\nLa versione completa può essere trovata nella tesina in formato .pdf." +
-                    "\nDurante la creazione del proprio profilo bisogna inserire le corrette credenziali:" +
+            description = "Questa è la sintetica descrizione dell'App." +
+                    "\nLa versione completa può essere trovata nel documento in formato .pdf." +
+                    "\nDurante la creazione del proprio profilo, è necessario inserire le corrette credenziali:" +
                     "\n--> Il Tag [combinazione alfanumerica preceduta da <<#>>] può essere trovato " +
-                    "all'interno del prorpio profilo una volta avviato il gioco " +
-                    "<<Clash of Clans>> sotto il proprio nickname " +
-                    "(La prima immagine sottostante mostra dove si trova)." +
-                    "\n--> Il proprio nome" +
-                    "\n--> Un'email valida" +
-                    "\n--> Una Password" +
-                    "\nA seguito della creazione del profilo ed eseguito l'accesso bisogna inserire" +
-                    "una chiave necessaria ad usare le API di <<Clash of Clans>>." +
-                    "\nPer far questo bisgna conoscere il proprio indirizzo IP " +
-                    "(consultabile al primo link evidenziato)." +
-                    "\nUna volta scoperto il proprio IP bisogna accedere al sito tramite " +
-                    "il secondo link evidenziato in blu " +
-                    "(La seconda immagina mostra la schermata del sito) " +
+                    "all'interno del proprio profilo, una volta avviato il gioco 'Clash of Clans', " +
+                    "sotto il proprio nickname (La prima immagine sottostante mostra dove si trova)." +
+                    "\n--> Il proprio nome." +
+                    "\n--> Un'email valida." +
+                    "\n--> Una password." +
+                    "\nDopo aver creato il profilo ed effettuato l'accesso, sarà necessario inserire " +
+                    "una chiave per utilizzare le API di 'Clash of Clans'." +
+                    "\nPer fare ciò, è necessario conoscere il proprio indirizzo IP (consultabile al primo link evidenziato)." +
+                    "\nUna volta individuato l'indirizzo IP, sarà possibile accedere al sito tramite " +
+                    "il secondo link evidenziato in blu (La seconda immagine mostra la schermata del sito), " +
                     "fornendo le seguenti credenziali:" +
                     "\nEmail: ciao@gmail.com" +
                     "\nPassword: voleviEhh" +
-                    "\nEntrati nel sito bisogna generare una chiave fornendo il proprio indirizzo IP " +
-                    "(come mostrato nel video guida)." +
-                    "\nGenerata la chiave bisogna copia/incollarla all'interno della schermata " +
-                    "apposita, chiamata <<Api Key>>, e presente nell'hamburger menu " +
-                    "all'interno dell'applicazione " +
+                    "\nUna volta entrati nel sito, sarà possibile generare una chiave fornendo il proprio indirizzo IP " +
+                    "(come illustrato nel video guida)." +
+                    "\nUna volta generata la chiave, sarà necessario copiarla e incollarla nell'apposita schermata chiamata " +
+                    "'Api Key', raggiungibile dall'hamburger menu all'interno dell'applicazione " +
                     "(La terza immagine mostra la schermata dell'app).",
             linkText1 = "Link per l'indirizzo IP",
             linkText2 = "Link alla pagina di Clash of Clans",
