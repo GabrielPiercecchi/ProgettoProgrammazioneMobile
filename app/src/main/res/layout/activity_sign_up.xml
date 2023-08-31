@@ -15,10 +15,9 @@
             android:id="@+id/app_logo"
             android:layout_width="200dp"
             android:layout_height="200dp"
-            android:src="@drawable/coclogo"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="125dp"
-            />
+            android:src="@drawable/coclogo"
+            android:layout_marginTop="10dp"/>
 
         <EditText
             android:id="@+id/edit_tag"
@@ -91,7 +90,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/confirm_password"
             android:text="@string/Sign_up"
-            android:background="@color/flamingoPink"
+            android:background="@drawable/filled_button"
             android:textColor="@color/darkWhite"
             android:textSize="20dp"
             android:layout_centerHorizontal="true"
@@ -102,17 +101,17 @@
             android:id="@+id/txtTutorial"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TUTORIAL"
-            android:textStyle="bold"
             android:layout_below="@id/btnSignUp"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
-            android:padding="10dp"
-            android:textColor="@color/darkWhite"
+            android:layout_marginTop="10dp"
             android:background="@android:color/holo_red_light"
             android:gravity="center"
-            android:textSize="14dp"
-            />
+            android:padding="10dp"
+            android:text="@string/Tutorial"
+            android:textAllCaps="true"
+            android:textColor="@color/darkWhite"
+            android:textSize="14sp"
+            android:textStyle="bold" />
     </RelativeLayout>
 
 

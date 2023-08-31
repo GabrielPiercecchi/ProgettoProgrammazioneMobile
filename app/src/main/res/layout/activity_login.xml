@@ -16,7 +16,7 @@
             android:layout_height="200dp"
             android:src="@drawable/coclogo"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="125dp"
+            android:layout_marginTop="10dp"
             android:contentDescription="@string/app_name"
             />
 
@@ -53,7 +53,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/edit_password"
             android:text="@string/Log_in"
-            android:background="@color/flamingoPink"
+            android:background="@drawable/filled_button"
             android:textColor="@color/darkWhite"
             android:textSize="20sp"
             android:layout_centerHorizontal="true"
@@ -66,7 +66,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/btnLogin"
             android:text="@string/Sign_up"
-            android:background="@color/darkWhite"
+            android:background="@drawable/edit_button"
             android:textColor="@color/flamingoPink"
             android:textSize="20sp"
             android:layout_centerHorizontal="true"
@@ -82,9 +82,9 @@
             android:layout_marginTop="10dp"
             android:padding="10dp"
             android:text="@string/forgot_passw"
-            android:background="@color/darkWhite"
+            android:background="@drawable/edit_button"
             android:textColor="@color/flamingoPink"
-            android:textSize="16sp"/>
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/txtTutorial"
@@ -92,16 +92,14 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/btnFPassword"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:background="@android:color/holo_red_light"
             android:gravity="center"
             android:padding="10dp"
             android:text="@string/Tutorial"
+            android:textAllCaps="true"
             android:textColor="@color/darkWhite"
             android:textSize="14sp"
             android:textStyle="bold" />
     </RelativeLayout>
-
-
-
 </ScrollView>

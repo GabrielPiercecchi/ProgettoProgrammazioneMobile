@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myandroidapplication.R
@@ -13,7 +14,6 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import com.google.firebase.firestore.auth.User
 
 class ForgotPassword : AppCompatActivity() {
 
@@ -23,6 +23,8 @@ class ForgotPassword : AppCompatActivity() {
     private lateinit var mAuth: FirebaseAuth
 
     private lateinit var mDbRef: DatabaseReference
+
+    private lateinit var txtTutorial: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +36,7 @@ class ForgotPassword : AppCompatActivity() {
 
         editBox = findViewById(R.id.editBox)
         btnReset = findViewById(R.id.btnReset)
+        txtTutorial = findViewById(R.id.txtTutorial)
 
         btnReset.setOnClickListener {
             try {
@@ -46,15 +49,11 @@ class ForgotPassword : AppCompatActivity() {
                     Toast.LENGTH_LONG
                 ).show()
             }
+        }
 
-
-//            mAuth.sendPasswordResetEmail(emailRPassword)
-//                .addOnSuccessListener {
-//                    Toast.makeText(this, "Please check your email", Toast.LENGTH_SHORT). show()
-//                }
-//                .addOnCompleteListener {
-//                    Toast.makeText(this, it.toString(), Toast.LENGTH_SHORT).show()
-//                }
+        txtTutorial.setOnClickListener {
+            val intent = Intent(this, TutorialActivity::class.java)
+            startActivity(intent)
         }
     }
 

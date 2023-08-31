@@ -100,31 +100,4 @@ class Login : AppCompatActivity() {
                 }
             }
     }
-
-    /*private fun loadTheme() {
-        val switcher: SwitchPreferenceCompat =
-        val themePreferences = getSharedPreferences("MODE", Context.MODE_PRIVATE)
-        val nightMODE = themePreferences.getBoolean("dark", false)
-        //val sysMODE = themePreferences.getBoolean("system", false)
-        var editor: SharedPreferences.Editor
-
-        if (nightMODE){
-            switcher.isChecked = true
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-        }
-
-        switcher.setOnClickListener {
-            if (nightMODE) {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                editor = themePreferences.edit()
-                editor.putBoolean("dark", false)
-            } else {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                editor = themePreferences.edit()
-                editor.putBoolean("dark", true)
-            }
-            editor.apply()
-        }
-
-    }*/
 }
