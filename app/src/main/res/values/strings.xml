@@ -42,7 +42,12 @@
     <string name="title_activity_rating">Rating</string>
 
     <!--activity_apikey.xml-->
-    <string name="apiDescription">Insert in the field below the api key! Remember to use the IP address of your smartphone (to know the IP address just go on whatsmyip)</string>
+    <string name="apiDescription">
+        <p>1) Go to <a href="developer.clashofclans.com">developer.clashofclans.com</a><br />
+        2) Check your ip address on websites like <a href="whatsmyip.org">whatsmyip.org</a><br />
+        3) Generate the API key with the ip address of your smartphone<br />
+        4) Insert in the field below the generated key<br /></p>
+    </string>
 
     <!-- Preference Titles -->
     <string name="theme">Theme</string>
