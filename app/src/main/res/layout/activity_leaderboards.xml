@@ -44,23 +44,30 @@
 
         <RadioGroup
             android:id="@+id/rg"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal">
                 <RadioButton
                     android:id="@+id/rb_player"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="12dp"
                     android:text="@string/players"/>
+
                 <RadioButton
                     android:id="@+id/rb_builder"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/builders"/>
+                    android:layout_marginHorizontal="12dp"
+                    android:text="@string/builders" />
+
                 <RadioButton
                     android:id="@+id/rb_clan"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/clans"/>
+                    android:layout_marginHorizontal="12dp"
+                    android:text="@string/clans" />
         </RadioGroup>
 
         <Spinner

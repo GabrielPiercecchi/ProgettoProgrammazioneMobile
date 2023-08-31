@@ -5,9 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myandroidapplication.databinding.LeaderboardRowBinding
-import com.example.myandroidapplication.model.Clan
 import com.example.myandroidapplication.model.Clans
-import com.example.myandroidapplication.model.Player
 import com.example.myandroidapplication.model.Players
 
 class LeaderboardsAdapter (val players: Players) : RecyclerView.Adapter<LeaderboardsAdapter.CustomViewHolder>() {
@@ -60,7 +58,7 @@ class ClansAdapter (val clans: Clans) : RecyclerView.Adapter<ClansAdapter.Custom
 
     override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
         val currentClan = clans.items?.getOrNull(position)
-        currentClan?.let {
+        currentClan?.let { it ->
             holder.v.tvPlayerTag.text = ("TAG: " + it.tag) ?: "N/A"
             holder.v.tvPlayerName.text = ("Name: " + it.name) ?: "N/A"
 

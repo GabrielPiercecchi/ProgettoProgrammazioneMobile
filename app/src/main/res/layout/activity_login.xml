@@ -53,7 +53,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/edit_password"
             android:text="@string/Log_in"
-            android:background="@drawable/btn_background"
+            android:background="@color/flamingoPink"
             android:textColor="@color/darkWhite"
             android:textSize="20sp"
             android:layout_centerHorizontal="true"
@@ -66,8 +66,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/btnLogin"
             android:text="@string/Sign_up"
-            android:background="@drawable/btn_background"
-            android:textColor="@color/darkWhite"
+            android:background="@color/darkWhite"
+            android:textColor="@color/flamingoPink"
             android:textSize="20sp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
@@ -82,8 +82,8 @@
             android:layout_marginTop="10dp"
             android:padding="10dp"
             android:text="@string/forgot_passw"
-            android:background="@drawable/btn_background"
-            android:textColor="@color/darkWhite"
+            android:background="@color/darkWhite"
+            android:textColor="@color/flamingoPink"
             android:textSize="16sp"/>
 
         <TextView
