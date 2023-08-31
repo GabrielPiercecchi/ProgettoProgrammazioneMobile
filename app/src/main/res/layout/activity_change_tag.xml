@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,53 +7,58 @@
     android:orientation="vertical"
     tools:context=".viewModel.ChangeTag">
 
-    <ImageView
-        android:id="@+id/app_logo"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:src="@drawable/coclogo"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="125dp"
-        />
-
-    <TextView
-        android:id="@+id/userTag"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/app_logo"
-        android:layout_marginTop="10dp"
-        android:text="User Tag"
-        android:paddingLeft="13dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:textSize="20dp"
-        />
+        android:layout_gravity="center">
 
-    <EditText
-        android:id="@+id/edit_user_tag"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_below="@id/userTag"
-        android:layout_marginTop="10dp"
-        android:hint="Enter New User Tag"
-        android:paddingLeft="13dp"
-        android:background="@drawable/edit_background"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        />
+        <ImageView
+            android:id="@+id/app_logo"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:src="@drawable/coclogo"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            />
 
-    <Button
-        android:id="@+id/userTagSubmit"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/edit_user_tag"
-        android:text="Submit Tag"
-        android:background="@drawable/btn_background"
-        android:textColor="@color/darkWhite"
-        android:textSize="20dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        />
+        <TextView
+            android:id="@+id/userTag"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/app_logo"
+            android:layout_marginTop="10dp"
+            android:text="User Tag"
+            android:paddingLeft="13dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:textSize="20dp"
+            />
 
+        <EditText
+            android:id="@+id/edit_user_tag"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@id/userTag"
+            android:layout_marginTop="10dp"
+            android:hint="Enter New User Tag"
+            android:paddingLeft="13dp"
+            android:background="@drawable/edit_background"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            />
 
-</RelativeLayout>
+        <Button
+            android:id="@+id/userTagSubmit"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/edit_user_tag"
+            android:text="Submit Tag"
+            android:background="@drawable/btn_background"
+            android:textColor="@color/darkWhite"
+            android:textSize="20dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            />
+    </RelativeLayout>
+
+</ScrollView>
