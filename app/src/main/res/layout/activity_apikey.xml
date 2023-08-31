@@ -13,7 +13,7 @@
         android:layout_height="200dp"
         android:src="@drawable/coclogo"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="125dp"
+        android:layout_marginTop="50dp"
         />
 
     <TextView
@@ -26,7 +26,7 @@
         android:paddingLeft="13dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:textSize="20dp"
+        android:textSize="16dp"
         />
 
     <EditText
@@ -48,7 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/edit_apikey"
         android:text="Insert"
-        android:background="@drawable/btn_background"
+        android:background="@drawable/filled_button"
         android:textColor="@color/darkWhite"
         android:textSize="20dp"
         android:layout_centerHorizontal="true"
