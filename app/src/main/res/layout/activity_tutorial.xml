@@ -47,7 +47,8 @@
             app:layout_constraintTop_toBottomOf="@id/textViewDescription"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginTop="8dp"
-            android:layout_marginStart="16dp">
+            android:layout_marginStart="16dp"
+            android:padding="5dp">
 
             <ImageView
                 android:id="@+id/linkIcon"
@@ -76,7 +77,8 @@
             app:layout_constraintTop_toBottomOf="@id/linkLayout"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginTop="8dp"
-            android:layout_marginStart="16dp">
+            android:layout_marginStart="16dp"
+            android:padding="5dp">
 
             <ImageView
                 android:id="@+id/linkIcon2"
