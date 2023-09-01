@@ -23,6 +23,7 @@ import com.example.myandroidapplication.model.Clan
 import com.example.myandroidapplication.model.ClanExtended
 import com.example.myandroidapplication.model.Player
 import com.example.myandroidapplication.util.Constants
+import com.example.myandroidapplication.util.NetworkUtils
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
@@ -47,6 +48,10 @@ class StatsReceiver : AppCompatActivity(){
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_stats_receiver)
+
+        if (!NetworkUtils.isInternetAvailable(this)) {
+            NetworkUtils.showNoInternetDialog(this)
+        }
 
         mAuth = FirebaseAuth.getInstance()
         mDbRef = FirebaseDatabase.getInstance().getReference()

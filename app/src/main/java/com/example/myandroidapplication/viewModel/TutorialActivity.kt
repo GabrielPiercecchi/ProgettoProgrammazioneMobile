@@ -1,6 +1,7 @@
 package com.example.myandroidapplication.viewModel
 
 import TutorialContent
+import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -12,7 +13,7 @@ import android.widget.VideoView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.NestedScrollView
 import com.example.myandroidapplication.R
-
+import com.example.myandroidapplication.util.NetworkUtils
 
 
 class TutorialActivity : AppCompatActivity() {
@@ -25,6 +26,10 @@ class TutorialActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tutorial)
+
+        if (!NetworkUtils.isInternetAvailable(this)) {
+            NetworkUtils.showNoInternetDialog(this)
+        }
 
         val tutorial = TutorialContent(
             title = "Tutorial App",

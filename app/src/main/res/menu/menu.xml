@@ -5,9 +5,6 @@
         android:id="@+id/home"
         android:title="@string/Home"/>
     <item
-        android:id="@+id/settings"
-        android:title="@string/Settings"/>
-    <item
         android:id="@+id/logout"
         android:title="@string/Log_out"/>
 

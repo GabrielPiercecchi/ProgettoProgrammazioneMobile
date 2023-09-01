@@ -1,5 +1,6 @@
 package com.example.myandroidapplication.viewModel
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myandroidapplication.model.User
 import com.example.myandroidapplication.R
+import com.example.myandroidapplication.util.NetworkUtils
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import java.util.*
@@ -28,6 +30,10 @@ class ChatList : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat_list)
+
+        if (!NetworkUtils.isInternetAvailable(this)) {
+            NetworkUtils.showNoInternetDialog(this)
+        }
 
         mAuth = FirebaseAuth.getInstance()
         mDbRef = FirebaseDatabase.getInstance().getReference()
@@ -109,12 +115,6 @@ class ChatList : AppCompatActivity() {
         when(item.itemId){
             R.id.home -> {
                 startActivity(Intent(applicationContext, MainActivity::class.java))
-                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
-//                finish()
-                return true
-            }
-            R.id.settings -> {
-                startActivity(Intent(applicationContext, SettingsActivity::class.java))
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
 //                finish()
                 return true

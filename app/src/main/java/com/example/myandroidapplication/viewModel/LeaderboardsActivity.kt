@@ -1,5 +1,6 @@
 package com.example.myandroidapplication.viewModel
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -20,6 +21,7 @@ import com.example.myandroidapplication.model.Locations
 import com.example.myandroidapplication.model.Player
 import com.example.myandroidapplication.model.Players
 import com.example.myandroidapplication.util.Constants
+import com.example.myandroidapplication.util.NetworkUtils
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -49,6 +51,10 @@ class LeaderboardsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_leaderboards)
+
+        if (!NetworkUtils.isInternetAvailable(this)) {
+            NetworkUtils.showNoInternetDialog(this)
+        }
 
         mAuth = FirebaseAuth.getInstance()
         mDbRef = FirebaseDatabase.getInstance().getReference()

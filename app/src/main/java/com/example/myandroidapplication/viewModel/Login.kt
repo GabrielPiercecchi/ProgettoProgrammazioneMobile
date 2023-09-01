@@ -1,5 +1,6 @@
 package com.example.myandroidapplication.viewModel
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -8,6 +9,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myandroidapplication.R
+import com.example.myandroidapplication.util.NetworkUtils
 import com.google.firebase.auth.FirebaseAuth
 
 // Classe per la schermata di login
@@ -29,6 +31,10 @@ class Login : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         supportActionBar?.hide()
+
+        if (!NetworkUtils.isInternetAvailable(this)) {
+            NetworkUtils.showNoInternetDialog(this)
+        }
 
         //loadTheme()
 

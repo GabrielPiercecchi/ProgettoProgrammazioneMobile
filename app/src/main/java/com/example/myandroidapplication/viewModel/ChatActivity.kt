@@ -1,5 +1,6 @@
 package com.example.myandroidapplication.viewModel
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myandroidapplication.model.Message
 import com.example.myandroidapplication.R
+import com.example.myandroidapplication.util.NetworkUtils
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 
@@ -33,6 +35,10 @@ class ChatActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat)
+
+        if (!NetworkUtils.isInternetAvailable(this)) {
+            NetworkUtils.showNoInternetDialog(this)
+        }
 
         name = intent.getStringExtra("name")?: ""
         receiverUid = intent.getStringExtra("uid")?: ""

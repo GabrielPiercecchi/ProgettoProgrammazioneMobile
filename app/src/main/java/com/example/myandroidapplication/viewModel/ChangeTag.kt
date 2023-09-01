@@ -1,5 +1,6 @@
 package com.example.myandroidapplication.viewModel
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -8,6 +9,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myandroidapplication.R
+import com.example.myandroidapplication.util.NetworkUtils
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -25,6 +27,10 @@ class ChangeTag : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_change_tag)
+
+        if (!NetworkUtils.isInternetAvailable(this)) {
+            NetworkUtils.showNoInternetDialog(this)
+        }
 
         mAuth = FirebaseAuth.getInstance()
         mDbRef = FirebaseDatabase.getInstance().reference

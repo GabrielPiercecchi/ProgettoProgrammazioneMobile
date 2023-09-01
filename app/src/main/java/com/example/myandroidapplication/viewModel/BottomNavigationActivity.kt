@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myandroidapplication.R
+import com.example.myandroidapplication.util.NetworkUtils
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class BottomNavigationActivity: AppCompatActivity() {
@@ -13,6 +14,10 @@ class BottomNavigationActivity: AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        if (!NetworkUtils.isInternetAvailable(this)) {
+            NetworkUtils.showNoInternetDialog(this)
+        }
 
         bottomNavigationView = findViewById(R.id.bottomNavigationView)
     }
