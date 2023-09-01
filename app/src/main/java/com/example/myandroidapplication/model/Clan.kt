@@ -21,4 +21,5 @@ data class ClanExtended(
     val clanCapitalPoints: Int,
     val members: Int,
     val description: String,
+    val labels: List<Label>,
 )

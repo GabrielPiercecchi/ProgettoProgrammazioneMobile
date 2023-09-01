@@ -18,6 +18,7 @@
     <string name="About">About</string>
     <string name="Tutorial">Tutorial</string>
     <string name="ApiKey">Api Key</string>
+    <string name="ChangeTag">Change Tag</string>
 
     <!--activity_chat.xml-->
     <string name="send_message">Send a message</string>

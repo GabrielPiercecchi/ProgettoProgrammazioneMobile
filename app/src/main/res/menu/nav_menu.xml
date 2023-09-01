@@ -18,7 +18,7 @@
             android:title="@string/ApiKey"/>
         <item
             android:id="@+id/nav_tag"
-            android:title="Change Tag"/>
+            android:title="@string/ChangeTag"/>
     </group>
     <item
         android:title="">

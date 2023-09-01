@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.myandroidapplication.R
+import com.example.myandroidapplication.databinding.SingleClanRowBinding
 import com.example.myandroidapplication.databinding.SingleRowBinding
 import com.example.myandroidapplication.model.ClanExtended
 import com.example.myandroidapplication.model.Label
@@ -143,14 +144,14 @@ class ClanStatsReceiverAdapter(val clan: ClanExtended?): RecyclerView.Adapter<Cl
     private lateinit var mAuth: FirebaseAuth
     private lateinit var mDbRef: DatabaseReference
 
-    inner class CustomViewHolder(val v: SingleRowBinding): RecyclerView.ViewHolder (v.root)
+    inner class CustomViewHolder(val v: SingleClanRowBinding): RecyclerView.ViewHolder (v.root)
 
     override fun getItemCount(): Int {
         return 1
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomViewHolder {
-        val v = SingleRowBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val v = SingleClanRowBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return CustomViewHolder(v)
     }
 
@@ -181,26 +182,40 @@ class ClanStatsReceiverAdapter(val clan: ClanExtended?): RecyclerView.Adapter<Cl
                     }
 
                     // Show "N/D" for null values
-                    tvBestTrophies.text = "Clan Level: " + (clan?.clanLevel ?: "N/D")
-                    tvBestVersusTrophies.text = "Clan Points: " + (clan?.clanPoints ?: "N/D")
-                    tvBuilderHallLevel.text = "Clan capital Points: " + (clan?.clanCapitalPoints ?: "N/D")
+                    tvClanLevel.text = "Clan Level: " + (clan?.clanLevel ?: "N/D")
+                    tvClanPoints.text = "Clan Points: " + (clan?.clanPoints ?: "N/D")
+                    tvClanCapitalPoints.text = "Clan capital Points: " + (clan?.clanCapitalPoints ?: "N/D")
 
-                    tvClan.text = "Clan name: " + (clan?.name ?: "N/D")
+                    tvName.text = "Clan name: " + (clan?.name ?: "N/D")
                     // Carica l'immagine del clan dalla URL "small"
                     val clanSmallIconUrl = clan?.badgeUrls?.small
                     if (!clanSmallIconUrl.isNullOrEmpty()) {
                         Glide.with(ivClan.context).load(clanSmallIconUrl).into(ivClan)
                     }
 
-                    tvDonations.text = "Description: " + (clan?.description ?: "N/D")
-                    tvDonationsReceived.text = "TAG: " + (clan?.tag ?: "N/D")
-                    tvExpLevel.text = "Type: " + (clan?.type?: "N/D")
-                    tvLabel.text = "Members: " + (clan?.members?: "N/D")
+                    tvDescription.text = "Description: " + (clan?.description ?: "N/D")
+                    tvTag.text = "TAG: " + (clan?.tag ?: "N/D")
+                    tvType.text = "Type: " + (clan?.type?: "N/D")
+                    tvMembers.text = "Members: " + (clan?.members?: "N/D")
+
+                    val labelsArray = clan?.labels
+                    val labelsText = labelsArray?.let { parseLabels(it) }
+                    tvLabel.text = "Labels: " + (labelsText?: "N/D")
+                    val labelSmallUrls = extractSmallUrls(clan?.labels ?: emptyList())
+                    val labelImageViews = listOf(ivLabel1, ivLabel2, ivLabel3)
+                    for (i in labelImageViews.indices) {
+                        if (i < labelSmallUrls.size) {
+                            val labelIconUrl = labelSmallUrls[i]
+                            if (!labelIconUrl.isNullOrEmpty()) {
+                                Glide.with(labelImageViews[i].context).load(labelIconUrl).into(labelImageViews[i])
+                            }
+                        }
+                    }
                 }
             } else {
                 // Gestisci la situazione in cui 'players' è nullo
                 // Ad esempio, puoi impostare dei valori di default o mostrare un messaggio di errore
-                holder.v.tvBestTrophies.text = "No clan data available!!\n" +
+                holder.v.tvTag.text = "No clan data available!!\n" +
                         "Go to <<Api Key>> and submit a valid key.\n" +
                         "If you don't know how to do it check te <<Tutorial>>.\n" +
                         "If this error persist it can be from the Clan's Wrong TAG."
@@ -208,5 +223,23 @@ class ClanStatsReceiverAdapter(val clan: ClanExtended?): RecyclerView.Adapter<Cl
         } catch (e: Error) {
             println(e)
         }
+    }
+
+    private fun parseLabels(labelsArray: List<Label>): String {
+        val parsedLabels = mutableListOf<String>()
+        for (label in labelsArray) {
+            parsedLabels.add(label.name)
+        }
+        return parsedLabels.joinToString(", ")
+    }
+
+    private fun extractSmallUrls(labelsArray: List<Label>): MutableList<String> {
+        val smallUrls = mutableListOf<String>()
+        for (label in labelsArray) {
+            label.iconUrls?.small?.let {
+                smallUrls.add(it)
+            }
+        }
+        return smallUrls
     }
 }
