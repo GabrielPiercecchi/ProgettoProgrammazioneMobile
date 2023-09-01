@@ -50,11 +50,12 @@ class ChangeTag : AppCompatActivity() {
                     val tag = snapshot.child("tag").getValue(String::class.java) ?: ""
 
                     // Imposta il tag dell'utente come testo predefinito nell'EditText
-                    edtTag.hint = "Vecchio Tag: $tag"
+                    edtTag.hint = "Old Tag: $tag"
 
-                    val testo = "Se ti sei accorto di aver inserito il tuo TAG in maniera errata puoi " +
-                            "modificarlo inserendo quello corretto qua sotto e premendo il " +
-                            "bottone di conferma!!"
+                    val testo = "If you have noticed that you entered your TAG incorrectly, you can " +
+                            "correct it by entering the correct one below and pressing the " +
+                            "confirmation button!!"
+
                     userTagTxt.text = testo.replace("name_placeholder", name)
                 }
             }.addOnFailureListener { e ->
@@ -76,7 +77,7 @@ class ChangeTag : AppCompatActivity() {
                 }
                 startActivity(Intent(applicationContext, MainActivity::class.java))
             } else {
-                Toast.makeText(this, "Il nuovo tag non può essere vuoto", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "The new TAG can't be empty", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -84,8 +85,4 @@ class ChangeTag : AppCompatActivity() {
     private fun updateUserTag(uid: String, tag: String) {
         mDbRef.child("user").child(uid).child("tag").setValue(tag)
     }
-
-//    private fun updateUserTag(uid: String, tag: String, name: String, email: String) {
-//        mDbRef.child("user").child(uid).setValue(User(tag, name, email, uid))
-//    }
 }

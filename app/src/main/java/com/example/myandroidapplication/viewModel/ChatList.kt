@@ -95,7 +95,7 @@ class ChatList : AppCompatActivity() {
             }
 
             if (filteredList.isEmpty()){
-                Toast.makeText(this, "Nessun utente trovato",
+                Toast.makeText(this, "No Users Found",
                     Toast.LENGTH_SHORT).show()
             } else {
                 adapter.setfiltereList(filteredList)
@@ -116,7 +116,6 @@ class ChatList : AppCompatActivity() {
             R.id.home -> {
                 startActivity(Intent(applicationContext, MainActivity::class.java))
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
-//                finish()
                 return true
             }
             R.id.logout -> {
@@ -129,15 +128,6 @@ class ChatList : AppCompatActivity() {
                 return true
             }
         }
-//        if (item.itemId == R.id.logout){
-//            //Logica per il logout
-//            mAuth.signOut()
-//            val intent = Intent(this@ChatList,
-//                Login::class.java)
-//            finish()
-//            startActivity(intent)
-//            return true
-//        }
         return true
     }
 }

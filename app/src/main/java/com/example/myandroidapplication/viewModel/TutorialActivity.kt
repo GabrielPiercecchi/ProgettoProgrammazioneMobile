@@ -33,30 +33,30 @@ class TutorialActivity : AppCompatActivity() {
 
         val tutorial = TutorialContent(
             title = "Tutorial App",
-            description = "Questa è la sintetica descrizione dell'App." +
-                    "\nLa versione completa può essere trovata nel documento in formato .pdf." +
-                    "\nDurante la creazione del proprio profilo, è necessario inserire le corrette credenziali:" +
-                    "\n--> Il Tag [combinazione alfanumerica preceduta da <<#>>] può essere trovato " +
-                    "all'interno del proprio profilo, una volta avviato il gioco 'Clash of Clans', " +
-                    "sotto il proprio nickname (La prima immagine sottostante mostra dove si trova)." +
-                    "\n--> Il proprio nome." +
-                    "\n--> Un'email valida." +
-                    "\n--> Una password." +
-                    "\nDopo aver creato il profilo ed effettuato l'accesso, sarà necessario inserire " +
-                    "una chiave per utilizzare le API di 'Clash of Clans'." +
-                    "\nPer fare ciò, è necessario conoscere il proprio indirizzo IP (consultabile al primo link evidenziato)." +
-                    "\nUna volta individuato l'indirizzo IP, sarà possibile accedere al sito tramite " +
-                    "il secondo link evidenziato in blu (La seconda immagine mostra la schermata del sito), " +
-                    "fornendo le seguenti credenziali:" +
-                    "\nEmail: ciao@gmail.com" +
-                    "\nPassword: voleviEhh" +
-                    "\nUna volta entrati nel sito, sarà possibile generare una chiave fornendo il proprio indirizzo IP " +
-                    "(come illustrato nel video guida)." +
-                    "\nUna volta generata la chiave, sarà necessario copiarla e incollarla nell'apposita schermata chiamata " +
-                    "'Api Key', raggiungibile dall'hamburger menu all'interno dell'applicazione " +
-                    "(La terza immagine mostra la schermata dell'app).",
-            linkText1 = "Link per l'indirizzo IP",
-            linkText2 = "Link alla pagina di Clash of Clans",
+            description = "This is the concise description of the App." +
+                    "\nThe full version can be found in the PDF document." +
+                    "\n\nWhen creating your profile, you need to enter the correct credentials:" +
+                    "\n\n--> The Tag [alphanumeric combination preceded by <<#>>] can be found " +
+                    "in your profile, once you start the game 'Clash of Clans', " +
+                    "under your nickname (The first image below shows where it is located)." +
+                    "\n--> Your name." +
+                    "\n--> A valid email." +
+                    "\n--> A password." +
+                    "\n\nAfter creating the profile and logging in, you will need to enter " +
+                    "a key to use 'Clash of Clans' APIs." +
+                    "\nTo do this, you need to know your IP address (check the first highlighted link)." +
+                    "\nWith the IP address identified, you can access the site through " +
+                    "the second blue highlighted link (The second image shows the site screen), " +
+                    "providing the following credentials:" +
+                    "\n\nEmail: xeros35867@jwsuns.com" +
+                    "\n\nPassword: Pr0g_M0b1l3" +
+                    "\n\nOnce you are on the site, you can generate a key by providing your IP address " +
+                    "(as shown in the video guide)." +
+                    "\nWhen finally the key is generated, you need to copy and paste it into the dedicated " +
+                    "'Api Key' screen, accessible from the application's hamburger menu " +
+                    "(The third image shows the app screen).",
+            linkText1 = "My IP page",
+            linkText2 = "Clash of Clans page.",
             linkUrl1 = "https://www.ilmioindirizzoip.it/",
             linkUrl2 = "https://developer.clashofclans.com/#/login",
             imageResId = R.drawable.clashapilogin,
@@ -106,17 +106,13 @@ class TutorialActivity : AppCompatActivity() {
         playButton.setOnClickListener {
             if (isPlaying) {
                 videoView.pause()
-                playButton.text = "Avvia il Video"
+                playButton.text = "Play"
             } else {
                 videoView.start()
-                playButton.text = "Metti in Pausa"
+                playButton.text = "Pause"
             }
             isPlaying = !isPlaying
         }
-
-//        playButton.setOnClickListener {
-//            videoView.start() // Avvia la riproduzione del video
-//        }
 
         // Imposta il focus sul primo elemento per farlo apparire all'apertura della pagina
         nestedScrollView.post {

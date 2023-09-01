@@ -16,20 +16,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="24sp"
-            android:text="Titolo Tutorial"
+            android:text="@string/TutorialTitle"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="16dp"
             android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"/>
+            android:layout_marginEnd="16dp"
+            android:textColor="@color/flamingoPink"/>
 
         <TextView
             android:id="@+id/textViewDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="16sp"
-            android:text="Descrizione lunga del tutorial..."
+            android:text="@string/TutorialTitle"
             app:layout_constraintTop_toBottomOf="@id/textViewTitle"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -62,7 +63,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAlignment="viewStart"
-                android:text="Apri il link"
+                android:text="@string/Link"
                 android:textColor="@color/lightBlue"
                 android:layout_marginStart="8dp"
                 android:textIsSelectable="true"/>
@@ -92,7 +93,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAlignment="viewStart"
-                android:text="Apri il link"
+                android:text="@string/Link"
                 android:textColor="@color/lightBlue"
                 android:layout_marginStart="8dp"
                 android:textIsSelectable="true"/>
@@ -132,7 +133,7 @@
             android:id="@+id/playButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Avvia il Video"
+            android:text="@string/Play"
             app:layout_constraintTop_toBottomOf="@id/videoView"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

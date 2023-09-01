@@ -29,9 +29,10 @@
             android:layout_marginTop="10dp"
             android:hint="@string/apiDescription"
             android:paddingLeft="13dp"
+            android:paddingRight="13dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:textSize="20dp"
+            android:textSize="20sp"
             />
 
         <EditText
@@ -42,9 +43,12 @@
             android:layout_marginTop="10dp"
             android:hint="@string/ApiKey"
             android:paddingLeft="13dp"
+            android:paddingRight="13dp"
             android:background="@drawable/edit_background"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
+            android:maxLines="1000"
+            android:minHeight="50dp"
             />
 
         <Button
@@ -52,10 +56,10 @@
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/edit_apikey"
-            android:text="Insert"
+            android:text="@string/Insert"
             android:background="@drawable/btn_background"
             android:textColor="@color/darkWhite"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
             />

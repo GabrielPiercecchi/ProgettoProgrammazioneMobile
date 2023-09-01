@@ -43,10 +43,10 @@ class LeaderboardsActivity : AppCompatActivity() {
 
     private lateinit var statsSearchView: SearchView
 
-    private lateinit var playersList: List<Player?> // Assicurati che Player sia il tuo modello per i giocatori
-    private lateinit var clansList: List<Clan?> // Assicurati che Clan sia il tuo modello per i clan
+    private lateinit var playersList: List<Player?>
+    private lateinit var clansList: List<Clan?>
     private var selectedRadioButtonId: Int =
-        -1 // Valore iniziale, può essere modificato in base al tuo scenario
+        -1 // Valore iniziale, può essere modificato in base allo scenario
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -1,6 +1,5 @@
 package com.example.myandroidapplication.viewModel
 
-import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -35,8 +34,6 @@ class Login : AppCompatActivity() {
         if (!NetworkUtils.isInternetAvailable(this)) {
             NetworkUtils.showNoInternetDialog(this)
         }
-
-        //loadTheme()
 
         mAuth = FirebaseAuth.getInstance()
 
@@ -92,7 +89,6 @@ class Login : AppCompatActivity() {
                         this@Login,
                         MainActivity::class.java
                     )
-                    //finish()
                     isLoggedIn = true
                     startActivity(intent)
 

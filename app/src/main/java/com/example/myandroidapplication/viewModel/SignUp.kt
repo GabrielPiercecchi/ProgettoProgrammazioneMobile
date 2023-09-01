@@ -63,7 +63,7 @@ class SignUp : AppCompatActivity() {
                 if (password!=confirmPassword){
                     Toast.makeText(
                         this@SignUp,
-                        "Error: " + "Password non uguali",
+                        "Error: " + "Password Mismatch",
                         Toast.LENGTH_LONG
                     ).show()
                 } else {
@@ -105,8 +105,6 @@ class SignUp : AppCompatActivity() {
                         "Error" + task.exception.toString(),
                         Toast.LENGTH_LONG
                     ).show()
-//                    Toast.makeText(this@SignUp, "E' successo qualcosa",
-//                    Toast.LENGTH_SHORT).show()
                 }
             }
     }

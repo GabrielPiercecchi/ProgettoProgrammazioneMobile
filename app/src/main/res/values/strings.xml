@@ -14,11 +14,13 @@
 
     <!--nav_menu-xml-->
     <string name="Settings">Settings</string>
+    <string name="Insert">Insert</string>
     <string name="Rate">Rate</string>
     <string name="About">About</string>
     <string name="Tutorial">Tutorial</string>
     <string name="ApiKey">Api Key</string>
     <string name="ChangeTag">Change Tag</string>
+    <string name="EnterEmailAddress">Enter your email address</string>
 
     <!--activity_chat.xml-->
     <string name="send_message">Send a message</string>
@@ -45,9 +47,9 @@
     <!--activity_apikey.xml-->
     <string name="apiDescription">
         1) Go to <a href="developer.clashofclans.com">developer.clashofclans.com</a>\n
-        2) Check your ip address on websites like <a href="whatsmyip.org">whatsmyip.org</a>\n
-        3) Generate the API key with the ip address of your smartphone\n
-        4) Insert in the field below the generated key\n
+        \n2) Check your ip address on websites like <a href="whatsmyip.org">whatsmyip.org</a>\n
+        \n3) Generate the API key with the ip address of your smartphone\n
+        \n4) Insert in the field below the generated key\n
     </string>
 
     <!-- Preference Titles -->
@@ -71,7 +73,17 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <!-- activity_about -->
-    <string name="description">Progetto di Programmazione mobile di:</string>
+    <string name="description">Mobile Programming Project by:</string>
+    <string name="description2">Thanks to the Clash of Clans APIs.:</string>
+    <string name="EnterNewUserTag">Enter New User Tag</string>
+    <string name="Submit">Submit</string>
+    <string name="Top200">Top 200</string>
+    <string name="PlayerTag">Player TAG</string>
+    <string name="TutorialTitle">Tutorial Title</string>
+    <string name="Link">Link</string>
+    <string name="Play">Play</string>
+    <string name="Pause">Pause</string>
+
     <string name="gabriel">
         <a href="https://github.com/GabrielPiercecchi/">
             Gabriel Piercecchi

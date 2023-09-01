@@ -49,13 +49,13 @@ class StatsReceiverAdapter(val players: Player?): RecyclerView.Adapter<StatsRece
                                 // Otteniamo il primo figlio trovato che corrisponde al tag
                                 val userSnapshot = snapshot.children.first()
                                 val name = userSnapshot.child("name").getValue(String::class.java) ?: ""
-                                holder.v.textTitleName.text = "Statistiche di $name"
+                                holder.v.textTitleName.text = "Statistics of $name"
                             } else {
-                                holder.v.textTitleName.text = "Statistiche"
+                                holder.v.textTitleName.text = "Statistics"
                             }
                         }
                     } catch (e: Exception) {
-                        holder.v.textTitleName.text = "Statistiche"
+                        holder.v.textTitleName.text = "Statistics"
                     }
 
                     // Show "N/D" for null values
@@ -172,13 +172,13 @@ class ClanStatsReceiverAdapter(val clan: ClanExtended?): RecyclerView.Adapter<Cl
                                 // Otteniamo il primo figlio trovato che corrisponde al tag
                                 val userSnapshot = snapshot.children.first()
                                 val name = userSnapshot.child("name").getValue(String::class.java) ?: ""
-                                holder.v.textTitleName.text = "Statistiche di $name"
+                                holder.v.textTitleName.text = "Statistics of $name"
                             } else {
-                                holder.v.textTitleName.text = "Statistiche"
+                                holder.v.textTitleName.text = "Statistics"
                             }
                         }
                     } catch (e: Exception) {
-                        holder.v.textTitleName.text = "Statistiche"
+                        holder.v.textTitleName.text = "Statistics"
                     }
 
                     // Show "N/D" for null values

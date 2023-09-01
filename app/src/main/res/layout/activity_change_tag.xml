@@ -27,11 +27,11 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/app_logo"
             android:layout_marginTop="10dp"
-            android:text="User Tag"
+            android:text="@string/PlayerTag"
             android:paddingLeft="13dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:textSize="20dp"
+            android:textSize="20sp"
             />
 
         <EditText
@@ -40,7 +40,7 @@
             android:layout_height="50dp"
             android:layout_below="@id/userTag"
             android:layout_marginTop="10dp"
-            android:hint="Enter New User Tag"
+            android:hint="@string/EnterNewUserTag"
             android:paddingLeft="13dp"
             android:background="@drawable/edit_background"
             android:layout_marginLeft="20dp"
@@ -52,10 +52,10 @@
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/edit_user_tag"
-            android:text="Submit Tag"
+            android:text="@string/Submit"
             android:background="@drawable/btn_background"
             android:textColor="@color/darkWhite"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
             />

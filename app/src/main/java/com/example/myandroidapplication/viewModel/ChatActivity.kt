@@ -2,7 +2,10 @@ package com.example.myandroidapplication.viewModel
 
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.res.Resources
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.EditText
@@ -59,6 +62,26 @@ class ChatActivity : AppCompatActivity() {
 
         chatRecyclerView.layoutManager = LinearLayoutManager(this)
         chatRecyclerView.adapter = messageAdapter
+
+        messageBox.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+
+            override fun afterTextChanged(s: Editable?) {
+                // Calcola l'altezza desiderata in base al contenuto del testo
+                val layoutParams = messageBox.layoutParams
+                val lineCount = messageBox.lineCount
+                val lineHeight = messageBox.lineHeight
+                val extraHeight = 16.dpToPx() // Aggiungi 16 dp all'altezza
+                val minHeight = 50.dpToPx() // Altezza minima di 50dp
+                val desiredHeight = (lineCount * lineHeight) + extraHeight
+
+                // Imposta l'altezza desiderata, ma assicurati che non sia inferiore all'altezza minima
+                layoutParams.height = maxOf(desiredHeight, minHeight)
+                messageBox.layoutParams = layoutParams
+            }
+        })
 
         // Logica per aggiungere dati su recycleView
         mDbRef.child("chats").child(senderRoom!!)
@@ -127,7 +150,12 @@ class ChatActivity : AppCompatActivity() {
     //metodo per "iniettare" il menu
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_stats_receiver, menu)
-//        menuInflater.inflate(R.menu.nav_menu, menu)
         return super.onCreateOptionsMenu(menu)
+    }
+
+    // Estensione per convertire dp in px
+    fun Int.dpToPx(): Int {
+        val scale = Resources.getSystem().displayMetrics.density
+        return (this * scale + 0.5f).toInt()
     }
 }

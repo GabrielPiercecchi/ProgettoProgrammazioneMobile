@@ -28,7 +28,7 @@ class LeaderboardsAdapter (val players: Players) : RecyclerView.Adapter<Leaderbo
             holder.v.tvPlayerName.text = "Name: ${it.name ?: "N/A"}"
         }
 
-        // la logica dovrebbe essere questa...
+        // La logica dovrebbe essere questa...
         holder.v.clickableItem.setOnClickListener {
             // Qui devo vedere come passare il contesto corretto che è quello l'errore
             val intent = Intent(it.context, StatsReceiver::class.java)

@@ -15,6 +15,7 @@
         app:layoutManager="LinearLayoutManager"
         app:reverseLayout="true"
         app:stackFromEnd="true"
+        android:padding="10dp"
         />
 
     <LinearLayout
@@ -24,7 +25,8 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginBottom="5dp"
-        android:weightSum="100">
+        android:weightSum="100"
+        android:background="#00FFFFFF">
 
         <EditText
             android:id="@+id/messageBox"
@@ -32,9 +34,12 @@
             android:layout_height="50dp"
             android:hint="@string/send_message"
             android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:paddingLeft="10dp"
+            android:paddingRight="10dp"
             android:background="@drawable/message_box_background"
             android:layout_weight="85"
+            android:minHeight="50dp"
             />
 
         <ImageView

@@ -5,7 +5,7 @@ import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.net.ConnectivityManager
-import android.net.NetworkCapabilities
+import android.net.NetworkInfo
 import androidx.appcompat.app.AppCompatActivity
 
 object NetworkUtils {
@@ -13,12 +13,9 @@ object NetworkUtils {
     fun isInternetAvailable(context: Context): Boolean {
         val connectivityManager =
             context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        val network = connectivityManager.activeNetwork
-        val networkCapabilities = connectivityManager.getNetworkCapabilities(network)
+        val activeNetwork: NetworkInfo? = connectivityManager.activeNetworkInfo
 
-        return networkCapabilities != null &&
-                (networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) ||
-                        networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR))
+        return activeNetwork != null && activeNetwork.isConnectedOrConnecting
     }
 
     fun showNoInternetDialog(activity: AppCompatActivity) {
@@ -48,5 +45,4 @@ object NetworkUtils {
         builder.setCancelable(false)
         builder.show()
     }
-
 }

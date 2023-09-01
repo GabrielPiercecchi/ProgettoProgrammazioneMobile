@@ -26,7 +26,7 @@
             android:layout_height="50dp"
             android:layout_below="@id/app_logo"
             android:layout_marginTop="10dp"
-            android:hint="Tag"
+            android:hint="@string/PlayerTag"
             android:paddingLeft="13dp"
             android:background="@drawable/edit_background"
             android:layout_marginLeft="20dp"

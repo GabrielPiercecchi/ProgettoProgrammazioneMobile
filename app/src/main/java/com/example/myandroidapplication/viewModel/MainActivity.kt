@@ -74,7 +74,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             getPlayer()
         } catch (e: Exception) {
             // Eccezione generica per qualsiasi altra eccezione
-            val errorMessage = "Si è verificato un errore: ${e.message}"
+            val errorMessage = "An Error Has Occurred: ${e.message}"
             Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show()
         }
 

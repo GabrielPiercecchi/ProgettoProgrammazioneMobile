@@ -48,7 +48,7 @@ class MainAdapter(val players: Player?): RecyclerView.Adapter<MainAdapter.Custom
                         mDbRef.child("user").child(uid).get().addOnSuccessListener { snapshot ->
                             if (snapshot.exists()) {
                                 val name = snapshot.child("name").getValue(String::class.java) ?: ""
-                                textTitleName.text = "Statistiche di $name"
+                                textTitleName.text = "Statistics of $name"
                             }
                         }
                     }
@@ -112,24 +112,6 @@ class MainAdapter(val players: Player?): RecyclerView.Adapter<MainAdapter.Custom
             println(e)
         }
     }
-
-//    private fun isPlayerDataValid(players: Player?): Boolean {
-//        return players != null &&
-//                players.bestTrophies != null &&
-//                players.bestVersusTrophies != null &&
-//                players.builderHallLevel != null &&
-//                players.donations != null &&
-//                players.donationsReceived != null &&
-//                players.expLevel != null &&
-//                players.clan != null &&
-//                players.labels != null && players.labels.size >= 3 &&
-//                players.league != null &&
-//                players.name != null &&
-//                players.role != null &&
-//                players.tag != null &&
-//                players.townHallLevel != null &&
-//                players.trophies != null
-//    }
 
     private fun parseLabels(labelsArray: List<Label>): String {
         val parsedLabels = mutableListOf<String>()

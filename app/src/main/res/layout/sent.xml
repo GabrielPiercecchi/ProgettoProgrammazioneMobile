@@ -18,10 +18,10 @@
             android:id="@+id/txt_sent_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Questo e' un messaggio inoltrato"
+            android:text="@string/Pause"
             android:textColor="@color/darkWhite"
             android:padding="10dp"
-            android:textSize="15dp"
+            android:textSize="15sp"
             />
 
 

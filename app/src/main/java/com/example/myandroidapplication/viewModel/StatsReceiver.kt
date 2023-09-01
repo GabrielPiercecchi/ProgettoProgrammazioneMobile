@@ -70,7 +70,7 @@ class StatsReceiver : AppCompatActivity(){
             getPlayer(userTag)
         } catch (e: Exception) {
             // Eccezione generica per qualsiasi altra eccezione
-            val errorMessage = "Si è verificato un errore: ${e.message}"
+            val errorMessage = "An Error Has Occurred: ${e.message}"
             Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show()
         }
     }
@@ -162,7 +162,7 @@ class ClanStatsReceiver : AppCompatActivity(){
             getClan(clanTag)
         } catch (e: Exception) {
             // Eccezione generica per qualsiasi altra eccezione
-            val errorMessage = "Si è verificato un errore: ${e.message}"
+            val errorMessage = "An Error Has Occurred: ${e.message}"
             Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show()
         }
     }
