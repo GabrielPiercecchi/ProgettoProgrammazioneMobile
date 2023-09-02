@@ -3,6 +3,7 @@ package com.example.myandroidapplication.view
 import android.content.Intent
 import android.content.res.Resources
 import android.os.Bundle
+import android.text.Editable
 import android.text.TextWatcher
 import android.widget.Button
 import android.widget.EditText
@@ -14,7 +15,6 @@ import com.example.myandroidapplication.viewModel.util.NetworkUtils
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import android.text.Editable
 
 class ManualApiKeyActivity : AppCompatActivity() {
 
