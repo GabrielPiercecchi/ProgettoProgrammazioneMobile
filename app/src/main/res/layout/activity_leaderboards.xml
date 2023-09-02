@@ -80,7 +80,7 @@
             android:id="@+id/b_update_laed_69"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/common_google_play_services_update_button"/>
+            android:text="@string/Update"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_leaderboards"
