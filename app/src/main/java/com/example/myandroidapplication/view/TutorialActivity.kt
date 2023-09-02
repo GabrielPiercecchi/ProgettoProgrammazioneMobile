@@ -36,7 +36,7 @@ class TutorialActivity : AppCompatActivity() {
             description = "This is the concise description of the App." +
                     "\nThe full version can be found in the PDF document." +
                     "\n\nWhen creating your profile, you need to enter the correct credentials:" +
-                    "\n\n--> The Tag [alphanumeric combination preceded by <<#>>] can be found " +
+                    "\n\n--> Your Tag [alphanumeric combination preceded by <<#>>] can be found " +
                     "in your profile, once you start the game 'Clash of Clans', " +
                     "under your nickname (The first image below shows where it is located)." +
                     "\n--> Your name." +

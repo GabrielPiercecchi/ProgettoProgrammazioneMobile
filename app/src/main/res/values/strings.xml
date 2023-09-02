@@ -77,7 +77,7 @@
 
     <!-- activity_about -->
     <string name="description">Mobile Programming Project by:</string>
-    <string name="description2">Thanks to the Clash of Clans APIs.:</string>
+    <string name="description2">Thanks to the Clash of Clans APIs.</string>
     <string name="EnterNewUserTag">Enter New User Tag</string>
     <string name="Submit">Submit</string>
     <string name="Top200">Top 200</string>
