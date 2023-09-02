@@ -49,10 +49,10 @@
 
     <!--activity_apikey.xml-->
     <string name="apiDescription">
-        1) Go to <a href="developer.clashofclans.com">developer.clashofclans.com</a>\n
-        \n2) Check your ip address on websites like <a href="whatsmyip.org">whatsmyip.org</a>\n
-        \n3) Generate the API key with the ip address of your smartphone\n
-        \n4) Insert in the field below the generated key\n
+        1) Go to <a href="https://developer.clashofclans.com/#/">developer.clashofclans.com</a>
+        \n\n2) Check your ip address on websites like <a href="https://www.whatsmyip.org/">whatsmyip.org</a>
+        \n\n3) Generate the API key with the ip address of your smartphone
+        \n\n4) Insert in the field below the generated key\n
     </string>
 
     <!-- Preference Titles -->

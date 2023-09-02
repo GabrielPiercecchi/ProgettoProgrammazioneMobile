@@ -29,6 +29,7 @@
             android:layout_marginTop="10dp"
             android:text="@string/PlayerTag"
             android:paddingLeft="13dp"
+            android:paddingRight="13dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:textSize="20sp"
@@ -42,9 +43,11 @@
             android:layout_marginTop="10dp"
             android:hint="@string/EnterNewUserTag"
             android:paddingLeft="13dp"
+            android:paddingRight="13dp"
             android:background="@drawable/edit_background"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
+            android:minHeight="50dp"
             />
 
         <Button

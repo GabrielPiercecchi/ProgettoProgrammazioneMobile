@@ -27,12 +27,14 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/app_logo"
             android:layout_marginTop="10dp"
-            android:hint="@string/apiDescription"
+            android:text="@string/apiDescription"
             android:paddingLeft="13dp"
             android:paddingRight="13dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:textSize="20sp"
+            android:autoLink="web"
+            android:linksClickable="true"
             />
 
         <EditText

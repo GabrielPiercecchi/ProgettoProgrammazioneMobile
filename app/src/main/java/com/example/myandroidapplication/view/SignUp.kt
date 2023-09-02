@@ -1,7 +1,10 @@
 package com.example.myandroidapplication.view
 
 import android.content.Intent
+import android.content.res.Resources
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -51,6 +54,101 @@ class SignUp : AppCompatActivity() {
         btnSignUp = findViewById(R.id.btnSignUp)
         txtTutorial = findViewById(R.id.txtTutorial)
 
+        edtTag.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+
+            override fun afterTextChanged(s: Editable?) {
+                // Calcola l'altezza desiderata in base al contenuto del testo
+                val layoutParams = edtTag.layoutParams
+                val lineCount = edtTag.lineCount
+                val lineHeight = edtTag.lineHeight
+                val extraHeight = 29.dpToPx() // Aggiungi 16 dp all'altezza
+                val desiredHeight = (lineCount * lineHeight) + extraHeight
+
+                // Imposta l'altezza desiderata
+                layoutParams.height = desiredHeight
+                edtTag.layoutParams = layoutParams
+            }
+        })
+
+        edtName.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+
+            override fun afterTextChanged(s: Editable?) {
+                // Calcola l'altezza desiderata in base al contenuto del testo
+                val layoutParams = edtName.layoutParams
+                val lineCount = edtName.lineCount
+                val lineHeight = edtName.lineHeight
+                val extraHeight = 29.dpToPx() // Aggiungi 16 dp all'altezza
+                val desiredHeight = (lineCount * lineHeight) + extraHeight
+
+                // Imposta l'altezza desiderata
+                layoutParams.height = desiredHeight
+                edtName.layoutParams = layoutParams
+            }
+        })
+
+        edtEmail.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+
+            override fun afterTextChanged(s: Editable?) {
+                // Calcola l'altezza desiderata in base al contenuto del testo
+                val layoutParams = edtEmail.layoutParams
+                val lineCount = edtEmail.lineCount
+                val lineHeight = edtEmail.lineHeight
+                val extraHeight = 29.dpToPx() // Aggiungi 16 dp all'altezza
+                val desiredHeight = (lineCount * lineHeight) + extraHeight
+
+                // Imposta l'altezza desiderata
+                layoutParams.height = desiredHeight
+                edtEmail.layoutParams = layoutParams
+            }
+        })
+
+        edtPassword.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+
+            override fun afterTextChanged(s: Editable?) {
+                // Calcola l'altezza desiderata in base al contenuto del testo
+                val layoutParams = edtPassword.layoutParams
+                val lineCount = edtPassword.lineCount
+                val lineHeight = edtPassword.lineHeight
+                val extraHeight = 29.dpToPx() // Aggiungi 16 dp all'altezza
+                val desiredHeight = (lineCount * lineHeight) + extraHeight
+
+                // Imposta l'altezza desiderata
+                layoutParams.height = desiredHeight
+                edtPassword.layoutParams = layoutParams
+            }
+        })
+
+        confirmPassword.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+
+            override fun afterTextChanged(s: Editable?) {
+                // Calcola l'altezza desiderata in base al contenuto del testo
+                val layoutParams = confirmPassword.layoutParams
+                val lineCount = confirmPassword.lineCount
+                val lineHeight = confirmPassword.lineHeight
+                val extraHeight = 29.dpToPx() // Aggiungi 16 dp all'altezza
+                val desiredHeight = (lineCount * lineHeight) + extraHeight
+
+                // Imposta l'altezza desiderata
+                layoutParams.height = desiredHeight
+                confirmPassword.layoutParams = layoutParams
+            }
+        })
+
         btnSignUp.setOnClickListener{
             try {
                 val tag = edtTag.text.toString()
@@ -59,15 +157,24 @@ class SignUp : AppCompatActivity() {
                 val password = edtPassword.text.toString()
                 val confirmPassword = confirmPassword.text.toString()
 
-                if (password!=confirmPassword){
+                if (name.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
+                    // Mostra un messaggio di errore se uno dei campi è vuoto
                     Toast.makeText(
                         this@SignUp,
-                        "Error: " + "Password Mismatch",
+                        "All fields are mandatory" +
+                                "\nThe TAG can be inserted at a later time",
+                        Toast.LENGTH_LONG
+                    ).show()
+                } else if (password != confirmPassword) {
+                    // Mostra un messaggio di errore se le password non corrispondono
+                    Toast.makeText(
+                        this@SignUp,
+                        "Error: Password Mismatch",
                         Toast.LENGTH_LONG
                     ).show()
                 } else {
+                    // Effettua la registrazione se tutti i controlli passano
                     signUp(tag, name, email, password)
-
                 }
             } catch (e: Exception){
                 Toast.makeText(
@@ -114,5 +221,11 @@ class SignUp : AppCompatActivity() {
         mDbRef = FirebaseDatabase.getInstance().getReference()
         mDbRef.child("user")
             .child(uid).setValue(User(apiKey, tag, name, email, uid))
+    }
+
+    // Estensione per convertire dp in px
+    fun Int.dpToPx(): Int {
+        val scale = Resources.getSystem().displayMetrics.density
+        return (this * scale + 0.5f).toInt()
     }
 }

@@ -29,10 +29,12 @@
             android:layout_marginTop="10dp"
             android:hint="@string/Email"
             android:paddingLeft="13dp"
+            android:paddingRight="13dp"
             android:background="@drawable/edit_background"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:autofillHints="emailAddress"
+            android:minHeight="50dp"
             />
 
         <EditText
@@ -43,10 +45,12 @@
             android:layout_marginTop="10dp"
             android:hint="@string/Password"
             android:paddingLeft="13dp"
+            android:paddingRight="13dp"
             android:background="@drawable/edit_background"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:minHeight="50dp"/>
 
         <Button
             android:id="@+id/btnLogin"

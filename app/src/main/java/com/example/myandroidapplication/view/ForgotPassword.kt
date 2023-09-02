@@ -1,7 +1,10 @@
 package com.example.myandroidapplication.view
 
 import android.content.Intent
+import android.content.res.Resources
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -42,6 +45,25 @@ class ForgotPassword : AppCompatActivity() {
         editBox = findViewById(R.id.editBox)
         btnReset = findViewById(R.id.btnReset)
         txtTutorial = findViewById(R.id.txtTutorial)
+
+        editBox.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+
+            override fun afterTextChanged(s: Editable?) {
+                // Calcola l'altezza desiderata in base al contenuto del testo
+                val layoutParams = editBox.layoutParams
+                val lineCount = editBox.lineCount
+                val lineHeight = editBox.lineHeight
+                val extraHeight = 29.dpToPx() // Aggiungi 16 dp all'altezza
+                val desiredHeight = (lineCount * lineHeight) + extraHeight
+
+                // Imposta l'altezza desiderata
+                layoutParams.height = desiredHeight
+                editBox.layoutParams = layoutParams
+            }
+        })
 
         btnReset.setOnClickListener {
             try {
@@ -99,5 +121,11 @@ class ForgotPassword : AppCompatActivity() {
                 ).show()
             }
         })
+    }
+
+    // Estensione per convertire dp in px
+    fun Int.dpToPx(): Int {
+        val scale = Resources.getSystem().displayMetrics.density
+        return (this * scale + 0.5f).toInt()
     }
 }

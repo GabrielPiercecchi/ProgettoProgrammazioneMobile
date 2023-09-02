@@ -1,7 +1,10 @@
 package com.example.myandroidapplication.view
 
 import android.content.Intent
+import android.content.res.Resources
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -12,6 +15,8 @@ import com.example.myandroidapplication.viewModel.util.NetworkUtils
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.example.myandroidapplication.viewModel.util.Constants
+
 
 
 class ChangeTag : AppCompatActivity() {
@@ -55,6 +60,25 @@ class ChangeTag : AppCompatActivity() {
                             "correct it by entering the correct one below and pressing the " +
                             "confirmation button!!"
 
+                    edtTag.addTextChangedListener(object : TextWatcher {
+                        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+                        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+
+                        override fun afterTextChanged(s: Editable?) {
+                            // Calcola l'altezza desiderata in base al contenuto del testo
+                            val layoutParams = edtTag.layoutParams
+                            val lineCount = edtTag.lineCount
+                            val lineHeight = edtTag.lineHeight
+                            val extraHeight = 29.dpToPx() // Aggiungi 16 dp all'altezza
+                            val desiredHeight = (lineCount * lineHeight) + extraHeight
+
+                            // Imposta l'altezza desiderata
+                            layoutParams.height = desiredHeight
+                            edtTag.layoutParams = layoutParams
+                        }
+                    })
+
                     userTagTxt.text = testo.replace("name_placeholder", name)
                 }
             }.addOnFailureListener { e ->
@@ -83,5 +107,11 @@ class ChangeTag : AppCompatActivity() {
 
     private fun updateUserTag(uid: String, tag: String) {
         mDbRef.child("user").child(uid).child("tag").setValue(tag)
+    }
+
+    // Estensione per convertire dp in px
+    fun Int.dpToPx(): Int {
+        val scale = Resources.getSystem().displayMetrics.density
+        return (this * scale + 0.5f).toInt()
     }
 }

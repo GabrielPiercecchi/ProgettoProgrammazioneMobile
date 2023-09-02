@@ -48,7 +48,7 @@ class ManualApiKeyActivity : AppCompatActivity() {
                 val layoutParams = edtApiKey.layoutParams
                 val lineCount = edtApiKey.lineCount
                 val lineHeight = edtApiKey.lineHeight
-                val extraHeight = 16.dpToPx() // Aggiungi 16 dp all'altezza
+                val extraHeight = 29.dpToPx() // Aggiungi 16 dp all'altezza
                 val desiredHeight = (lineCount * lineHeight) + extraHeight
 
                 // Imposta l'altezza desiderata
