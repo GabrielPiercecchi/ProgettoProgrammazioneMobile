@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.myandroidapplication.databinding.LeaderboardRowBinding
 import com.example.myandroidapplication.model.Clans
 import com.example.myandroidapplication.model.Players
+import com.example.myandroidapplication.view.ClanStatsReceiver
+import com.example.myandroidapplication.view.StatsReceiver
 
 class LeaderboardsAdapter (val players: Players) : RecyclerView.Adapter<LeaderboardsAdapter.CustomViewHolder>() {
 

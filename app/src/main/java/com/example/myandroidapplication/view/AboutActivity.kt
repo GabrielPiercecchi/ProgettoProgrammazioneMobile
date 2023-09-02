@@ -1,4 +1,4 @@
-package com.example.myandroidapplication.viewModel
+package com.example.myandroidapplication.view
 
 import android.content.DialogInterface
 import android.os.Bundle
@@ -6,7 +6,7 @@ import android.text.method.LinkMovementMethod
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myandroidapplication.R
-import com.example.myandroidapplication.util.NetworkUtils
+import com.example.myandroidapplication.viewModel.util.NetworkUtils
 
 class AboutActivity : AppCompatActivity() {
 

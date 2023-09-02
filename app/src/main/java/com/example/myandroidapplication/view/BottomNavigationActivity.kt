@@ -1,11 +1,11 @@
-package com.example.myandroidapplication.viewModel
+package com.example.myandroidapplication.view
 
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myandroidapplication.R
-import com.example.myandroidapplication.util.NetworkUtils
+import com.example.myandroidapplication.viewModel.util.NetworkUtils
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class BottomNavigationActivity: AppCompatActivity() {

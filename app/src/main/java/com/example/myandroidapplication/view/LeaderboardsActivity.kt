@@ -1,6 +1,5 @@
-package com.example.myandroidapplication.viewModel
+package com.example.myandroidapplication.view
 
-import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -20,8 +19,10 @@ import com.example.myandroidapplication.model.Clans
 import com.example.myandroidapplication.model.Locations
 import com.example.myandroidapplication.model.Player
 import com.example.myandroidapplication.model.Players
-import com.example.myandroidapplication.util.Constants
-import com.example.myandroidapplication.util.NetworkUtils
+import com.example.myandroidapplication.viewModel.util.Constants
+import com.example.myandroidapplication.viewModel.util.NetworkUtils
+import com.example.myandroidapplication.viewModel.ClansAdapter
+import com.example.myandroidapplication.viewModel.LeaderboardsAdapter
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase

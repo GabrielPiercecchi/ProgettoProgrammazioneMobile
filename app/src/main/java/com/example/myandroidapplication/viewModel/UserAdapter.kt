@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myandroidapplication.model.User
 import com.example.myandroidapplication.R
+import com.example.myandroidapplication.view.ChatActivity
 
 //Questa classe si occupa di gestire gli utenti nel database:
 //come mostrarli, come ricercarli, tec...

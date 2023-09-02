@@ -1,6 +1,5 @@
-package com.example.myandroidapplication.viewModel
+package com.example.myandroidapplication.view
 
-import android.content.DialogInterface
 import android.content.Intent
 import android.content.res.Resources
 import android.os.Bundle
@@ -15,7 +14,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myandroidapplication.model.Message
 import com.example.myandroidapplication.R
-import com.example.myandroidapplication.util.NetworkUtils
+import com.example.myandroidapplication.viewModel.util.NetworkUtils
+import com.example.myandroidapplication.viewModel.MessageAdapter
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 

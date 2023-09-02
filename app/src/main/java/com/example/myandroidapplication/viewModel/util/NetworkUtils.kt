@@ -1,4 +1,4 @@
-package com.example.myandroidapplication.util
+package com.example.myandroidapplication.viewModel.util
 
 import android.app.AlertDialog
 import android.content.Context

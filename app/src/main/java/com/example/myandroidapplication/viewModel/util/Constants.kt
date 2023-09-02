@@ -1,4 +1,4 @@
-package com.example.myandroidapplication.util
+package com.example.myandroidapplication.viewModel.util
 
 class Constants {
     companion object{

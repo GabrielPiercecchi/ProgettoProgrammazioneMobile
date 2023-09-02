@@ -20,6 +20,9 @@
     <string name="Tutorial">Tutorial</string>
     <string name="ApiKey">Api Key</string>
     <string name="ChangeTag">Change Tag</string>
+    <string name="ChatList">Chat List</string>
+    <string name="PlayerStats">Player Stats</string>
+    <string name="ClanStats">Clan Stats</string>
     <string name="EnterEmailAddress">Enter your email address</string>
 
     <!--activity_chat.xml-->

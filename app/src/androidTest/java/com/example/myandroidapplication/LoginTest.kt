@@ -5,7 +5,7 @@ import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.action.ViewActions.typeText
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.rules.ActivityScenarioRule
-import com.example.myandroidapplication.viewModel.Login
+import com.example.myandroidapplication.view.Login
 import org.junit.Rule
 import org.junit.Test
 

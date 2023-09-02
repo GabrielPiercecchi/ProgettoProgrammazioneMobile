@@ -1,4 +1,4 @@
-package com.example.myandroidapplication.viewModel
+package com.example.myandroidapplication.view
 
 import TutorialContent
 import android.content.DialogInterface
@@ -13,7 +13,7 @@ import android.widget.VideoView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.NestedScrollView
 import com.example.myandroidapplication.R
-import com.example.myandroidapplication.util.NetworkUtils
+import com.example.myandroidapplication.viewModel.util.NetworkUtils
 
 
 class TutorialActivity : AppCompatActivity() {

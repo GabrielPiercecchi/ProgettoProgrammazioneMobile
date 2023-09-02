@@ -15,52 +15,47 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".viewModel.StatsReceiver"
+            android:name=".view.StatsReceiver"
+            android:label="@string/PlayerStats"
             android:exported="false" />
         <activity
-            android:name=".viewModel.ClanStatsReceiver"
+            android:name=".view.ClanStatsReceiver"
+            android:label="@string/ClanStats"
             android:exported="false" />
         <activity
-            android:name=".viewModel.ChangeTag"
+            android:name=".view.ChangeTag"
+            android:label="@string/ChangeTag"
             android:exported="false" />
         <activity
-            android:name=".viewModel.RatingActivity"
-            android:label="@string/title_activity_rating"
-            android:exported="false" />
-        <activity
-            android:name=".viewModel.TutorialActivity"
+            android:name=".view.TutorialActivity"
             android:label="@string/title_activity_tutorial"
             android:exported="false" />
         <activity
-            android:name=".viewModel.AboutActivity"
+            android:name=".view.AboutActivity"
             android:label="@string/title_activity_about"
             android:exported="false" />
         <activity
-            android:name=".viewModel.ManualApiKeyActivity"
+            android:name=".view.ManualApiKeyActivity"
+            android:label="@string/ApiKey"
             android:exported="false" />
         <activity
-            android:name=".viewModel.SettingsActivity"
-            android:exported="false"
-            android:label="@string/title_activity_settings"
-            android:parentActivityName=".viewModel.MainActivity" />
-        <activity
-            android:name=".viewModel.LeaderboardsActivity"
+            android:name=".view.LeaderboardsActivity"
             android:exported="false" />
         <activity
-            android:name=".viewModel.MainActivity"
+            android:name=".view.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.view.MainActivity" />
         <activity
-            android:name=".viewModel.ForgotPassword"
+            android:name=".view.ForgotPassword"
             android:exported="false" />
         <activity
-            android:name=".viewModel.ChatActivity"
+            android:name=".view.ChatActivity"
             android:exported="false" />
         <activity
-            android:name=".viewModel.SignUp"
+            android:name=".view.SignUp"
             android:exported="false" />
         <activity
-            android:name=".viewModel.Login"
+            android:name=".view.Login"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -73,16 +68,9 @@
             android:value="" />
 
         <activity
-            android:name=".viewModel.ChatList"
+            android:name=".view.ChatList"
+            android:label="@string/ChatList"
             android:exported="true" />
-
-        <!--        <service-->
-        <!--            android:name=".viewModel.MyFirebaseMessagingService"-->
-        <!--            android:exported="false">-->
-        <!--            <intent-filter>-->
-        <!--                <action android:name="com.google.firebase.MESSAGING_EVENT" />-->
-        <!--            </intent-filter>-->
-        <!--        </service>-->
 
     </application>
 
