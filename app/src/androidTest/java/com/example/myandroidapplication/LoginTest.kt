@@ -3,6 +3,8 @@ package com.example.myandroidapplication
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.action.ViewActions.typeText
+import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import com.example.myandroidapplication.view.Login
@@ -15,9 +17,9 @@ class LoginEspressoTest {
     val activityRule = ActivityScenarioRule(Login::class.java)
 
     @Test
-    fun testLoginSuccess() {
-        val email = "valid@gmail.com"
-        val password = "validPassword"
+    fun testLoginWithValidCredentials() {
+        val email = "francesco@gmail.com"
+        val password = "FrancescoP"
 
         // Insert email and password
         onView(withId(R.id.edit_email)).perform(typeText(email))
@@ -29,10 +31,7 @@ class LoginEspressoTest {
         // Sleep for a short while to allow time for the login process to complete
         Thread.sleep(2000)
 
-        val loginActivity = activityRule.scenario as Login
-
-        // Assert that isLoggedIn is true after successful login
-        assert(loginActivity.isLoggedIn)
+        onView(withId(R.id.bottomNavigationView)).check(matches(isDisplayed()))
     }
 
     @Test
