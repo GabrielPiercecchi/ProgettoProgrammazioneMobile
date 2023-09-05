@@ -1,7 +1,6 @@
 package com.example.myandroidapplication.view
 
 import android.content.Intent
-import android.content.res.Resources
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -13,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.myandroidapplication.model.User
 import com.example.myandroidapplication.R
 import com.example.myandroidapplication.viewModel.util.NetworkUtils
+import com.example.myandroidapplication.viewModel.util.MethodsUtils
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -64,7 +64,7 @@ class SignUp : AppCompatActivity() {
                 val layoutParams = edtTag.layoutParams
                 val lineCount = edtTag.lineCount
                 val lineHeight = edtTag.lineHeight
-                val extraHeight = 29.dpToPx() // Aggiungi 16 dp all'altezza
+                val extraHeight = MethodsUtils.dpToPx(29) // Usa la funzione dpToPx dalla classe di utilità
                 val desiredHeight = (lineCount * lineHeight) + extraHeight
 
                 // Imposta l'altezza desiderata
@@ -83,7 +83,7 @@ class SignUp : AppCompatActivity() {
                 val layoutParams = edtName.layoutParams
                 val lineCount = edtName.lineCount
                 val lineHeight = edtName.lineHeight
-                val extraHeight = 29.dpToPx() // Aggiungi 16 dp all'altezza
+                val extraHeight = MethodsUtils.dpToPx(29) // Usa la funzione dpToPx dalla classe di utilità
                 val desiredHeight = (lineCount * lineHeight) + extraHeight
 
                 // Imposta l'altezza desiderata
@@ -102,7 +102,7 @@ class SignUp : AppCompatActivity() {
                 val layoutParams = edtEmail.layoutParams
                 val lineCount = edtEmail.lineCount
                 val lineHeight = edtEmail.lineHeight
-                val extraHeight = 29.dpToPx() // Aggiungi 16 dp all'altezza
+                val extraHeight = MethodsUtils.dpToPx(29) // Usa la funzione dpToPx dalla classe di utilità
                 val desiredHeight = (lineCount * lineHeight) + extraHeight
 
                 // Imposta l'altezza desiderata
@@ -121,7 +121,7 @@ class SignUp : AppCompatActivity() {
                 val layoutParams = edtPassword.layoutParams
                 val lineCount = edtPassword.lineCount
                 val lineHeight = edtPassword.lineHeight
-                val extraHeight = 29.dpToPx() // Aggiungi 16 dp all'altezza
+                val extraHeight = MethodsUtils.dpToPx(29) // Usa la funzione dpToPx dalla classe di utilità
                 val desiredHeight = (lineCount * lineHeight) + extraHeight
 
                 // Imposta l'altezza desiderata
@@ -140,7 +140,7 @@ class SignUp : AppCompatActivity() {
                 val layoutParams = confirmPassword.layoutParams
                 val lineCount = confirmPassword.lineCount
                 val lineHeight = confirmPassword.lineHeight
-                val extraHeight = 29.dpToPx() // Aggiungi 16 dp all'altezza
+                val extraHeight = MethodsUtils.dpToPx(29) // Usa la funzione dpToPx dalla classe di utilità
                 val desiredHeight = (lineCount * lineHeight) + extraHeight
 
                 // Imposta l'altezza desiderata
@@ -221,11 +221,5 @@ class SignUp : AppCompatActivity() {
         mDbRef = FirebaseDatabase.getInstance().getReference()
         mDbRef.child("user")
             .child(uid).setValue(User(apiKey, tag, name, email, uid))
-    }
-
-    // Estensione per convertire dp in px
-    fun Int.dpToPx(): Int {
-        val scale = Resources.getSystem().displayMetrics.density
-        return (this * scale + 0.5f).toInt()
     }
 }

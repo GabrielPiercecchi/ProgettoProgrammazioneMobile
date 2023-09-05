@@ -1,7 +1,6 @@
 package com.example.myandroidapplication.view
 
 import android.content.Intent
-import android.content.res.Resources
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -16,6 +15,7 @@ import com.example.myandroidapplication.model.Message
 import com.example.myandroidapplication.R
 import com.example.myandroidapplication.viewModel.util.NetworkUtils
 import com.example.myandroidapplication.viewModel.MessageAdapter
+import com.example.myandroidapplication.viewModel.util.MethodsUtils
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 
@@ -73,8 +73,8 @@ class ChatActivity : AppCompatActivity() {
                 val layoutParams = messageBox.layoutParams
                 val lineCount = messageBox.lineCount
                 val lineHeight = messageBox.lineHeight
-                val extraHeight = 16.dpToPx() // Aggiungi 16 dp all'altezza
-                val minHeight = 50.dpToPx() // Altezza minima di 50dp
+                val extraHeight = MethodsUtils.dpToPx(29) // Usa la funzione dpToPx dalla classe di utilità
+                val minHeight = MethodsUtils.dpToPx(50) // Altezza minima di 50dp
                 val desiredHeight = (lineCount * lineHeight) + extraHeight
 
                 // Imposta l'altezza desiderata, ma assicurati che non sia inferiore all'altezza minima
@@ -151,11 +151,5 @@ class ChatActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_stats_receiver, menu)
         return super.onCreateOptionsMenu(menu)
-    }
-
-    // Estensione per convertire dp in px
-    fun Int.dpToPx(): Int {
-        val scale = Resources.getSystem().displayMetrics.density
-        return (this * scale + 0.5f).toInt()
     }
 }

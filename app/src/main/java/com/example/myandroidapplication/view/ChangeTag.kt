@@ -1,7 +1,6 @@
 package com.example.myandroidapplication.view
 
 import android.content.Intent
-import android.content.res.Resources
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -15,8 +14,7 @@ import com.example.myandroidapplication.viewModel.util.NetworkUtils
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import com.example.myandroidapplication.viewModel.util.Constants
-
+import com.example.myandroidapplication.viewModel.util.MethodsUtils
 
 
 class ChangeTag : AppCompatActivity() {
@@ -70,7 +68,7 @@ class ChangeTag : AppCompatActivity() {
                             val layoutParams = edtTag.layoutParams
                             val lineCount = edtTag.lineCount
                             val lineHeight = edtTag.lineHeight
-                            val extraHeight = 29.dpToPx() // Aggiungi 16 dp all'altezza
+                            val extraHeight = MethodsUtils.dpToPx(29) // Usa la funzione dpToPx dalla classe di utilità
                             val desiredHeight = (lineCount * lineHeight) + extraHeight
 
                             // Imposta l'altezza desiderata
@@ -107,11 +105,5 @@ class ChangeTag : AppCompatActivity() {
 
     private fun updateUserTag(uid: String, tag: String) {
         mDbRef.child("user").child(uid).child("tag").setValue(tag)
-    }
-
-    // Estensione per convertire dp in px
-    fun Int.dpToPx(): Int {
-        val scale = Resources.getSystem().displayMetrics.density
-        return (this * scale + 0.5f).toInt()
     }
 }

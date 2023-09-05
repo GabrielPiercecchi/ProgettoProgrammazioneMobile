@@ -1,5 +1,7 @@
 package com.example.myandroidapplication.viewModel.util
 
+import android.content.res.Resources
+
 class Constants {
     companion object{
         // Setta la API KEY per effettuare tutte le richieste
@@ -18,5 +20,14 @@ class Constants {
         val RANKING_CLANS_CAPITAL = "https://api.clashofclans.com/v1/locations/$LOCATION_ID/rankings/capitals"
         val RANKING_PLAYERS_NORMAL = "https://api.clashofclans.com/v1/locations/$LOCATION_ID/rankings/players"
         val RANKING_PLAYERS_BUILDER = "https://api.clashofclans.com/v1/locations/$LOCATION_ID/rankings/players-builder-base"
+    }
+
+    // Estensione per convertire dp in px
+}
+
+object MethodsUtils {
+    fun dpToPx(dp: Int): Int {
+        val scale = Resources.getSystem().displayMetrics.density
+        return (dp * scale + 0.5f).toInt()
     }
 }

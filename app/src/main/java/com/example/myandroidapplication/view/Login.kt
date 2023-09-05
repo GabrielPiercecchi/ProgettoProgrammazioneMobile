@@ -1,7 +1,6 @@
 package com.example.myandroidapplication.view
 
 import android.content.Intent
-import android.content.res.Resources
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -12,6 +11,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myandroidapplication.R
 import com.example.myandroidapplication.viewModel.util.NetworkUtils
+import com.example.myandroidapplication.viewModel.util.MethodsUtils
 import com.google.firebase.auth.FirebaseAuth
 
 // Classe per la schermata di login
@@ -57,7 +57,7 @@ class Login : AppCompatActivity() {
                 val layoutParams = edtEmail.layoutParams
                 val lineCount = edtEmail.lineCount
                 val lineHeight = edtEmail.lineHeight
-                val extraHeight = 29.dpToPx() // Aggiungi 16 dp all'altezza
+                val extraHeight = MethodsUtils.dpToPx(29) // Usa la funzione dpToPx dalla classe di utilità
                 val desiredHeight = (lineCount * lineHeight) + extraHeight
 
                 // Imposta l'altezza desiderata
@@ -76,7 +76,7 @@ class Login : AppCompatActivity() {
                 val layoutParams = edtPassword.layoutParams
                 val lineCount = edtPassword.lineCount
                 val lineHeight = edtPassword.lineHeight
-                val extraHeight = 29.dpToPx() // Aggiungi 16 dp all'altezza
+                val extraHeight = MethodsUtils.dpToPx(29) // Usa la funzione dpToPx dalla classe di utilità
                 val desiredHeight = (lineCount * lineHeight) + extraHeight
 
                 // Imposta l'altezza desiderata
@@ -142,11 +142,5 @@ class Login : AppCompatActivity() {
                     ).show()
                 }
             }
-    }
-
-    // Estensione per convertire dp in px
-    fun Int.dpToPx(): Int {
-        val scale = Resources.getSystem().displayMetrics.density
-        return (this * scale + 0.5f).toInt()
     }
 }
