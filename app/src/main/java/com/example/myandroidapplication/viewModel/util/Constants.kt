@@ -26,6 +26,8 @@ class Constants {
 }
 
 object MethodsUtils {
+
+    // Estensione per convertire dp in px
     fun dpToPx(dp: Int): Int {
         val scale = Resources.getSystem().displayMetrics.density
         return (dp * scale + 0.5f).toInt()
