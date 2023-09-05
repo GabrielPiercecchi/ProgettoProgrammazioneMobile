@@ -198,7 +198,7 @@ class SignUp : AppCompatActivity() {
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     // Codice per tornare alla home
-                    addUserToDatabase(tag, name, email, mAuth.currentUser?.uid!!)
+                    MethodsUtils.addUserToDatabase(tag, name, email, mAuth.currentUser?.uid!!)
                     val intent =Intent(this@SignUp,
                         MainActivity::class.java)
                     finish()
@@ -213,13 +213,5 @@ class SignUp : AppCompatActivity() {
                     ).show()
                 }
             }
-    }
-
-    //Per aggiungere alla fine i dati del nuovo utente nel database
-    private fun addUserToDatabase(tag: String, name: String, email: String, uid: String) {
-        val apiKey = ""
-        mDbRef = FirebaseDatabase.getInstance().getReference()
-        mDbRef.child("user")
-            .child(uid).setValue(User(apiKey, tag, name, email, uid))
     }
 }

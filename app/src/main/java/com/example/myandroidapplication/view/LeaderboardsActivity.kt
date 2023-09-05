@@ -49,6 +49,8 @@ class LeaderboardsActivity : AppCompatActivity() {
     private var selectedRadioButtonId: Int =
         -1 // Valore iniziale, può essere modificato in base allo scenario
 
+    private lateinit var adapterItems: ArrayAdapter<Pair<String, String>>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_leaderboards)
@@ -154,9 +156,6 @@ class LeaderboardsActivity : AppCompatActivity() {
         }
     }
 
-
-    private lateinit var adapterItems: ArrayAdapter<Pair<String, String>>
-
     // Funzione che ti permette di prendere tutte le locations e metterle nella select list.
     private fun getAllLocations() {
         val currentUser = mAuth.currentUser
@@ -252,8 +251,7 @@ class LeaderboardsActivity : AppCompatActivity() {
 
 
     // Tira fuori la leaderboard dei giocatori della location selezionata
-    //OK
-    fun getPlayersNormalLeaderboardForLocation(locationid: String, apiKey: String) {
+    private fun getPlayersNormalLeaderboardForLocation(locationid: String, apiKey: String) {
         // costruzione dell'url e della richiesta HTTP
         val client = OkHttpClient()
         val request = Request.Builder()
@@ -288,8 +286,8 @@ class LeaderboardsActivity : AppCompatActivity() {
         })
     }
 
-    //SU TEORIA OK
-    fun getPlayersBuilderLeaderboardForLocation(locationid: String, apiKey: String) {
+    // Tira fuori la leaderboard dei giocatori Builder della location selezionata
+    private fun getPlayersBuilderLeaderboardForLocation(locationid: String, apiKey: String) {
         // costruzione dell'url e della richiesta HTTP
         val client = OkHttpClient()
         val request = Request.Builder()
@@ -321,7 +319,8 @@ class LeaderboardsActivity : AppCompatActivity() {
         })
     }
 
-    fun getClansNormalLeaderboardForLocation(locationid: String, apiKey: String) {
+    // Tira fuori la leaderboard dei Clans della location selezionata
+    private fun getClansNormalLeaderboardForLocation(locationid: String, apiKey: String) {
         // costruzione dell'url e della richiesta HTTP
         val client = OkHttpClient()
         val request = Request.Builder()
@@ -353,7 +352,7 @@ class LeaderboardsActivity : AppCompatActivity() {
         })
     }
 
-    // Aggiungi questo metodo alla classe LeaderboardsActivity
+    // Filtro per la SearchView
     private fun filterRecyclerView(query: String) {
         val filteredPlayersList = mutableListOf<Player>()
         val filteredClansList = mutableListOf<Clan>()

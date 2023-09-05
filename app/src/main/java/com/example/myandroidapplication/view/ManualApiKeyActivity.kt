@@ -66,7 +66,7 @@ class ManualApiKeyActivity : AppCompatActivity() {
                     val currentUser = mAuth.currentUser
                     currentUser?.let {
                         val uid = it.uid
-                        updateUserApiKey(uid, newApiKey)
+                        MethodsUtils.updateUserApiKey(uid, newApiKey)
                     }
                     startActivity(Intent(applicationContext, MainActivity::class.java))
                 } else {
@@ -83,9 +83,5 @@ class ManualApiKeyActivity : AppCompatActivity() {
                 ).show()
             }
         }
-    }
-
-    private fun updateUserApiKey(uid: String, apiKey: String) {
-        mDbRef.child("user").child(uid).child("apiKey").setValue(apiKey)
     }
 }

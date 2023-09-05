@@ -1,6 +1,15 @@
 package com.example.myandroidapplication.viewModel.util
 
 import android.content.res.Resources
+import android.widget.Toast
+import com.example.myandroidapplication.model.User
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import java.util.Locale
 
 class Constants {
     companion object{
@@ -27,9 +36,33 @@ class Constants {
 
 object MethodsUtils {
 
+    private lateinit var mAuth: FirebaseAuth
+    private lateinit var mDbRef: DatabaseReference
+
     // Estensione per convertire dp in px
     fun dpToPx(dp: Int): Int {
         val scale = Resources.getSystem().displayMetrics.density
         return (dp * scale + 0.5f).toInt()
+    }
+
+    // Metodo per caricare il TAG aggiornato
+    // Preso dalla classe ChangeTag
+    fun updateUserTag(dbRef: DatabaseReference, uid: String, tag: String) {
+        dbRef.child("user").child(uid).child("tag").setValue(tag)
+    }
+
+    // Metodo per caricare la API KEY aggiornata
+    // Preso dalla classe ManualApiKeyActivity
+    fun updateUserApiKey(uid: String, apiKey: String) {
+        mDbRef.child("user").child(uid).child("apiKey").setValue(apiKey)
+    }
+
+    // Per aggiungere alla fine i dati del nuovo utente nel database
+    // Preso dalla classe SignUp
+    fun addUserToDatabase(tag: String, name: String, email: String, uid: String) {
+        val apiKey = ""
+        mDbRef = FirebaseDatabase.getInstance().getReference()
+        mDbRef.child("user")
+            .child(uid).setValue(User(apiKey, tag, name, email, uid))
     }
 }

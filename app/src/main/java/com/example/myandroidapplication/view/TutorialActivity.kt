@@ -13,6 +13,7 @@ import android.widget.VideoView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.NestedScrollView
 import com.example.myandroidapplication.R
+import com.example.myandroidapplication.viewModel.util.MethodsUtils
 import com.example.myandroidapplication.viewModel.util.NetworkUtils
 
 
@@ -120,6 +121,7 @@ class TutorialActivity : AppCompatActivity() {
         }
     }
 
+    // Metodo per recuperare il PATH del file video
     private fun getVideoPath(resourceId: Int): String {
         return "android.resource://${packageName}/${resourceId}"
     }

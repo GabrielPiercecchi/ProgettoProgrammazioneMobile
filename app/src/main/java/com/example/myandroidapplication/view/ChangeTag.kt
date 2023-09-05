@@ -94,16 +94,12 @@ class ChangeTag : AppCompatActivity() {
                 val currentUser = mAuth.currentUser
                 currentUser?.let {
                     val uid = it.uid
-                    updateUserTag(uid, newTag)
+                    MethodsUtils.updateUserTag(mDbRef, uid, newTag)
                 }
                 startActivity(Intent(applicationContext, MainActivity::class.java))
             } else {
                 Toast.makeText(this, "The new TAG can't be empty", Toast.LENGTH_SHORT).show()
             }
         }
-    }
-
-    private fun updateUserTag(uid: String, tag: String) {
-        mDbRef.child("user").child(uid).child("tag").setValue(tag)
     }
 }
