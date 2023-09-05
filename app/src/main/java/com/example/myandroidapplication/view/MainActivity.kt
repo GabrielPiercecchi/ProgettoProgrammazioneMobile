@@ -14,9 +14,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myandroidapplication.R
 import com.example.myandroidapplication.model.Player
+import com.example.myandroidapplication.viewModel.MainAdapter
 import com.example.myandroidapplication.viewModel.util.Constants
 import com.example.myandroidapplication.viewModel.util.NetworkUtils
-import com.example.myandroidapplication.viewModel.MainAdapter
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
@@ -143,7 +143,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     // Funzione per prendere i dati del giocatore registrato
-    private fun getPlayer(/*aggiungere il tag del giocatore che si logga*/){
+    fun getPlayer(){
         // costruzione dell'url e della richiesta HTTP
         val currentUser = mAuth.currentUser
         try {

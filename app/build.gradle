@@ -96,7 +96,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.1.0-alpha07'
 
 
-    testImplementation "io.mockk:mockk:1.12.0"
+    androidTestImplementation "io.mockk:mockk:1.12.0"
     androidTestImplementation 'org.mockito:mockito-core:4.1.0'
     androidTestImplementation 'androidx.test.uiautomator:uiautomator:2.2.0'
     androidTestImplementation "org.hamcrest:hamcrest:2.2"
