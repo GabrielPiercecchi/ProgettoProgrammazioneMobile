@@ -21,19 +21,21 @@ class Constants {
         val PLAYERS_URL = "https://api.clashofclans.com/v1/players/"
 
         // URL per i vari ranking
-        var LOCATION_ID = "" // 32000000 - Europe (per accedere alle altre cambia le ultime cifre!)
+//        var LOCATION_ID : String? = ""
+         // 32000000 - Europe (per accedere alle altre cambia le ultime cifre!)
         val GET_LOCATIONS = "https://api.clashofclans.com/v1/locations"
         val GET_CLAN = "https://api.clashofclans.com/v1/clans/"
-        val RANKING_CLANS_NORMAL = "https://api.clashofclans.com/v1/locations/$LOCATION_ID/rankings/clans"
-        val RANKING_CLANS_BUILDER = "https://api.clashofclans.com/v1/locations/$LOCATION_ID/rankings/clans-versus"
-        val RANKING_CLANS_CAPITAL = "https://api.clashofclans.com/v1/locations/$LOCATION_ID/rankings/capitals"
-        val RANKING_PLAYERS_NORMAL = "https://api.clashofclans.com/v1/locations/$LOCATION_ID/rankings/players"
-        val RANKING_PLAYERS_BUILDER = "https://api.clashofclans.com/v1/locations/$LOCATION_ID/rankings/players-builder-base"
+//        var RANKING_CLANS_NORMAL = "https://api.clashofclans.com/v1/locations/$LOCATION_ID/rankings/clans"
+//        var RANKING_CLANS_BUILDER = "https://api.clashofclans.com/v1/locations/$LOCATION_ID/rankings/clans-versus"
+//        var RANKING_CLANS_CAPITAL = "https://api.clashofclans.com/v1/locations/$LOCATION_ID/rankings/capitals"
+//        var RANKING_PLAYERS_NORMAL = "https://api.clashofclans.com/v1/locations/$LOCATION_ID/rankings/players"
+//        var RANKING_PLAYERS_BUILDER = "https://api.clashofclans.com/v1/locations/$LOCATION_ID/rankings/players-builder-base"
     }
-
-    // Estensione per convertire dp in px
 }
 
+
+// Questo object serve per collezioanre e richiamare tutti quei metodi statici presenti
+// prima nelle view (per tenerle pulite il più possibile)
 object MethodsUtils {
 
     private lateinit var mAuth: FirebaseAuth
@@ -48,12 +50,14 @@ object MethodsUtils {
     // Metodo per caricare il TAG aggiornato
     // Preso dalla classe ChangeTag
     fun updateUserTag(dbRef: DatabaseReference, uid: String, tag: String) {
+        mDbRef = FirebaseDatabase.getInstance().reference
         dbRef.child("user").child(uid).child("tag").setValue(tag)
     }
 
     // Metodo per caricare la API KEY aggiornata
     // Preso dalla classe ManualApiKeyActivity
     fun updateUserApiKey(uid: String, apiKey: String) {
+        mDbRef = FirebaseDatabase.getInstance().reference
         mDbRef.child("user").child(uid).child("apiKey").setValue(apiKey)
     }
 
