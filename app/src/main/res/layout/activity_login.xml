@@ -35,6 +35,7 @@
             android:layout_marginRight="20dp"
             android:autofillHints="emailAddress"
             android:minHeight="50dp"
+            android:inputType="textEmailAddress"
             />
 
         <EditText

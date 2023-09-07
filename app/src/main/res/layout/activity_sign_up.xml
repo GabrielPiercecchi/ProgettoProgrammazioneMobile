@@ -63,6 +63,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:minHeight="50dp"
+            android:inputType="textEmailAddress"
             />
 
         <EditText
