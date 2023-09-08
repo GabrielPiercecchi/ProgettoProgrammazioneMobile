@@ -78,7 +78,7 @@ class ManualApiKeyActivity : AppCompatActivity() {
             } catch (e: Exception){
                 Toast.makeText(
                     this@ManualApiKeyActivity,
-                    "Error " + "${e.message}",
+                    "Error: " + "${e.message}",
                     Toast.LENGTH_LONG
                 ).show()
             }

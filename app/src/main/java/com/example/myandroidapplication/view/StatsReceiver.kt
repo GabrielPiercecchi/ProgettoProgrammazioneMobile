@@ -103,7 +103,7 @@ class StatsReceiver : AppCompatActivity(){
                 }.addOnFailureListener { e ->
                     Toast.makeText(
                         this@StatsReceiver,
-                        "Error " + "${e.message}",
+                        "Error: " + "${e.message}",
                         Toast.LENGTH_LONG
                     ).show()
                 }
@@ -111,7 +111,7 @@ class StatsReceiver : AppCompatActivity(){
         } catch (e: Exception) {
             Toast.makeText(
                 this@StatsReceiver,
-                "Error " + "${e.message}",
+                "Error: " + "${e.message}",
                 Toast.LENGTH_LONG
             ).show()
         }
@@ -195,7 +195,7 @@ class ClanStatsReceiver : AppCompatActivity(){
                 }.addOnFailureListener { e ->
                     Toast.makeText(
                         this@ClanStatsReceiver,
-                        "Error " + "${e.message}",
+                        "Error: " + "${e.message}",
                         Toast.LENGTH_LONG
                     ).show()
                 }
@@ -203,7 +203,7 @@ class ClanStatsReceiver : AppCompatActivity(){
         } catch (e: Exception) {
             Toast.makeText(
                 this@ClanStatsReceiver,
-                "Error " + "${e.message}",
+                "Error: " + "${e.message}",
                 Toast.LENGTH_LONG
             ).show()
         }

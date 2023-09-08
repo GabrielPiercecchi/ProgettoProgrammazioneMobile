@@ -191,7 +191,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         } catch (e: Exception) {
             Toast.makeText(
                 this@MainActivity,
-                "Error " + "${e.message}",
+                "Error: " + "${e.message}",
                 Toast.LENGTH_LONG
             ).show()
         }
