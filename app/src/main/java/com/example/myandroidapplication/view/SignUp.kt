@@ -9,13 +9,11 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.myandroidapplication.model.User
 import com.example.myandroidapplication.R
-import com.example.myandroidapplication.viewModel.util.NetworkUtils
 import com.example.myandroidapplication.viewModel.util.MethodsUtils
+import com.example.myandroidapplication.viewModel.util.NetworkUtils
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
 
 
 // Classe per la schermata di Sign Up
@@ -161,7 +159,7 @@ class SignUp : AppCompatActivity() {
                     // Mostra un messaggio di errore se uno dei campi è vuoto
                     Toast.makeText(
                         this@SignUp,
-                        "All fields are mandatory" +
+                        "Error: All fields are mandatory" +
                                 "\nThe TAG can be inserted at a later time",
                         Toast.LENGTH_LONG
                     ).show()
@@ -170,6 +168,13 @@ class SignUp : AppCompatActivity() {
                     Toast.makeText(
                         this@SignUp,
                         "Error: Password Mismatch",
+                        Toast.LENGTH_LONG
+                    ).show()
+                } else if(!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                    // Mostra un messaggio di errore se e-mail non ha la "@"
+                    Toast.makeText(
+                        this@SignUp,
+                        "Error: invalid e-mail address",
                         Toast.LENGTH_LONG
                     ).show()
                 } else {
