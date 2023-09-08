@@ -9,11 +9,14 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.myandroidapplication.model.User
 import com.example.myandroidapplication.R
-import com.example.myandroidapplication.viewModel.util.MethodsUtils
 import com.example.myandroidapplication.viewModel.util.NetworkUtils
+import com.example.myandroidapplication.viewModel.util.MethodsUtils
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import android.view.Gravity
 
 
 // Classe per la schermata di Sign Up
@@ -159,10 +162,11 @@ class SignUp : AppCompatActivity() {
                     // Mostra un messaggio di errore se uno dei campi è vuoto
                     Toast.makeText(
                         this@SignUp,
-                        "Error: All fields are mandatory" +
-                                "\nThe TAG can be inserted at a later time",
+                        "Error: All fields are mandatory except for the player TAG ",
                         Toast.LENGTH_LONG
-                    ).show()
+                    ).apply {
+                        setGravity(Gravity.BOTTOM, 0, 0) // Imposta la posizione del Toast in basso
+                    }.show()
                 } else if (password != confirmPassword) {
                     // Mostra un messaggio di errore se le password non corrispondono
                     Toast.makeText(
@@ -174,7 +178,7 @@ class SignUp : AppCompatActivity() {
                     // Mostra un messaggio di errore se e-mail non ha la "@"
                     Toast.makeText(
                         this@SignUp,
-                        "Error: invalid e-mail address",
+                        "Error: Invalid e-mail address",
                         Toast.LENGTH_LONG
                     ).show()
                 } else {
@@ -184,9 +188,11 @@ class SignUp : AppCompatActivity() {
             } catch (e: Exception){
                 Toast.makeText(
                     this@SignUp,
-                    "Error " + "${e.message}",
+                    "Error: " + "${e.message}",
                     Toast.LENGTH_LONG
-                ).show()
+                ).apply {
+                    setGravity(Gravity.BOTTOM, 0, 0) // Imposta la posizione del Toast in basso
+                }.show()
             }
         }
 
@@ -213,9 +219,11 @@ class SignUp : AppCompatActivity() {
                     // If sign in fails, display a message to the user.
                     Toast.makeText(
                         this@SignUp,
-                        "Error" + task.exception.toString(),
+                        "Error: " + task.exception.toString(),
                         Toast.LENGTH_LONG
-                    ).show()
+                    ).apply {
+                        setGravity(Gravity.BOTTOM, 0, 0) // Imposta la posizione del Toast in basso
+                    }.show()
                 }
             }
     }

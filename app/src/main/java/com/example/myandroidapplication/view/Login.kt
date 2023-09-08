@@ -4,14 +4,15 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.Gravity
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myandroidapplication.R
-import com.example.myandroidapplication.viewModel.util.MethodsUtils
 import com.example.myandroidapplication.viewModel.util.NetworkUtils
+import com.example.myandroidapplication.viewModel.util.MethodsUtils
 import com.google.firebase.auth.FirebaseAuth
 
 // Classe per la schermata di login
@@ -99,9 +100,11 @@ class Login : AppCompatActivity() {
             } catch (e: Exception) {
                 Toast.makeText(
                     this@Login,
-                    "Error: invalid credentials ",
+                    "Error: " + "${e.message}",
                     Toast.LENGTH_LONG
-                ).show()
+                ).apply {
+                    setGravity(Gravity.BOTTOM, 0, 0) // Imposta la posizione del Toast in basso
+                }.show()
             }
 
         }
@@ -137,9 +140,11 @@ class Login : AppCompatActivity() {
                     // If sign in fails, display a message to the user.
                     Toast.makeText(
                         this@Login,
-                        "Error: invalid credentials",
+                        "Error: The password is invalid or the user does not exist.",
                         Toast.LENGTH_LONG
-                    ).show()
+                    ).apply {
+                        setGravity(Gravity.BOTTOM, 0, 0) // Imposta la posizione del Toast in basso
+                    }.show()
                 }
             }
     }

@@ -98,7 +98,7 @@ class ChangeTag : AppCompatActivity() {
                 }
                 startActivity(Intent(applicationContext, MainActivity::class.java))
             } else {
-                Toast.makeText(this, "The new TAG can't be empty", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Error: The new TAG can't be empty", Toast.LENGTH_SHORT).show()
             }
         }
     }

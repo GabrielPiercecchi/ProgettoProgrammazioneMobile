@@ -72,7 +72,7 @@ class ManualApiKeyActivity : AppCompatActivity() {
                 } else {
                     API_KEY = ""
                     Toast.makeText(this@ManualApiKeyActivity,
-                        "L'API KEY non può essere vuota",
+                        "Error: The new API KEY can't be empty",
                         Toast.LENGTH_SHORT).show()
                 }
             } catch (e: Exception){

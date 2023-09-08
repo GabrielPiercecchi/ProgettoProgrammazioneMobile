@@ -8,6 +8,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -105,24 +106,31 @@ class ChatActivity : AppCompatActivity() {
 
                 override fun onCancelled(error: DatabaseError) {
                 }
-
             } )
 
         // Per aggiungere il messaggio al database
         sendButton.setOnClickListener {
+            // Rimuove gli spazi bianchi iniziali e finali
+            val message = messageBox.text.toString().trim()
 
-            val message = messageBox.text.toString()
-            val messageObject = Message(message, senderUid)
+            if (message.isNotEmpty()) {
+                val messageObject = Message(message, senderUid)
 
-            mDbRef.child("chats").child(senderRoom!!)
-                .child("messages").push()
-                .setValue(messageObject).addOnSuccessListener {
+                mDbRef.child("chats").child(senderRoom!!)
+                    .child("messages").push()
+                    .setValue(messageObject).addOnSuccessListener {
 
-                    mDbRef.child("chats").child(receiverRoom!!)
-                        .child("messages").push()
-                        .setValue(messageObject)
-                }
-            messageBox.setText("")
+                        mDbRef.child("chats").child(receiverRoom!!)
+                            .child("messages").push()
+                            .setValue(messageObject)
+                    }
+                messageBox.setText("")
+            } else {
+                // Mostra un messaggio di errore se il messaggio è vuoto
+                val errorMessage = "Error: Message can't be empty"
+                val toast = Toast.makeText(this@ChatActivity, errorMessage, Toast.LENGTH_SHORT)
+                toast.show()
+            }
         }
     }
 
