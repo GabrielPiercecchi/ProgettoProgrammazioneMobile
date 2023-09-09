@@ -79,8 +79,8 @@ class TutorialActivity : AppCompatActivity() {
         try {
             textViewPDFLink.setOnClickListener {
                 val pdfUrl = "https://univpm-my.sharepoint.com/:b:/g/personal/" +
-                        "s1097612_studenti_univpm_it/EZXLi-yCKn5BnctJLidlY-" +
-                        "IBpuedeg1XLFUZq-CDT_5UTQ?e=7b5A2E"
+                        "s1097612_studenti_univpm_it/EfJF1LZKSyRBi2nCWlZ" +
+                        "OwZIBAsTTJ8hfSsZaUQ5pwhlU7w?e=Mc5VUe"
 
                 // Crea un intent per aprire il PDF tramite un browser
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse(pdfUrl))

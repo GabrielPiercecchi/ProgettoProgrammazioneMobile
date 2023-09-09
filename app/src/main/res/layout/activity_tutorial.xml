@@ -27,27 +27,12 @@
             android:textColor="@color/flamingoPink"/>
 
         <TextView
-            android:id="@+id/textViewDescription"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:text="@string/TutorialTitle"
-            app:layout_constraintTop_toBottomOf="@id/textViewTitle"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="8dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:padding="10dp"
-            android:textIsSelectable="true"/>
-
-        <TextView
             android:id="@+id/textViewPDFLink"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/Open_PDF_Tutorial"
             android:textColor="@android:color/holo_blue_light"
-            app:layout_constraintTop_toBottomOf="@id/textViewDescription"
+            app:layout_constraintTop_toBottomOf="@id/textViewTitle"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="8dp"
@@ -59,13 +44,27 @@
             android:focusable="true"
             android:layout_below="@id/textViewDescription" />
 
+        <TextView
+            android:id="@+id/textViewDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="@string/TutorialTitle"
+            app:layout_constraintTop_toBottomOf="@id/textViewPDFLink"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:padding="10dp"
+            android:textIsSelectable="true"/>
 
         <LinearLayout
             android:id="@+id/linkLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@id/textViewPDFLink"
+            app:layout_constraintTop_toBottomOf="@id/textViewDescription"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginTop="8dp"
             android:layout_marginStart="16dp"
