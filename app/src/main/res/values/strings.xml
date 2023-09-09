@@ -111,5 +111,5 @@
     <string name="clans">Clans</string>
     <string name="stats_player">Stats Player</string>
     <string name="no_image_available">No image available</string>
-    <string name="Open_PDF_Tutorial">Click here to open the full App explanation.</string>
+    <string name="Open_PDF_Tutorial">Click here to open the PDF with the full explanation of the app.</string>
 </resources>
