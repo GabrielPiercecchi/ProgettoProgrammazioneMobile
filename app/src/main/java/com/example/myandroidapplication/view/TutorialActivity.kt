@@ -1,14 +1,17 @@
 package com.example.myandroidapplication.view
 
 import TutorialContent
+import android.content.ActivityNotFoundException
 import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.ScrollView
 import android.widget.TextView
+import android.widget.Toast
 import android.widget.VideoView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.NestedScrollView
@@ -35,8 +38,7 @@ class TutorialActivity : AppCompatActivity() {
         val tutorial = TutorialContent(
             title = "Tutorial App",
             description = "This is the concise description of the App." +
-                    "\nThe full version can be found in the PDF document." +
-                    "\n\nWhen creating your profile, you need to enter the correct credentials:" +
+                    "\nWhen creating your profile, you need to enter the correct credentials:" +
                     "\n\n--> Your Tag [alphanumeric combination preceded by <<#>>] can be found " +
                     "in your profile, once you start the game 'Clash of Clans', " +
                     "under your nickname (The first image below shows where it is located)." +
@@ -71,6 +73,24 @@ class TutorialActivity : AppCompatActivity() {
         val textViewDescription = findViewById<TextView>(R.id.textViewDescription)
         val imageViewTutorial = findViewById<ImageView>(R.id.imageViewSite)
         val nestedScrollView = findViewById<NestedScrollView>(R.id.nestedScrollView)
+        val textViewPDFLink = findViewById<TextView>(R.id.textViewPDFLink)
+
+        //Per aprire il .PDF della tesina
+        try {
+            textViewPDFLink.setOnClickListener {
+                val pdfUrl = "https://univpm-my.sharepoint.com/:b:/g/personal/" +
+                        "s1097612_studenti_univpm_it/EZXLi-yCKn5BnctJLidlY-" +
+                        "IBpuedeg1XLFUZq-CDT_5UTQ?e=7b5A2E"
+
+                // Crea un intent per aprire il PDF tramite un browser
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(pdfUrl))
+                startActivity(intent)
+            }
+        } catch (e: ActivityNotFoundException) {
+            Toast.makeText(this, "Error: No App available to open PDF", Toast.LENGTH_SHORT).show()
+        } catch (e: Exception) {
+            Toast.makeText(this, "Error: Failed to open PDF", Toast.LENGTH_SHORT).show()
+        }
 
 
         // Visualizza il link con il testo blu e l'icona
